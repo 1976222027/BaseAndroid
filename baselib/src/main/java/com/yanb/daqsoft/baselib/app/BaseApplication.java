@@ -13,9 +13,9 @@ public class BaseApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        App.init(this)
+        Apps.init(this)
                 .withApiHost("http://www.baidu.com")
                 // 加入别的配置按此类推
-                .configure();
+                .build();
     }
 }
