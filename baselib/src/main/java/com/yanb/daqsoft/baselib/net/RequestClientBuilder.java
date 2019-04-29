@@ -1,10 +1,14 @@
 package com.yanb.daqsoft.baselib.net;
 
+import android.content.Context;
+
 import com.yanb.daqsoft.baselib.net.callback.IError;
 import com.yanb.daqsoft.baselib.net.callback.IFailure;
 import com.yanb.daqsoft.baselib.net.callback.IRequest;
 import com.yanb.daqsoft.baselib.net.callback.ISuccess;
+import com.yanb.daqsoft.baselib.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -20,15 +24,20 @@ import okhttp3.RequestBody;
  * @since JDK 1.8
  */
 
-public class RequestClientBuilder {
-    private String mUrl;
+public final class RequestClientBuilder {
+    private String mUrl = null;
     private static final WeakHashMap<String,Object> PARAMSMAP = RequestCreator.getParams();
-    private IRequest mIRequest;
-    private IError mIError;
-    private IFailure mIFailure;
-    private ISuccess mISuccess;
-    private RequestBody mBody;
-
+    private IRequest mIRequest = null;
+    private IError mIError = null;
+    private IFailure mIFailure =null;
+    private ISuccess mISuccess = null;
+    private RequestBody mBody =null;
+    private Context mContext = null;
+    private LoaderStyle mLoaderStyle = null;
+    private File mFile = null;
+    private String mDownloadDir = null;
+    private String mExtension = null;
+    private String mName = null;
     public RequestClientBuilder() {
     }
 
@@ -49,7 +58,29 @@ public class RequestClientBuilder {
         PARAMSMAP.put(key,value);
         return this;
     }
-    public final RequestClientBuilder raw(String raw){
+    public final RequestClientBuilder file(String file) {
+        this.mFile = new File(file);
+        return this;
+    }
+    public final RequestClientBuilder name(String name) {
+        this.mName = name;
+        return this;
+    }
+
+    public final RequestClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+    public final RequestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RequestClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+    public final RequestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
@@ -69,8 +100,18 @@ public class RequestClientBuilder {
         this.mIFailure = iFailure;
         return this;
     }
+    public final RequestClientBuilder loader(Context context, LoaderStyle style) {
+        this.mContext = context;
+        this.mLoaderStyle = style;
+        return this;
+    }
+    public final RequestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallClipRotatePulseIndicator;
+        return this;
+    }
     public final RequestClient build(){
-        return new RequestClient(mUrl,mIRequest,mISuccess,mIFailure,mIError,PARAMSMAP,mBody);
+        return new RequestClient(mUrl,mIRequest,mISuccess,mIFailure,mIError,PARAMSMAP,mBody,mContext,mLoaderStyle,mFile,mDownloadDir);
     }
 
 }

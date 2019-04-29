@@ -1,6 +1,7 @@
 package com.yanb.daqsoft.baselib.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.WeakHashMap;
 
@@ -43,6 +44,14 @@ public final class Apps {
      */
     public static Context getApplicationContext(){
         return getConfigByKeys(ConfigKeys.APPLICATION_CONTEXT);
+    }
+
+    /**
+     * 获取hander
+     * @return
+     */
+    public static Handler getHandler() {
+        return getConfigByKeys(ConfigKeys.HANDLER);
     }
 
 
