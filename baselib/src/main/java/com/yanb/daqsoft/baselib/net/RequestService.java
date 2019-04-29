@@ -61,7 +61,7 @@ public interface RequestService {
 
     /**
      * 下载
-     * Streaming 防止一次文件写入过大内存溢出
+     * Streaming 避免一次性将所有的文件下载下来，导致内存的溢出；但是在写的时候，仍然需要将文件放在单独的线程，否则在主线程操作任然会报错。
      * @param url
      * @param params
      * @return 返回的是ResponseBody请求体

@@ -64,7 +64,7 @@ public final class RequestCreator {
      * 获取请求服务
      * @return
      */
-    private static RequestService getRequestService(){
+    public static RequestService getRequestService(){
         return RequestServiceHolder.REQUEST_SERVICE;
     }
 }
