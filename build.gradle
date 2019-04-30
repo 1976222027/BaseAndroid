@@ -24,10 +24,10 @@ task clean(type: Delete) {
 // 统一管理版本
 ext {
     //android
-    compileSdkVersion = 27
-    buildToolsVersion = '27.0.3'
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.2'
     minSdkVersion = 19
-    targetSdkVersion = 27
+    targetSdkVersion = 28
     supportLibVersion = '27.1.1'
 
     //dependencies

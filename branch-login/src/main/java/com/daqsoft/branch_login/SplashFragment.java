@@ -2,10 +2,13 @@ package com.daqsoft.branch_login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 import com.yanb.daqsoft.baselib.utils.timer.ITimerListener;
+
+import butterknife.BindView;
 
 /**
  * 引导页加倒计时
@@ -17,9 +20,11 @@ import com.yanb.daqsoft.baselib.utils.timer.ITimerListener;
  */
 
 public class SplashFragment extends MainSlidingFragment implements ITimerListener{
+    @BindView(R2.id.tv_launcher_timer)
+    AppCompatTextView mTvTimer = null;
     @Override
     public Object getLayout() {
-        return null;
+        return R.layout.splash_fragment;
     }
 
     @Override
