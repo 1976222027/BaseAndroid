@@ -7,6 +7,7 @@ import com.yanb.daqsoft.baselib.net.callback.IFailure;
 import com.yanb.daqsoft.baselib.net.callback.IRequest;
 import com.yanb.daqsoft.baselib.net.callback.ISuccess;
 import com.yanb.daqsoft.baselib.net.callback.RequestCallBack;
+import com.yanb.daqsoft.baselib.net.download.DownloadHandler;
 import com.yanb.daqsoft.baselib.ui.LatteLoader;
 import com.yanb.daqsoft.baselib.ui.LoaderStyle;
 
@@ -24,21 +25,35 @@ import retrofit2.Callback;
  *
  */
 public class RequestClient {
-    private final String URL;
+    private final String URL;//请求地址
     private static final WeakHashMap<String, Object> PARAMSMAP = RequestCreator.getParams();
+    /**
+     * 请求状态接口
+     */
     private final IRequest IREQUEST;
     private final ISuccess ISUCCESS;
     private final IFailure IFAILURE;
     private final IError IERROR;
+    /**
+     * 延伸
+     */
+    private final String EXTENSION;
+    private final String NAME;
+    /**
+     * 下载
+     */
     private final String DOWNLOAD_PATH;
     private final RequestBody BODY;
     private final LoaderStyle LOADER_STYLE;
     private final File FILE;
     private final Context CONTEXT;
 
+
     public RequestClient(String url, IRequest request, ISuccess success, IFailure failure,
-                         IError error, Map<String, Object> paramsmap, RequestBody body, Context context,LoaderStyle loaderStyle,File file,String downpath) {
+                         IError error, Map<String, Object> paramsmap, RequestBody body, Context context,LoaderStyle loaderStyle,File file,String downpath,String extension,String name) {
         this.URL = url;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.IREQUEST = request;
         this.ISUCCESS = success;
         this.IFAILURE = failure;
@@ -125,5 +140,17 @@ public class RequestClient {
     public final void delete(){
         request(HttpMethod.DELETE);
     }
+
+    /**
+     * 上传
+     */
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
+    }
     //下载
+    public final void download() {
+        new DownloadHandler(URL, IREQUEST, DOWNLOAD_PATH, EXTENSION, NAME,
+                ISUCCESS, IFAILURE, IERROR)
+                .handleDownload();
+    }
 }

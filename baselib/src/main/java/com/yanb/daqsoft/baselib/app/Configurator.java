@@ -1,7 +1,16 @@
 package com.yanb.daqsoft.baselib.app;
 
+import android.os.Handler;
+
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+import com.yanb.daqsoft.baselib.utils.Utils;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.WeakHashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * @author: yanbo
@@ -13,6 +22,8 @@ import java.util.WeakHashMap;
 public class Configurator {
     // 首先一个map存对象
     private static final HashMap<Object,Object> APPS_CONFIGS = new HashMap<>();
+    private static final Handler HANDLER = new Handler();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     /**
      * 构造方法
@@ -20,6 +31,7 @@ public class Configurator {
     private Configurator(){
         // 刚开始，配置未完成（配置开始）
         APPS_CONFIGS.put(ConfigKeys.CONFIG_READY,false);
+        APPS_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     /**
@@ -48,7 +60,9 @@ public class Configurator {
      *
      */
     public final void build(){
+        Logger.addLogAdapter(new AndroidLogAdapter());
         APPS_CONFIGS.put(ConfigKeys.CONFIG_READY,true);//配置文件状态好了
+        Utils.init(Apps.getApplicationContext());
     }
 
     /**
@@ -56,6 +70,22 @@ public class Configurator {
      */
     public final Configurator withApiHost(String host){
         APPS_CONFIGS.put(ConfigKeys.API_HOST,host);
+        return this;
+    }
+    public final Configurator withLoaderDelayed(long delayed) {
+        APPS_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
+        return this;
+    }
+
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        APPS_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        APPS_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
     /**

@@ -29,6 +29,7 @@ public final class RequestCreator {
     private static final class OKHttpHolder{
         private static final int TIME_OUT = 60;//超时
         private static final OkHttpClient.Builder BUILDER= new OkHttpClient.Builder();
+        // 拦截器
         private static final ArrayList<Interceptor> INTERCEPTORS = Apps.getConfigByKeys(ConfigKeys.INTERCEPTOR);
         private static OkHttpClient.Builder addIntercepter(){
             if (INTERCEPTORS!=null&&!INTERCEPTORS.isEmpty()){

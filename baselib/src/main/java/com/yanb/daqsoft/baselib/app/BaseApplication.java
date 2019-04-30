@@ -2,6 +2,8 @@ package com.yanb.daqsoft.baselib.app;
 
 import android.app.Application;
 
+import com.yanb.daqsoft.baselib.R;
+import com.yanb.daqsoft.baselib.net.interceptors.DebugInterceptor;
 import com.yanb.daqsoft.baselib.utils.Utils;
 
 /**
@@ -15,9 +17,10 @@ public class BaseApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        Utils.init(this);
         Apps.init(this)
-                .withApiHost("http://ptisp.test.daqsoft.com/govapi/")
+                .withApiHost("http://ptisp.daqsoft.com/govapi/")
+                .withInterceptor(new DebugInterceptor("test", R.raw.test))
+                .withLoaderDelayed(1000)
                 // 加入别的配置按此类推
                 .build();
     }

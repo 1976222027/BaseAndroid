@@ -50,6 +50,11 @@ public final class RequestClientBuilder {
         this.mUrl = url;
         return this;
     }
+
+    /**
+     * 请求参数拼接
+     * 支持map,及键值对
+     */
     public final RequestClientBuilder params(WeakHashMap<String,Object> paramsmap){
         PARAMSMAP.putAll(paramsmap);
         return this;
@@ -58,17 +63,14 @@ public final class RequestClientBuilder {
         PARAMSMAP.put(key,value);
         return this;
     }
+
+    /**
+     * 文件
+     * @param file
+     * @return
+     */
     public final RequestClientBuilder file(String file) {
         this.mFile = new File(file);
-        return this;
-    }
-    public final RequestClientBuilder name(String name) {
-        this.mName = name;
-        return this;
-    }
-
-    public final RequestClientBuilder dir(String dir) {
-        this.mDownloadDir = dir;
         return this;
     }
     public final RequestClientBuilder file(File file) {
@@ -76,10 +78,30 @@ public final class RequestClientBuilder {
         return this;
     }
 
+    /**
+     * 延伸自定义
+     */
+    public final RequestClientBuilder name(String name) {
+        this.mName = name;
+        return this;
+    }
     public final RequestClientBuilder extension(String extension) {
         this.mExtension = extension;
         return this;
     }
+    /**
+     * 下载地址
+     * @param dir
+     * @return
+     */
+    public final RequestClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
+    /**
+     * 语音
+     */
     public final RequestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
@@ -100,6 +122,13 @@ public final class RequestClientBuilder {
         this.mIFailure = iFailure;
         return this;
     }
+
+    /**
+     * 加载框
+     * @param context
+     * @param style
+     * @return
+     */
     public final RequestClientBuilder loader(Context context, LoaderStyle style) {
         this.mContext = context;
         this.mLoaderStyle = style;
@@ -111,7 +140,7 @@ public final class RequestClientBuilder {
         return this;
     }
     public final RequestClient build(){
-        return new RequestClient(mUrl,mIRequest,mISuccess,mIFailure,mIError,PARAMSMAP,mBody,mContext,mLoaderStyle,mFile,mDownloadDir);
+        return new RequestClient(mUrl,mIRequest,mISuccess,mIFailure,mIError,PARAMSMAP,mBody,mContext,mLoaderStyle,mFile,mDownloadDir,mExtension,mName);
     }
 
 }

@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.ContentFrameLayout;
 
 import com.yanb.daqsoft.baselib.R;
-import com.yanb.daqsoft.baselib.delegates.MainDelegate;
+import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
@@ -18,7 +18,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseSupportActivity extends SupportActivity {
     // 设置根delegate
-    public abstract MainDelegate setRootDelegate();
+    public abstract MainSlidingFragment setRootDelegate();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

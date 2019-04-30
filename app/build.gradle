@@ -29,4 +29,5 @@ dependencies {
     implementation project(':work-shopping')
     // 编译器
     annotationProcessor project(':base-compiler')
+    implementation project(':branch-login')
 }
