@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':base-compiler', ':base-annotations', ':work-shopping', ':branch-login'
+include ':app', ':baselib', ':base-compiler', ':base-annotations', ':work-shopping', ':branch-login', ':customview'
