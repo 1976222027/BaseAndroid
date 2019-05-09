@@ -6,9 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.yanb.daqsoft.baselib.utils.SizeUtils;
+
+import java.util.List;
 
 /**
  * 刷选条目的字顶部
@@ -91,8 +94,31 @@ public class FixedTabIndicator extends LinearLayout{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        // 分割线的个数比tab少1
         for (int i = 0; i < mTabNum - 1; i++) {
+            final View child = getChildAt(i);
+            if (null == child|| child.getVisibility() == View.GONE){
+                continue;
+            }
+            // 划分割线
+            canvas.drawLine(child.getRight(),mDividerPaddingTop,getRight(),measureHeight-mDividerPaddingTop,mDividerPaint);
+        }
+        // 绘制上下黑线
+    }
+
+    /**
+     * 设置标题
+     */
+    public void setTitles(List<String> list){
+        if (list==null || list.isEmpty()){
+            throw new IllegalStateException("tab is null");
+        }
+        this.removeAllViews();//先删除所有View
+        mTabNum = list.size();
+        for (int i = 0; i < mTabNum; i++) {
 
         }
+        postInvalidate();//刷新
     }
+
 }

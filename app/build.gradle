@@ -30,4 +30,6 @@ dependencies {
     // 编译器
     annotationProcessor project(':base-compiler')
     implementation project(':branch-login')
+    implementation project(':customview')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterknifeVersion
 }

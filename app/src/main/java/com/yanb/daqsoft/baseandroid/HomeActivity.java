@@ -7,6 +7,6 @@ public class HomeActivity extends BaseSupportActivity {
 
     @Override
     public MainSlidingFragment setRootDelegate() {
-        return new SplashFragment();
+        return new CustomviewExampleFragment();
     }
 }
