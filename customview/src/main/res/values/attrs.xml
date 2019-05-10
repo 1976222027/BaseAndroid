@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoginView">
+        <!-- 登录顶部标题 -->
+        <attr name="loginTitle" format="string" />
+        <!--登录顶部图标-->
+        <attr name="loginIcon" format="reference" />
+
+    </declare-styleable>
+</resources>

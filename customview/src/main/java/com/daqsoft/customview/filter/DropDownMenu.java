@@ -35,4 +35,9 @@ public class DropDownMenu extends RelativeLayout{
     private void init() {
         setBackgroundColor(Color.WHITE);
     }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+    }
 }
