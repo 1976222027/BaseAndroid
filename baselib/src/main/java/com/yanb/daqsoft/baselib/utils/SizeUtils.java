@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baselib.utils;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -31,6 +32,16 @@ public final class SizeUtils {
         return (int) (dpValue * scale + 0.5f);
     }
 
+    /**
+     * 获取dp
+     * @param context
+     * @param dp
+     * @return
+     */
+    public static int dp(Context context, int dp) {
+        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dp, context.getResources().getDisplayMetrics()) + 0.5F);
+    }
     /**
      * Value of px to value of dp.
      *

@@ -4,11 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.daqsoft.customview.R;
 import com.yanb.daqsoft.baselib.utils.SizeUtils;
 
 import java.util.List;
@@ -43,6 +51,12 @@ public class FixedTabIndicator extends LinearLayout{
     private int measureWidth;
 
     private int mTabNum;// 顶部条目数量
+    /**
+     * tab文字大小
+     */
+    private int mTabTextSize = 13;
+    private int mTabDefaultColor = 0xFF666666;// 未选中默认颜色
+    private int mTabSelectedColor = 0xFF008DF2;// 指针选中颜色
 
     public FixedTabIndicator(Context context) {
         this(context,null);
@@ -80,8 +94,8 @@ public class FixedTabIndicator extends LinearLayout{
 
         mLinePaint = new Paint();
         mLinePaint.setColor(mLineColor);
-        mDividerPaddingTop = SizeUtils.px2dp(mDividerPaddingTop);
-        mDrawableRight = SizeUtils.px2dp(mDrawableRight);
+        mDividerPaddingTop = SizeUtils.dp(mContext,mDividerPaddingTop);
+        mDrawableRight = SizeUtils.dp(mContext,mDrawableRight);
     }
 
     @Override
@@ -108,6 +122,7 @@ public class FixedTabIndicator extends LinearLayout{
 
     /**
      * 设置标题
+     * 将相应的布局添加进去
      */
     public void setTitles(List<String> list){
         if (list==null || list.isEmpty()){
@@ -116,9 +131,51 @@ public class FixedTabIndicator extends LinearLayout{
         this.removeAllViews();//先删除所有View
         mTabNum = list.size();
         for (int i = 0; i < mTabNum; i++) {
-
+            addView(generateTextView(list.get(i),i));
         }
         postInvalidate();//刷新
     }
+
+    /**
+     * 生成文本视图
+     */
+    private View generateTextView(String title,int pos){
+        TextView tv = new TextView(mContext);
+        tv.setGravity(Gravity.CENTER);
+        tv.setText(title);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,mTabTextSize);
+        tv.setTextColor(mTabDefaultColor);
+        tv.setSingleLine();
+        tv.setEllipsize(TextUtils.TruncateAt.END);
+        // 限制4个字符
+        tv.setMaxEms(6);
+        // 设置箭头
+        Drawable dra = getResources().getDrawable(getResources().getDrawable(R.drawable
+                .level_filter).level_filter);
+        tv.setCompoundDrawablesWithIntrinsicBounds(null,null,dra,null);
+        tv.setCompoundDrawablePadding(mDrawableRight);
+        // 将textView添加到RelativeLayout
+        RelativeLayout rel = new RelativeLayout(mContext);
+        RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(ViewGroup
+                .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rlParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        rel.addView(tv,rlParams);
+        rel.setId(pos);
+
+        // 在讲relativeLayout 添加到LinearLayout
+        LayoutParams lineParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        lineParams.weight = 1;
+        lineParams.gravity = Gravity.CENTER;
+        rel.setLayoutParams(lineParams);
+        rel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        return rel;
+    }
+
 
 }
