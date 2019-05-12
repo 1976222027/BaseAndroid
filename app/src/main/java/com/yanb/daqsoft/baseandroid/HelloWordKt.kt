@@ -1,15 +1,19 @@
 package com.yanb.daqsoft.baseandroid
 
 import android.util.Log
-
-//boolean类型
-val mBoolead: Boolean = true
-
-val mStrName: String = "firstStr"
-val mStrAge: String = "13"
-fun main(args: Array<String>) {
-    Log.e("df","sdfs")
-    if (mStrName== mStrAge){
-
-    }
+// 变量
+/**
+ * 计算ab值
+ * 有参无返回值
+ */
+fun sum(a:Int,b:Int){
+    a+b;
 }
+
+/**
+ * 有返回值
+ */
+public fun getSum(a:Int,b:Int):Int{
+    return a+b
+}
+
