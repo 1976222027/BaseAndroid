@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:src="@mipmap/ic_account" />
+            android:src="@mipmap/common_icon_account" />
 
         <EditText
             android:id="@+id/et_account"
@@ -61,7 +61,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_circle_delete"
+            android:src="@mipmap/common_icon_circle_delete"
              android:visibility="gone"/>
     </LinearLayout>
 
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:src="@mipmap/ic_password" />
+            android:src="@mipmap/common_icon_password" />
 
 
         <EditText
@@ -107,7 +107,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_circle_delete"/>
+            android:src="@mipmap/common_icon_circle_delete"/>
 
         <ImageView
             android:padding="@dimen/dp_10"
@@ -115,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_eye_close" />
+            android:src="@mipmap/common_icon_eye_close" />
     </LinearLayout>
 
     <View

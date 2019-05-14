@@ -2,7 +2,6 @@ package com.daqsoft.customview.login;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -17,11 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daqsoft.customview.R;
-import com.orhanobut.logger.Logger;
 import com.yanb.daqsoft.baselib.utils.ToastUtils;
 
 /**
@@ -133,11 +130,11 @@ public class LoginView extends FrameLayout implements View.OnClickListener{
         if (view.getId()==R.id.iv_show_pwd){
             if (flag == true) {
                 mEtPasd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                mImgEyes.setImageResource(R.mipmap.ic_eye_close);
+                mImgEyes.setImageResource(R.mipmap.common_icon_eye_close);
                 flag = false;
             } else {
                 mEtPasd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                mImgEyes.setImageResource(R.mipmap.ic_eye_open);
+                mImgEyes.setImageResource(R.mipmap.common_icon_eye_open);
                 flag = true;
             }
             String pwd = mEtPasd.getText().toString();

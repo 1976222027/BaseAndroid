@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="17sp"
+            android:textColor="@color/text_nomal"
+            android:text="请填写检查结果"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_maxnum"
+            android:text="0"
+            android:textColor="@color/text_gray"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <EditText
+        android:layout_marginLeft="16dp"
+        android:id="@+id/edt_content"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:gravity="top"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:hint="写下你想说的投诉内容..."
+        android:maxLength="500"
+        android:textColorHint="@color/text_gray"
+        android:textColor="@color/text_nomal"
+        android:textSize="16sp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/imgselected_rv"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

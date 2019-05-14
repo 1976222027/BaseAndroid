@@ -1,4 +1,6 @@
 package com.yanb.daqsoft.baseandroid;
+import android.content.Intent;
+
 import com.daqsoft.branch_login.LoginFragment;
 import com.daqsoft.branch_login.SplashFragment;
 import com.yanb.daqsoft.baselib.activities.BaseSupportActivity;
@@ -8,6 +10,11 @@ public class HomeActivity extends BaseSupportActivity {
 
     @Override
     public MainSlidingFragment setRootDelegate() {
-        return new LoginFragment();
+        return new ImgUpFragment();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

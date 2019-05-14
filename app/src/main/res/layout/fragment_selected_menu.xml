@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.daqsoft.customview.dropdownmenu.DropDownMenu
+        android:id="@+id/drop_menu"
+        app:ddmenuTextSize="13sp"
+        app:ddtextUnselectedColor="@color/text_nomal"
+        app:ddtextSelectedColor="@color/main"
+        app:dddividerColor="@color/line_gray"
+        app:ddunderlineColor="@color/line_gray"
+        app:ddmenuMenuHeightPercent="0.5"
+        app:ddmenuSelectedIcon="@mipmap/common_icon_arrow_up"
+        app:ddmenuUnselectedIcon="@mipmap/common_icon_arrow_down"
+        app:ddmaskColor="@color/mask_color"
+        app:ddmenuBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

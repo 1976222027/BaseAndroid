@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.daqsoft.customview.login.LoginView
         app:loginTitle="西藏旅游监管"
-        app:loginIcon="@mipmap/ic_eye_close"
+        app:loginIcon="@mipmap/common_icon_eye_close"
         android:id="@+id/login_loginview"
         android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginRight="@dimen/dp_16"
