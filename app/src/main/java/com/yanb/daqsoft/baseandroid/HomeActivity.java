@@ -10,11 +10,8 @@ public class HomeActivity extends BaseSupportActivity {
 
     @Override
     public MainSlidingFragment setRootDelegate() {
-        return new ImgUpFragment();
+        return new PullToRefreshUseFragment();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+
 }
