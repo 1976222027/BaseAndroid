@@ -17,6 +17,7 @@ public class BaseApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+
         Apps.init(this)
                 .withApiHost("http://ptisp.daqsoft.com/govapi/")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
