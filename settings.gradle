@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':base-compiler', ':base-annotations', ':work-shopping', ':branch-login', ':customview', ':imgselected', ':tablayout', ':ybmap'
+include ':app', ':baselib', ':base-compiler', ':base-annotations', ':work-shopping', ':branch-login', ':customview', ':imgselected', ':tablayout', ':ybmap', ':zxinglib'

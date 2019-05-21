@@ -6,27 +6,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
 import com.daqsoft.customview.dropdownmenu.DropDownMenu;
 import com.daqsoft.customview.dropdownmenu.adapter.ListDropDownAdapter;
-import com.yanb.daqsoft.baselib.delegates.BaseSlidingFragment;
+import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 import com.yanb.daqsoft.baselib.utils.adapter.BaseQuickAdapter;
-import com.yanb.daqsoft.baselib.utils.glide.GlideApi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 功能
@@ -49,6 +44,11 @@ public class SelectedMemuFragment extends MainSlidingFragment {
     @Override
     public Object getLayout() {
         return R.layout.fragment_selected_menu;
+    }
+
+    @Override
+    public IBasePresenter initPresenter() {
+        return null;
     }
 
     @Override

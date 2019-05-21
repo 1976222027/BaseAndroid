@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.daqsoft.customview.login.LoginView;
 import com.orhanobut.logger.Logger;
+import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 
 import butterknife.BindView;
@@ -30,6 +31,11 @@ public class LoginFragment extends MainSlidingFragment {
     @Override
     public Object getLayout() {
         return R.layout.login_fragment;
+    }
+
+    @Override
+    public IBasePresenter initPresenter() {
+        return null;
     }
 
     @Override

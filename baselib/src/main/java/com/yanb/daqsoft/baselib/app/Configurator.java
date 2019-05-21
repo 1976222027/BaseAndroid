@@ -39,16 +39,20 @@ public class Configurator {
      * 线程安全的懒汉模式
      * 静态累不累Holder然后get他
      */
-    static Configurator getInstance(){
+    public static Configurator getInstance(){
         return Holder.INSTANCE;
     }
     /**
-     * 静态累不累
+     * 使用静态累不累单列模式初始化
      */
     private static class Holder{
         private static final Configurator INSTANCE = new Configurator();
     }
 
+    /**
+     * 获取数据保存集合
+     * @return
+     */
     final HashMap<Object, Object> getAppsConfigs() {
         return APPS_CONFIGS;
     }
@@ -61,7 +65,9 @@ public class Configurator {
      */
     public final void build(){
         Logger.addLogAdapter(new AndroidLogAdapter());
-        APPS_CONFIGS.put(ConfigKeys.CONFIG_READY,true);//配置文件状态好了
+        // 配置文件状态好了
+        APPS_CONFIGS.put(ConfigKeys.CONFIG_READY,true);
+        // 这里是Utils的统一处理
         Utils.init(Apps.getApplicationContext());
     }
 

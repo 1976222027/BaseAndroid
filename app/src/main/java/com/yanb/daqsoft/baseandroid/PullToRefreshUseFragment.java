@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.daqsoft.customview.commonrecycleview.CommonRecycleListView;
+import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 import com.yanb.daqsoft.baselib.utils.adapter.BaseQuickAdapter;
 import com.yanb.daqsoft.baselib.utils.adapter.BaseViewHolder;
@@ -37,6 +38,11 @@ public class PullToRefreshUseFragment extends MainSlidingFragment {
     @Override
     public Object getLayout() {
         return R.layout.fragment_pulltorefresh;
+    }
+
+    @Override
+    public IBasePresenter initPresenter() {
+        return null;
     }
 
     @Override

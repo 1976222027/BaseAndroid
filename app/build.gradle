@@ -36,4 +36,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterknifeVersion
     implementation project(':imgselected')
     implementation project(':tablayout')
+    implementation project(':zxinglib')
 }

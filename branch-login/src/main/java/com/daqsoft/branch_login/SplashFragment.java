@@ -1,12 +1,17 @@
 package com.daqsoft.branch_login;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.daqsoft.customview.progress.CircleProgressBar;
+import com.orhanobut.logger.Logger;
+import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
-import com.yanb.daqsoft.baselib.net.callback.IFailure;
 import com.yanb.daqsoft.baselib.utils.BarUtils;
 import com.yanb.daqsoft.baselib.utils.timer.BaseTimerTask;
 import com.yanb.daqsoft.baselib.utils.timer.ITimerListener;
@@ -15,6 +20,8 @@ import java.text.MessageFormat;
 import java.util.Timer;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 引导页加倒计时
@@ -25,12 +32,24 @@ import butterknife.BindView;
  * @since JDK 1.8
  */
 
-public class SplashFragment extends MainSlidingFragment implements ITimerListener{
-    @BindView(R2.id.tv_launcher_timer)
-    AppCompatTextView mTvTimer = null;
+public class SplashFragment extends MainSlidingFragment {
+    @BindView(R2.id.line_progress)
+    CircleProgressBar lineProgress;
+    @BindView(R2.id.solid_progress)
+    CircleProgressBar solidProgress;
+    @BindView(R2.id.custom_progress1)
+    CircleProgressBar customProgress1;
+    @BindView(R2.id.custom_progress2)
+    CircleProgressBar customProgress2;
+    @BindView(R2.id.custom_progress3)
+    CircleProgressBar customProgress3;
+    @BindView(R2.id.custom_progress4)
+    CircleProgressBar customProgress4;
+    @BindView(R2.id.custom_progress5)
+    CircleProgressBar customProgress5;
+    @BindView(R2.id.custom_progress6)
+    CircleProgressBar customProgress6;
 
-    private Timer mTimer = null;
-    private int mCount = 5 ;
 
     @Override
     public Object getLayout() {
@@ -38,41 +57,69 @@ public class SplashFragment extends MainSlidingFragment implements ITimerListene
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, @Nullable View rootView) {
-        BarUtils.setStatusBarVisibility(getBaseSupportActivity(),false);
-        initTimer();
-    }
-
-    /**
-     * 初始化时间
-     */
-    private void initTimer() {
-        mTimer = new Timer();
-        final BaseTimerTask task = new BaseTimerTask(this);
-        mTimer.schedule(task,0,1000);
+    public IBasePresenter initPresenter() {
+        return null;
     }
 
     @Override
-    public void onTimer() {
-        getBaseSupportActivity().runOnUiThread(new Runnable() {
+    public void onBindView(@Nullable Bundle savedInstanceState, @Nullable View rootView) {
+        BarUtils.setStatusBarVisibility(getBaseSupportActivity(), false);
+        simulateProgress();
+        customProgress5.setProgressFormatter(new CircleProgressBar.ProgressFormatter() {
             @Override
-            public void run() {
-                if (mTvTimer !=null){
-                    mTvTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
-                    mCount--;
-                    if (mCount<0){
-                        if (mTimer!=null){
-                            mTimer.cancel();
-                            mTimer=null;
-                        }
-                    }
-                }
+            public CharSequence format(int progress, int max) {
+                Logger.e(progress+"--"+max);
+                return  "跳过";
             }
         });
+
+        // 隐藏内容显示
+        customProgress6.setProgressFormatter(null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (animator.isRunning()){
+            animator.resume();
+        }else {
+            animator.start();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (animator.isRunning()){
+            animator.pause();
+        }
     }
 
     @Override
     public void post(Runnable runnable) {
 
     }
+    private ValueAnimator animator;
+    private void simulateProgress() {
+        animator = ValueAnimator.ofInt(0, 100);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int progress = (int) animation.getAnimatedValue();
+                lineProgress.setProgress(progress);
+                solidProgress.setProgress(progress);
+                customProgress1.setProgress(progress);
+                customProgress2.setProgress(progress);
+                customProgress3.setProgress(progress);
+                customProgress4.setProgress(progress);
+                customProgress5.setProgress(progress);
+                customProgress6.setProgress(progress);
+            }
+        });
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.setDuration(5000);
+    }
+
 }

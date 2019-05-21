@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.daqsoft.imgselected.Matisse;
 import com.daqsoft.imgselected.customimgup.ImageSelectionView;
 import com.orhanobut.logger.Logger;
+import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 
 import java.util.List;
@@ -35,6 +36,11 @@ public class ImgUpFragment extends MainSlidingFragment {
     @Override
     public Object getLayout() {
         return R.layout.fragment_imgup;
+    }
+
+    @Override
+    public IBasePresenter initPresenter() {
+        return null;
     }
 
     @Override

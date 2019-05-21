@@ -7,6 +7,7 @@
         <dimen name="dp_20">20dp</dimen>
         <dimen name="dp_40">40dp</dimen>
         <!--text-->
+        <dimen name="text_12">12sp</dimen>
         <dimen name="text_14">14sp</dimen>
         <dimen name="text_17">17sp</dimen>
         <dimen name="text_18">18sp</dimen>

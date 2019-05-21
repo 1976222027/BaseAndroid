@@ -12,11 +12,15 @@ package com.yanb.daqsoft.baselib.app;
  */
 
 public enum ConfigKeys {
+    // 网络请求配置的域名
     API_HOST,
+    // 全局上下文
     APPLICATION_CONTEXT,
+    // 初始化控制是否完成
     CONFIG_READY,
     HANDLER,
     LOADER_DELAYED,
     INTERCEPTOR,
+    // 存储直接的初始化配置
     ICON
 }

@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.daqsoft.customview.example.CustomviewExampleView;
 import com.daqsoft.customview.example.PieData;
+import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
 
 import java.util.ArrayList;
@@ -30,6 +31,11 @@ public class CustomviewExampleFragment extends MainSlidingFragment {
     @Override
     public Object getLayout() {
         return R.layout.fragment_customexample;
+    }
+
+    @Override
+    public IBasePresenter initPresenter() {
+        return null;
     }
 
     @Override

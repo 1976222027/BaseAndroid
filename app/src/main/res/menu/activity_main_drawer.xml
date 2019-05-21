@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/ic_home_white_24dp"
+            android:title="Home"/>
+        <item
+            android:id="@+id/nav_discover"
+            android:icon="@mipmap/ic_discover_white_24dp"
+            android:title="Discover"/>
+        <item
+            android:id="@+id/nav_shop"
+            android:icon="@mipmap/ic_message_white_24dp"
+            android:title="Shop"/>
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@mipmap/ic_discover_white_24dp"
+                android:title="登录"/>
+        </menu>
+    </item>
+
+    <item android:title="SwipeBack">
+        <menu>
+            <item
+                android:id="@+id/nav_swipe_back"
+                android:icon="@mipmap/ic_touch_app_white_24dp"
+                android:title="SwipeBackActivity+Fragment"/>
+        </menu>
+    </item>
+</menu>
