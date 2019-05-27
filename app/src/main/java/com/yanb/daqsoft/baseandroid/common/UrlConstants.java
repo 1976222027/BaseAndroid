@@ -19,4 +19,9 @@ public class UrlConstants {
      * ignoreCode=1&account=13778069524&password=qyiZj1Q8etTrdTJ8d%2BgSTw%3D%3D%0A&siteCode=ycyjywgw&lang=cn&token=
      */
     public static final String LOGIN = "/govapi/api/gov/app/member/login";
+    /**
+     * 景区列表
+     * http://ptisp.daqsoft.com/govapi/api/gov/app/scenery/list?page=1&limitPage=10&siteCode=nngjapp&lang=cn&token=
+     */
+    public static final String SCENIC_LIST = "/govapi/api/gov/app/scenery/list";
 }

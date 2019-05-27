@@ -45,16 +45,16 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterknifeVersion
     //网络请求依赖
 
-    api 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    api 'com.squareup.okhttp3:logging-interceptor:3.8.1'//非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
     api 'com.squareup.okhttp3:okhttp:3.8.1'
     /**
      * Rxjava2和Retrofit2
      */
-    api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
-    api 'io.reactivex.rxjava2:rxandroid:'+ rootProject.ext.rxandroid
-    api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.retrofit2:converter-gson:2.3.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"// 必要rxjava2依赖
+    api 'io.reactivex.rxjava2:rxandroid:'+ rootProject.ext.rxandroid// 必要rxandrroid依赖，切线程时需要用到
+    api 'com.squareup.retrofit2:retrofit:2.3.0'// 必要retrofit依赖
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'// 必要依赖，解析json字符所用
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0' // 必要依赖，和Rxjava结合必须用到，下面会提到
     api 'com.jakewharton:disklrucache:2.0.2'
 
     //Loader依赖 https://github.com/81813780/AVLoadingIndicatorView

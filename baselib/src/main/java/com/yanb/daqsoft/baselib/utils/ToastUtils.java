@@ -121,6 +121,18 @@ public final class ToastUtils {
     }
 
     /**
+     * Show the toast for a long period of time.
+     *
+     * @param resId The resource id for text.
+     */
+    public static void showCenterShort(@StringRes final int resId) {
+        sGravity = Gravity.CENTER;
+        sXOffset = 0;
+        sYOffset = 0;
+        show(resId, Toast.LENGTH_SHORT);
+    }
+
+    /**
      * Show the toast for a short period of time.
      *
      * @param resId The resource id for text.

@@ -1,6 +1,6 @@
 package com.yanb.daqsoft.baseandroid.common;
 
-import com.daqsoft.rxyhttp.EasyHttp;
+
 import com.yanb.daqsoft.baselib.app.BaseApplication;
 
 /**
@@ -16,11 +16,5 @@ public class IApplication extends BaseApplication{
     @Override
     public void onCreate() {
         super.onCreate();
-        EasyHttp.init(this);
-        EasyHttp.getInstance().setBaseUrl(UrlConstants.BASE_URL)
-                .debug("yanb",true)
-                .setRetryCount(3);
-
-
     }
 }

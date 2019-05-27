@@ -37,5 +37,4 @@ dependencies {
     implementation project(':imgselected')
     implementation project(':tablayout')
     implementation project(':zxinglib')
-    implementation project(':rxyhttp')
 }

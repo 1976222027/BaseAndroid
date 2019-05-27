@@ -38,7 +38,7 @@ ext {
     butterknifeVersion = '8.4.0'
     glide = '4.8.0'
     // rx相关
-    rxjava2Version = '2.1.1'
+    rxjava2Version = '2.1.0'
     rxandroid = '2.0.1'
     retrofit2Version = '2.3.0'
     rxlifecycle = '2.1.0'
