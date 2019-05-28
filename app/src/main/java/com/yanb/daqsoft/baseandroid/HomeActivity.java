@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yanb.daqsoft.baseandroid.home.HomeMainFragment;
+import com.yanb.daqsoft.baseandroid.login.LoginFragment;
 import com.yanb.daqsoft.baselib.activities.BaseSupportActivity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseHomeDraweFragment;
@@ -103,8 +104,18 @@ public class HomeActivity extends BaseSupportActivity implements NavigationView
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
+        drawerLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int id = item.getItemId();
+                final ISupportFragment topFragment = getTopFragment();
+                if (id == R.id.nav_login){
+                    start(LoginFragment.newInstance());
+                }
+            }
+        },300);
         return false;
     }
 
