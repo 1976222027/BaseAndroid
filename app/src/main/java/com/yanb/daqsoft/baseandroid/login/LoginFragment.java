@@ -2,12 +2,23 @@ package com.yanb.daqsoft.baseandroid.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baselib.activities.BaseTitleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
+import com.yanb.daqsoft.baselib.utils.SPUtils;
+
+import java.util.concurrent.Callable;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 登录
@@ -31,6 +42,7 @@ public class LoginFragment extends BaseTitleFragment {
         return R.layout.fragment_login;
     }
 
+
     @Override
     public IBasePresenter initPresenter() {
         return null;
@@ -40,4 +52,6 @@ public class LoginFragment extends BaseTitleFragment {
     public void onBindView(@Nullable Bundle savedInstanceState, @Nullable View rootView) {
 
     }
+
+
 }

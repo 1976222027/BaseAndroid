@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.yanb.daqsoft.baseandroid.home.HomeMainFragment;
 import com.yanb.daqsoft.baseandroid.login.LoginFragment;
+import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
 import com.yanb.daqsoft.baselib.activities.BaseSupportActivity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseHomeDraweFragment;
@@ -112,7 +113,7 @@ public class HomeActivity extends BaseSupportActivity implements NavigationView
                 int id = item.getItemId();
                 final ISupportFragment topFragment = getTopFragment();
                 if (id == R.id.nav_login){
-                    start(LoginFragment.newInstance());
+                    start(Rxjava2ExampleFragment.newInstance());
                 }
             }
         },300);

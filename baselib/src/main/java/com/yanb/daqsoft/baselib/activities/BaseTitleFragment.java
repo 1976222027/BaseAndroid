@@ -10,6 +10,7 @@ import android.view.ViewStub;
 import android.widget.LinearLayout;
 
 import com.yanb.daqsoft.baselib.R;
+import com.yanb.daqsoft.baselib.utils.ObjectUtils;
 import com.yanb.daqsoft.baselib.utils.titlebar.CommonTitleBar;
 
 import butterknife.ButterKnife;
@@ -43,6 +44,7 @@ public abstract class BaseTitleFragment<P extends IBasePresenter> extends Suppor
      * @return
      */
     public abstract Object getLayout();
+
     // 简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
     public abstract P initPresenter();
     public abstract void onBindView(@Nullable Bundle savedInstanceState, @Nullable View rootView);
@@ -58,6 +60,16 @@ public abstract class BaseTitleFragment<P extends IBasePresenter> extends Suppor
             }
         }else {
             rootView = inflater.inflate(R.layout.include_title_bar,container,false);
+            commonTitleBar=(CommonTitleBar)rootView.findViewById(R.id.common_title);
+            commonTitleBar.setListener(new CommonTitleBar.OnTitleBarListener() {
+                @Override
+                public void onClicked(View v, int action, String extra) {
+                    if (action == CommonTitleBar.ACTION_LEFT_BUTTON
+                            || action == CommonTitleBar.ACTION_LEFT_TEXT) {
+                        pop();
+                    }
+                }
+            });
             ViewStub stub = (ViewStub) rootView.findViewById(R.id.view_stub);
             stub.setLayoutResource((Integer) getLayout());
             stub.inflate();
@@ -105,5 +117,14 @@ public abstract class BaseTitleFragment<P extends IBasePresenter> extends Suppor
     }
     public final BaseSupportActivity getBaseSupportActivity() {
         return (BaseSupportActivity) _mActivity;
+    }
+
+    /**
+     * 设置标题文字
+     */
+    public void setTitleText(String title){
+        if (commonTitleBar!=null){
+            commonTitleBar.getCenterTextView().setText(title);
+        }
     }
 }
