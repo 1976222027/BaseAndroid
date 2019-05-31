@@ -1,6 +1,7 @@
 package com.yanb.daqsoft.baseandroid.common;
 
 
+import com.daqsoft.xhttp.Xhttp;
 import com.yanb.daqsoft.baselib.app.BaseApplication;
 
 /**
@@ -15,6 +16,7 @@ import com.yanb.daqsoft.baselib.app.BaseApplication;
 public class IApplication extends BaseApplication{
     @Override
     public void onCreate() {
+        Xhttp.getInstance().init(UrlConstants.BASE_URL);
         super.onCreate();
     }
 }

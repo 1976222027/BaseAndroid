@@ -5,8 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <com.daqsoft.customview.login.LoginView
+        android:id="@+id/login_loginview"
         android:layout_marginTop="20dp"
-        app:loginIcon="@mipmap/ic_launcher"
+        app:loginIcon="@mipmap/icon_logo"
         app:loginTitle="欢迎登录"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

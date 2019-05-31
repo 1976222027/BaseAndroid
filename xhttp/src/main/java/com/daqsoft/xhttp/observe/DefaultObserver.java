@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.daqsoft.xhttp.R;
 import com.daqsoft.xhttp.exception.NoDataExceptionException;
 import com.daqsoft.xhttp.exception.ServerResponseException;
+import com.daqsoft.xhttp.response.BaseResponse;
 import com.google.gson.JsonParseException;
 import com.yanb.daqsoft.baselib.utils.ToastUtils;
 import com.yanb.daqsoft.baselib.utils.Utils;
@@ -39,7 +40,11 @@ public abstract class DefaultObserver<T> implements Observer<T> {
 
     @Override
     public void onNext(T response) {
-        onSuccess(response);
+        if (((BaseResponse)response).getCode()==0){
+            onSuccess(response);
+        }else {
+            onFail(((BaseResponse)response).getMessage());
+        }
     }
 
     @Override
@@ -82,9 +87,7 @@ public abstract class DefaultObserver<T> implements Observer<T> {
     /**
      * 服务器返回异常在这里统一处理
      */
-    public void onFail(String message){
-        ToastUtils.showCenterShort(message);
-    }
+    public abstract void onFail(String message);
 
     /**
      * 请求异常

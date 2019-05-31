@@ -17,7 +17,12 @@ public class BaseResponse<T> {
     private String message;
     private int code;
     private PageBean page;
+    private T data;
     private List<T> datas;
+
+    public T getData() {
+        return data;
+    }
 
     public List<T> getDatas() {
         return datas;

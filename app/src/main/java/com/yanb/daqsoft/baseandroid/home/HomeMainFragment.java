@@ -10,6 +10,7 @@ import com.daqsoft.tablayout.listener.CustomTabEntity;
 import com.daqsoft.tablayout.listener.OnTabSelectListener;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.IconConstants;
+import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.entity.TabEntity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseHomeDraweFragment;
@@ -115,18 +116,30 @@ public class HomeMainFragment extends BaseHomeDraweFragment {
         }
     }
 
-    @Override
-    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
-        super.onFragmentResult(requestCode, resultCode, data);
-        if (requestCode == REQ_MSG && resultCode == RESULT_OK) {
-
-        }
-    }
-
     /**
      * start other BrotherFragment
      */
-    public void startBrotherFragment(BaseSupportFragment targetFragment) {
+    public void startBrotherFragment(SupportFragment targetFragment) {
         start(targetFragment);
+    }
+    /**
+     * start other BrotherFragment
+     */
+    public void startBrotherFragmentForResult(SupportFragment targetFragment,int resultcode) {
+        startForResult(targetFragment,resultcode);
+    }
+
+    /**
+     * 演示页面回调使用方法
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        if (requestCode == StorageConstants.ME_REQUESD_CODE && resultCode == RESULT_OK && data != null) {
+            findChildFragment(MeFragment.class).notifyInfo();
+        }
     }
 }

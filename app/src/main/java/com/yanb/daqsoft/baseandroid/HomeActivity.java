@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.daqsoft.update.AppUpdater;
 import com.yanb.daqsoft.baseandroid.home.HomeMainFragment;
 import com.yanb.daqsoft.baseandroid.login.LoginFragment;
 import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
@@ -29,6 +30,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  */
 public class HomeActivity extends BaseSupportActivity implements NavigationView
         .OnNavigationItemSelectedListener,BaseHomeDraweFragment.OnFragmentOpenDrawerListener {
+    private String mUrl = "https://raw.githubusercontent.com/jenly1314/AppUpdater/master/app/release/app-release.apk";
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.drawer_layout)
@@ -49,6 +51,7 @@ public class HomeActivity extends BaseSupportActivity implements NavigationView
 
     @Override
     public void initView() {
+        //new AppUpdater(this,mUrl).start();
         BaseSupportFragment fragment = (BaseSupportFragment) findFragment(HomeMainFragment.class);
         if (fragment == null) {
             loadRootFragment(R.id.fl_container, HomeMainFragment.newInstance());
@@ -113,7 +116,7 @@ public class HomeActivity extends BaseSupportActivity implements NavigationView
                 int id = item.getItemId();
                 final ISupportFragment topFragment = getTopFragment();
                 if (id == R.id.nav_login){
-                    start(Rxjava2ExampleFragment.newInstance());
+                    start(LoginFragment.newInstance());
                 }
             }
         },300);

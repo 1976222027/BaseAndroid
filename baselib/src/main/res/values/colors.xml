@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main">#0CE992</color>
+    <color name="main">#ff33b5e5</color>
     <color name="main_light">#C7E7FE</color>
     <color name="text_nomal">#3c3c3c</color>
     <color name="text_gray">#999999</color>
@@ -11,6 +11,7 @@
     <color name="bg_ycan">#E7FAEF</color>
     <!--蒙版颜色-->
     <color name="mask_color">#88888888</color>
+    <color name="check_bg">#f2f2f2</color>
 
     <!--下面颜色是测试用-->
     <!-- A light Holo shade of blue -->

@@ -47,7 +47,7 @@ public class Xhttp {
     /**
      * 初始化必要参数
      */
-    public void init(){
+    public void init(String baseUrl){
         File cacheFile = new File(Utils.getApp().getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
         // 初始化okhttpclient
@@ -63,8 +63,12 @@ public class Xhttp {
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("")
+                .baseUrl(baseUrl)
                 .build();
+    }
+
+    public Retrofit getmRetrofit(){
+        return mRetrofit;
     }
 
 }

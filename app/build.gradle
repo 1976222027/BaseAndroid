@@ -38,4 +38,5 @@ dependencies {
     implementation project(':tablayout')
     implementation project(':zxinglib')
     implementation project(':xhttp')
+    implementation project(':update')
 }

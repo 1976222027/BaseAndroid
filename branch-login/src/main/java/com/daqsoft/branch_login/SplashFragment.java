@@ -63,7 +63,7 @@ public class SplashFragment extends MainSlidingFragment {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @Nullable View rootView) {
-        BarUtils.setStatusBarVisibility(getBaseSupportActivity(), false);
+        BarUtils.setStatusBarVisibility(getSupportDelegate().getActivity(), false);
         simulateProgress();
         customProgress5.setProgressFormatter(new CircleProgressBar.ProgressFormatter() {
             @Override
