@@ -1,6 +1,7 @@
 buildscript {
 
     repositories {
+        mavenCentral()
         jcenter()
         google()
     }
@@ -15,6 +16,9 @@ allprojects {
         jcenter()
         mavenCentral()
         google()
+        maven { url "https://jitpack.io" }//RxCache 需要 jitpack 仓库
+        maven { url "https://maven.google.com" }//Support-library 需要 Google 仓库
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
 }
 

@@ -10,7 +10,6 @@ import android.view.ViewStub;
 import android.widget.LinearLayout;
 
 import com.yanb.daqsoft.baselib.R;
-import com.yanb.daqsoft.baselib.utils.ObjectUtils;
 import com.yanb.daqsoft.baselib.utils.titlebar.CommonTitleBar;
 
 import butterknife.ButterKnife;
@@ -59,7 +58,7 @@ public abstract class BaseTitleFragment<P extends IBasePresenter> extends Suppor
                 parent.removeView(rootView);
             }
         }else {
-            rootView = inflater.inflate(R.layout.include_title_bar,container,false);
+            rootView = inflater.inflate(R.layout.include_fragment_title_bar,container,false);
             commonTitleBar=(CommonTitleBar)rootView.findViewById(R.id.common_title);
             commonTitleBar.setListener(new CommonTitleBar.OnTitleBarListener() {
                 @Override

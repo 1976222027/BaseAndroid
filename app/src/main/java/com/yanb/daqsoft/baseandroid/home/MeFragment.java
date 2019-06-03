@@ -5,16 +5,15 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.manager.SupportRequestManagerFragment;
 import com.daqsoft.customview.img.CircleImageView;
 import com.orhanobut.logger.Logger;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.login.LoginFragment;
 import com.yanb.daqsoft.baseandroid.login.StorageToken;
+import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
 import com.yanb.daqsoft.baselib.utils.glide.GlideUtils;
@@ -57,8 +56,9 @@ public class MeFragment extends BaseSupportFragment {
      */
     public void notifyInfo() {
         tvName.setText(StorageToken.getInstance().getUserName());
-        Logger.e("你的头像"+StorageToken.getInstance().getHeadImg());
-        GlideUtils.loadImage(getSupportDelegate().getActivity(),mHeadImg,StorageToken.getInstance().getHeadImg(),R.mipmap.icon_head_default);
+        Logger.e("你的头像" + StorageToken.getInstance().getHeadImg());
+        GlideUtils.loadImage(getSupportDelegate().getActivity(), mHeadImg, StorageToken
+                .getInstance().getHeadImg(), R.mipmap.icon_head_default);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MeFragment extends BaseSupportFragment {
     }
 
 
-    @OnClick({R.id.ll_me_logo, R.id.top})
+    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_me_logo:
@@ -80,7 +80,9 @@ public class MeFragment extends BaseSupportFragment {
                 ((HomeMainFragment) getParentFragment()).startBrotherFragmentForResult
                         (LoginFragment.newInstance(), StorageConstants.ME_REQUESD_CODE);
                 break;
-            case R.id.top:
+            case R.id.common_rxjava2:
+                // 也可以像使用getParentFragment()的方式,拿到父Fragment来操作 或者使用 EventBusActivityScope
+                ((HomeMainFragment) getParentFragment()).startBrotherFragment(Rxjava2ExampleFragment.newInstance());
                 break;
         }
     }

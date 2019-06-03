@@ -6,7 +6,6 @@ package com.daqsoft.zxinglib;
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public interface OnCaptureCallback {
-
     /**
      * 接收扫码结果回调
      * @param result 扫码结果
