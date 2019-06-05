@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baselib.base;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,10 +14,13 @@ import com.yanb.daqsoft.baselib.R;
 import com.yanb.daqsoft.baselib.activities.AppManager;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.activities.IBaseView;
+import com.yanb.daqsoft.baselib.permission.RxPermissions;
+import com.yanb.daqsoft.baselib.utils.ToastUtils;
 import com.yanb.daqsoft.baselib.utils.titlebar.CommonTitleBar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.functions.Consumer;
 
 /**
  * 带标题的基础界面
@@ -32,6 +36,7 @@ public abstract class BaseTitleActivity<P extends IBasePresenter> extends AppCom
     public Unbinder mUnbinder;
     private LinearLayout parentLinearLayout;
     private CommonTitleBar commonTitleBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

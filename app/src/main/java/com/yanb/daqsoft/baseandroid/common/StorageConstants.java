@@ -11,4 +11,12 @@ package com.yanb.daqsoft.baseandroid.common;
 
 public class StorageConstants {
     public static final int ME_REQUESD_CODE = 100;
+    /**
+     * 二维码扫描
+     */
+    public static final int REQUEST_CODE_SCAN = 0X01;
+    /**
+     * 读写相册二维码用
+     */
+    public static final int REQUEST_CODE_PHOTO = 0X02;
 }

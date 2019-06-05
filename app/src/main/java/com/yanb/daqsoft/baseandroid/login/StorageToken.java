@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baseandroid.login;
 
+import com.yanb.daqsoft.baselib.permission.RxPermissions;
 import com.yanb.daqsoft.baselib.utils.SPUtils;
 
 /**
@@ -17,12 +18,12 @@ public class StorageToken {
     private static final String USER_HEAD_IMG = "userheadimg";
     private static final String SP_RX = "sp_user";
 
-
     public static StorageToken getInstance(){
         return Holder.INSTANCE;
     }
 
     public static final class Holder{
+
         private static final StorageToken INSTANCE = new StorageToken();
     }
 
@@ -46,4 +47,5 @@ public class StorageToken {
     public void setHeadImg(String headImg){
         SPUtils.getInstance(SP_RX).put(USER_HEAD_IMG,headImg);
     }
+
 }

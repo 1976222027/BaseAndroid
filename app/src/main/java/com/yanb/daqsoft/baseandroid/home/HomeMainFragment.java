@@ -140,6 +140,8 @@ public class HomeMainFragment extends BaseHomeDraweFragment {
         super.onFragmentResult(requestCode, resultCode, data);
         if (requestCode == StorageConstants.ME_REQUESD_CODE && resultCode == RESULT_OK && data != null) {
             findChildFragment(MeFragment.class).notifyInfo();
+        }else if (requestCode == StorageConstants.REQUEST_CODE_SCAN && resultCode == RESULT_OK && data != null){
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baseandroid;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,9 +11,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daqsoft.update.AppUpdater;
+import com.daqsoft.zxinglib.Intents;
+import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.home.HomeMainFragment;
+import com.yanb.daqsoft.baseandroid.home.MeFragment;
 import com.yanb.daqsoft.baseandroid.login.LoginFragment;
 import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
 import com.yanb.daqsoft.baselib.activities.BaseSupportActivity;
@@ -152,6 +157,15 @@ public class HomeActivity extends BaseSupportActivity implements NavigationView
     public void onOpenDrawer() {
         if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.openDrawer(GravityCompat.START);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == StorageConstants.REQUEST_CODE_SCAN && resultCode == RESULT_OK && data != null){
+            String result = data.getStringExtra(Intents.Scan.RESULT);
+            ToastUtils.showCenterShort(result);
         }
     }
 }

@@ -14,4 +14,8 @@ public class PageConstants {
      * 扫描
      */
     public static final String ACTIVITY_SCAN = "/scan/ScanActivity";
+    /**
+     * 二维码条形码生成
+     */
+    public static final String ACTIVITY_CODE = "/scan/CodeActivity";
 }

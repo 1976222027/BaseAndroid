@@ -72,9 +72,12 @@ public class MeFragment extends BaseSupportFragment {
     }
 
 
-    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2})
+    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2,R.id.tv_pic_update})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            // 图片上传界面展示
+            case R.id.tv_pic_update:
+                break;
             case R.id.ll_me_logo:
                 // 也可以像使用getParentFragment()的方式,拿到父Fragment来操作 或者使用 EventBusActivityScope
                 ((HomeMainFragment) getParentFragment()).startBrotherFragmentForResult

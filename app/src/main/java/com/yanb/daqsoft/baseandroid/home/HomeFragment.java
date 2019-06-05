@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,8 +13,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.PageConstants;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
-import com.yanb.daqsoft.baseandroid.login.LoginFragment;
-import com.yanb.daqsoft.baseandroid.scan.ScanFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
 import com.yanb.daqsoft.baselib.permission.RxPermissions;
@@ -23,9 +20,7 @@ import com.yanb.daqsoft.baselib.utils.BarUtils;
 import com.yanb.daqsoft.baselib.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -118,6 +113,7 @@ public class HomeFragment extends BaseSupportFragment implements AppBarLayout
                 scan();
                 break;
             case R.id.ll_aply:
+                ARouter.getInstance().build(PageConstants.ACTIVITY_CODE).navigation(getSupportDelegate().getActivity());
                 break;
         }
     }
@@ -130,11 +126,7 @@ public class HomeFragment extends BaseSupportFragment implements AppBarLayout
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean){
-                            ARouter.getInstance().build(PageConstants.ACTIVITY_SCAN).navigation();
-//                            // 二维码扫描
-//                            // 也可以像使用getParentFragment()的方式,拿到父Fragment来操作 或者使用 EventBusActivityScope
-//                            ((HomeMainFragment) getParentFragment()).startBrotherFragment(
-//                                    (ScanFragment.newInstance()));
+                            ARouter.getInstance().build(PageConstants.ACTIVITY_SCAN).navigation(getSupportDelegate().getActivity(),StorageConstants.REQUEST_CODE_SCAN);
                         }else {
                             ToastUtils.showCenterShort("获取相机权限失败!");
                         }
