@@ -60,6 +60,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_picupdate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -77,12 +78,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="收钱"
+                android:text="上报"
                 android:textColor="@color/white" />
         </LinearLayout>
 
 
         <LinearLayout
+            android:id="@+id/ll_kt_study"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -100,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:text="卡包"
+                android:text="kotlin"
                 android:textColor="@color/white" />
 
         </LinearLayout>

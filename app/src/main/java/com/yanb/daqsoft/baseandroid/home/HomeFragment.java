@@ -1,6 +1,7 @@
 package com.yanb.daqsoft.baseandroid.home;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.PageConstants;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
+import com.yanb.daqsoft.baseandroid.ktapi.KtExampleActivity;
+import com.yanb.daqsoft.baseandroid.picupdate.PictureUpdateActivity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
 import com.yanb.daqsoft.baselib.permission.RxPermissions;
@@ -106,9 +109,15 @@ public class HomeFragment extends BaseSupportFragment implements AppBarLayout
 
 
 
-    @OnClick({R.id.ll_scan, R.id.ll_aply})
+    @OnClick({R.id.ll_scan, R.id.ll_aply,R.id.ll_picupdate,R.id.ll_kt_study})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_kt_study:
+                startActivity(new Intent(getSupportDelegate().getActivity(), KtExampleActivity.class));
+                break;
+            case R.id.ll_picupdate:
+                startActivity(new Intent(getSupportDelegate().getActivity(), PictureUpdateActivity.class));
+                break;
             case R.id.ll_scan:
                 scan();
                 break;

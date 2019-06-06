@@ -18,4 +18,8 @@ public class PageConstants {
      * 二维码条形码生成
      */
     public static final String ACTIVITY_CODE = "/scan/CodeActivity";
+    /**
+     * 图片上报
+     */
+    public static final String ACTIVITY_PICUPDATE = "/pic/PicUpdateActivitys";
 }

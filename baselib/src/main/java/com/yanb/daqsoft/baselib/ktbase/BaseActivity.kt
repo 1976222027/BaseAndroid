@@ -45,6 +45,8 @@ abstract class BaseActivity : AppCompatActivity(){
 
     /**
      * 初始化监听
+     * 函数定义关键字fun 参数格式：参数:类型
+     * 此方法无返回值可以用:Unit加在后面也可以不写
      */
     private fun initListener(){
         mLayoutStatusView?.setOnClickListener(mRetryClikListener)
@@ -75,6 +77,7 @@ abstract class BaseActivity : AppCompatActivity(){
 
     /**
      * 获取布局ID
+     * 返回值用：加类型
      */
     abstract fun getLayoutId():Int
     /**

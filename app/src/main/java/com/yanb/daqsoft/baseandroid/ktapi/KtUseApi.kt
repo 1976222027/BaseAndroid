@@ -18,4 +18,5 @@ class KtUseApi(){
     var age:String?="23"
     //val ages = age!!.toInt()
 
+
 }
