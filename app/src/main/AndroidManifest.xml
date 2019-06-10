@@ -64,7 +64,8 @@
         <activity android:name=".scan.ScanActivity" />
         <activity android:name=".scan.CodeActivity" />
         <activity android:name=".picupdate.PictureUpdateActivity" />
-        <activity android:name=".ktapi.KtExampleActivity"></activity>
+        <activity android:name=".ktapi.KtExampleActivity" />
+        <activity android:name=".ktapp.KtMainActivity"></activity>
     </application>
 
 </manifest>

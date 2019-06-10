@@ -1,4 +1,5 @@
 buildscript {
+    //kotlin引入
     ext.kotlin_version = '1.2.71'
     repositories {
         mavenCentral()
@@ -8,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        //kotlin引入,在app/build.gradle中还要引入一些配置
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }

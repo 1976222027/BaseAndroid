@@ -28,9 +28,17 @@
                 android:text="xmlonClick点击调用无返回值函数"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                android:onClick="click"
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_canlong"
+                android:text="可变长参数函数"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
     <TextView
+        android:id="@+id/tv_kt_content"
         android:text="显示结果"
         android:layout_weight="1"
         android:layout_width="0dp"

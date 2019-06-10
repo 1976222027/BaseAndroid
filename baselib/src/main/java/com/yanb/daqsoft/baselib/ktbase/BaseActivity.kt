@@ -38,7 +38,7 @@ abstract class BaseActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         initData()
-        initView()
+        initView(savedInstanceState)
         start()
         initListener()
     }
@@ -68,7 +68,7 @@ abstract class BaseActivity : AppCompatActivity(){
     /**
      * 初始化View
      */
-    abstract fun initView()
+    abstract fun initView(savedInstanceState: Bundle?)
 
     /**
      * 初始化数据
