@@ -16,4 +16,15 @@
     <item name="empty_retry_view" type="id"/>
     <item name="error_retry_view" type="id"/>
     <item name="no_network_retry_view" type="id"/>
+    <!--banner开始-->
+    <item name="bannerContainer" type="id"/>
+    <item name="bannerViewPager" type="id"/>
+    <item name="circleIndicator" type="id"/>
+    <item name="numIndicator" type="id"/>
+    <item name="titleView" type="id"/>
+    <item name="bannerTitle" type="id"/>
+    <item name="numIndicatorInside" type="id"/>
+    <item name="indicatorInside" type="id"/>
+    <item name="bannerDefaultImage" type="id"/>
+    <!--banner结束-->
 </resources>

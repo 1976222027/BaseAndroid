@@ -6,14 +6,14 @@
     android:orientation="vertical">
     <FrameLayout
         android:layout_marginBottom="52dp"
-        android:id="@+id/fl_tab_container"
+        android:id="@+id/kt_fl_tab_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <com.daqsoft.tablayout.CommonTabLayout
         app:tl_textSelectColor="@color/main"
         app:tl_textUnselectColor="@color/text_gray"
         app:tl_textsize="@dimen/text_12"
-        android:id="@+id/com_tablayout"
+        android:id="@+id/kt_com_tablayout"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="52dp"/>

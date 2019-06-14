@@ -7,11 +7,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.yanb.daqsoft.baselib.R;
 
 /**
  * @author yanbo
  * @date 2018/6/11 17:36
  * @desc 图片加载工具类
+ * 图片加载中用R.mipmap.icon_state_img_loading
  */
 public class GlideUtils {
 
@@ -21,17 +23,17 @@ public class GlideUtils {
      * @param context  context
      * @param iv       imageView
      * @param url      图片地址
-     * @param emptyImg 默认展位图
+     * @param errorimg 默认展位图
      */
-    public static void loadImage(Context context, ImageView iv, String url, int emptyImg) {
+    public static void loadImage(Context context, ImageView iv, String url, int errorimg) {
         if (!TextUtils.isEmpty(url)) {
             GlideApp.with(context)
                     .load(url)
-                    .error(emptyImg)
-                    .placeholder(emptyImg)
+                    .error(errorimg)
+                    .placeholder(R.mipmap.icon_state_img_loading)
                     .into(iv);
         } else {
-            loadImage(context, iv, emptyImg, emptyImg);
+            loadImage(context, iv, errorimg, R.mipmap.icon_state_img_loading);
         }
     }
     /**
@@ -50,7 +52,7 @@ public class GlideUtils {
                     .placeholder(iv.getDrawable())
                     .into(iv);
         } else {
-            loadImage(context, iv, emptyImg, emptyImg);
+            loadImage(context, iv, emptyImg, R.mipmap.icon_state_img_loading);
         }
     }
 

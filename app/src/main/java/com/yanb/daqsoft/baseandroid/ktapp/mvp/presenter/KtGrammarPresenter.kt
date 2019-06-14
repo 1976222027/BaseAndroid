@@ -11,5 +11,14 @@ import com.yanb.daqsoft.baselib.ktbase.BaseKtPresenter
  * @since JDK 1.8
  */
 class KtGrammarPresenter :BaseKtPresenter<KtGrammarContract.View>(),KtGrammarContract.Presenter{
+    override fun getHomeData(num: Int) {
+        checkViewAttached()
+        mRootView?.showLoading()
+
+
+    }
+
+    override fun loadMoreData() {
+    }
 
 }

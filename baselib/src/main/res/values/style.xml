@@ -59,10 +59,5 @@
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 
-    <!--banner-->
-    <declare-styleable name="ConvenientBanner">
-        <attr name="canLoop" format="boolean" />
-        <attr name="autoTurningTime" format="integer" />
-    </declare-styleable>
 
 </resources>

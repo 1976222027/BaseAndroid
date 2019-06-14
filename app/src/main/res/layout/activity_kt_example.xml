@@ -35,11 +35,47 @@
                 android:text="可变长参数函数"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_str"
+                android:text="字符串模板"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_san"
+                android:text="kotlin三元表达式"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_textif"
+                android:text="条件判断"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_set"
+                android:text="集合"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_array"
+                android:text="数组"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_lambda"
+                android:text="lambda表达式用法"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
     <TextView
         android:id="@+id/tv_kt_content"
-        android:text="显示结果"
+        android:text=""
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />

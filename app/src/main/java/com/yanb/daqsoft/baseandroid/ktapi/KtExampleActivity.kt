@@ -19,14 +19,23 @@ import kotlinx.android.synthetic.main.activity_kt_example.*
  * 3、布局onClick 具体见代码
  * 二、函数的定义
  * 三、定义常量与变量
+ * 四、字符串模板
+ * 五、条件判断
  */
 class KtExampleActivity : BaseActivity(), View.OnClickListener {
+    private val strA = "我是字符串A"
+    private val strB = "我是字符串B"
     override fun initView(savedInstanceState: Bundle?) {
         /**
          * 绑定监听
          */
         btn_kt_sum.setOnClickListener(this)
         tv_kt_content.setOnClickListener(this)
+        btn_kt_str.setOnClickListener(this)
+        btn_kt_san.setOnClickListener(this)
+        btn_kt_textif.setOnClickListener(this)
+        btn_kt_set.setOnClickListener(this)
+        btn_kt_array.setOnClickListener(this)
     }
 
     /**
@@ -34,6 +43,12 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
      * 点击事件用法通过实现方法
      */
     override fun onClick(v: View?) {
+        /**
+         * when 表达式
+         * 多个满足同一条件用，隔开
+         * R.id.btn_kt_canlong,R.id.btn_kt_san->
+         * sum(1,2)
+         */
         when (v?.id) {
             R.id.btn_kt_sum ->
                 /**
@@ -41,9 +56,21 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
                  * $varName 表示变量值
                  * ${vaeName.fun()变量方法返回值}
                  */
-                ToastUtils.showCenterShort("1+4=${sum2(1,4)}+")
+                ToastUtils.showCenterShort("1+4=${sum2(1,4)}+$strA")
             R.id.btn_kt_canlong->
                     vars("我是","可变长","函数")
+            R.id.btn_kt_str->
+                tv_kt_content.setText("1+2=${sum(1,2)}+$strA")
+            R.id.btn_kt_san->
+                tv_kt_content.setText(if (sum(1,2)>1) 3 else 5)// 三元表达式if else还可以 写成代码块加{ }
+            R.id.btn_kt_textif->
+                    testIf(5)
+            R.id.btn_kt_set->
+                    textList()
+            R.id.btn_kt_array->
+                    textArray()
+
+
         }
     }
 
@@ -129,10 +156,84 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     }
 
     /**
-     * ----------------------------------------------------------------------------------四、NULL检查机制
-     *
+     * ----------------------------------------------------------------------------------四、字符串模板
+     */
+    /**
+     * ----------------------------------------------------------------------------------五、条件判断
      *
      */
+    private fun testIf(str :Int){
+        //..表示1到10
+        if (str in 1..10&&str is Int){
+            ToastUtils.showCenterShort("$str+在1到10之间并且是int类型")
+        }else{
+            ToastUtils.showCenterShort("$str+不在1到10之间并且不是int类型")
+        }
+    }
+    /**
+     * ----------------------------------------------------------------------------------六、集合
+     *
+     */
+    private fun textList(){
+        // 集合的创建下面三个是只读无set方法
+        val list : List<String> = listOf<String>()
+        val set : Set<String> = setOf<String>()
+        val map : Map<String,Int> = mapOf<String,Int>()
+        /**
+         * 对应上面的三个
+         * var mutableList :MutableList<String> = mutableListOf()
+         * var mutableSet: MutableSet<Int> = mutableSetOf()
+         * var mutableMap: MutableMap<String, Int> = mutableMapOf()
+         */
+        var mutableList :MutableList<String> = mutableListOf()
+        mutableList.add("张三")
+        mutableList.clear()
+        mutableList.add("王五")
+        mutableList.add("李丹")
+        mutableList.remove("李丹")
+
+        /**
+         * 介绍for循环用法
+         * for ((index, value) in array.withIndex()) {
+         * println("the element at $index is $value")
+         *     //index是索引，value是值
+         *  }
+         */
+        for (i in mutableList.indices){
+            tv_kt_content.append(mutableList.get(i))
+        }
+
+    }
+    /**
+     * ----------------------------------------------------------------------------------七、数组
+     * arrayOf     字符串数组
+     * intArrayOf  Int数组
+     * charArrayOf char数组
+     * ByteArray、ShortArray、LongArray、FloatArray、DoubleArray、BooleanArray等
+     *
+     */
+    private fun textArray(){
+        var arrayStr = arrayOf("张三","李四")
+        var arrayInt = intArrayOf(1,2,3)
+        var arrayChar = charArrayOf('H','T')
+        // 数组基本方法遍历
+        for (str in arrayStr){
+            arrayStr[1] = "王麻子"//替换值
+            tv_kt_content.append(str)
+        }
+        //数组转换为字符串
+        tv_kt_content.append(arrayInt.joinToString(""))
+    }
+
+    /**
+     * ----------------------------------------------------------------------------------八、lambda表达式
+     */
+    private fun textLambda(){
+        btn_kt_lambda.setOnClickListener(View.OnClickListener {  })
+
+    }
+
+
 }
 
 

@@ -22,7 +22,14 @@ interface KtGrammarContract {
      * P层
      */
     interface Presenter:IPresenter<View>{
-
+        /**
+         * 获取首页数据
+         */
+        fun getHomeData(num:Int)
+        /**
+         * 加载跟多数据
+         */
+        fun loadMoreData()
     }
 
 }

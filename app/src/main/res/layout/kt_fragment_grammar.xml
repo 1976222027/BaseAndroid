@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!--
+    srlAccentColor强调颜色
+    srlPrimaryColor主题颜色
+    srlEnableHeaderTranslationContent拖动Header的时候是否同时拖动内容（默认true）
+    srlEnableLoadMore是否开启加上拉加载功能（默认false-智能开启）
+    -->
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/mRefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlAccentColor="@color/white"
+        app:srlEnableHeaderTranslationContent="false"
+        app:srlEnableLoadMore="false"
+        app:srlPrimaryColor="@color/white">
 
-</android.support.constraint.ConstraintLayout>
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--多状态切换布局-->
+            <com.yanb.daqsoft.baselib.view.MultipleStatusView
+                android:id="@+id/multipleStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:emptyView="@layout/include_empty_view"
+                app:errorView="@layout/include_error_view"
+                app:loadingView="@layout/include_loading_view"
+                app:noNetworkView="@layout/include_no_network_view">
+                <!--列表-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRecycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false" />
+            </com.yanb.daqsoft.baselib.view.MultipleStatusView>
+        </FrameLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</RelativeLayout>
