@@ -71,6 +71,24 @@
                 android:text="lambda表达式用法"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_it"
+                android:text="it的使用场景"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_x"
+                android:text="下划线的使用场景"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_noname"
+                android:text="匿名函数"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
     <TextView

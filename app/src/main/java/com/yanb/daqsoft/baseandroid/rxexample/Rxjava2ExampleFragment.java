@@ -31,8 +31,10 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -59,14 +61,14 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
 
     private static final String MSG_WAIT_SHORT = "wait_short";
     private static final String MSG_WAIT_LONG = "wait_long";
-    private static final String ERROR_TOKEN = "ERROR_TOKEN";
+    private static final String ERROR_TOKEN = "Token失效";
     private static final String ERROR_RETRY = "ERROR_RETRY";
-    private int mMsgIndex;
+    /**
+     * 自定义错误类型
+     */
     private static final String[] MSG_ARRAY = new String[]{
-            MSG_WAIT_SHORT,
-            MSG_WAIT_SHORT,
-            MSG_WAIT_LONG,
-            MSG_WAIT_LONG
+            "请求错误1",
+            "请求错误2"
     };
     private CompositeDisposable mCompositeDisposable;
 
@@ -133,20 +135,20 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
      * retryWhen根据onErroe的类型决定是否需要重订阅，返回ObservableSource<?>来通知，若返回onComplete/onError
      * 不会重订阅，如果发送onNext那么重订阅
      */
+    private int mMsgIndex = 0;
     private void startRetryRequest() {
-        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+        Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
-                int msglen = MSG_ARRAY.length;
+                int msgSize = MSG_ARRAY.length;
                 doWork();
-                // 模拟请求的结果，前4次都返回失败，并将失败信息传递给retrywhen
-                if (mMsgIndex < msglen) {
-                    // 模拟请求失败的情况
+                // 手动模拟请求结果，前2次都失败并将失败信息传递给retryWhen
+                if (mMsgIndex<msgSize){
                     e.onError(new Throwable(MSG_ARRAY[mMsgIndex]));
                     mMsgIndex++;
-                } else {
-                    // 模拟请求成功的情况
-                    e.onNext("请求成功!");
+                }else {
+                    //错误两次之后成功
+                    e.onNext("请求成功");
                     e.onComplete();
                 }
             }
@@ -159,65 +161,64 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
              * 在Function函数中，必须对输入的 Observable<Object>进行处理，这里我们使用的是flatMap操作符接收上游的数据
              */
         }).retryWhen(new Function<Observable<Throwable>, ObservableSource<?>>() {
-            private int mRetryCount;
-
+            /**
+             * 重连次数
+             */
+            private int mRetryCount = 0;
             @Override
             public ObservableSource<?> apply(Observable<Throwable> throwableObservable) throws
                     Exception {
+
+                // 变换操作
                 return throwableObservable.flatMap(new Function<Throwable, ObservableSource<?>>() {
                     @Override
                     public ObservableSource<?> apply(Throwable throwable) throws Exception {
-                        String erroeMsg = throwable.getMessage();
                         long waitTime = 0;
-                        switch (erroeMsg) {
-                            case MSG_WAIT_SHORT:
+                        switch (throwable.getMessage()){
+                            case "请求错误1":
                                 waitTime = 2000;
                                 break;
-                            case MSG_WAIT_LONG:
-                                waitTime = 4000;
+                            case "请求错误2":
+                                waitTime = 2000;
                                 break;
                             default:
                                 break;
                         }
-
                         Logger.e("发生错误，尝试等待时间->" + waitTime + "当前重试次数=" + mRetryCount);
                         mRetryCount++;
-                        return waitTime > 0 && mRetryCount <= 4 ? Observable.timer(waitTime,
+                        return waitTime > 0 && mRetryCount <= 2 ? Observable.timer(waitTime,
                                 TimeUnit.MILLISECONDS) : Observable.error(throwable);
                     }
                 });
             }
-        });
-        DisposableObserver<String> disposableObserver = new DisposableObserver<String>() {
-            @Override
-            public void onNext(String s) {
-                Logger.e("执行onNext=" + s);
-            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableObserver<String>() {
+                    @Override
+                    public void onNext(String s) {
+                        Logger.e("执行onNext"+s);
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Logger.e("执行onError=" + e);
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Logger.e("执行onError"+e.getMessage());
+                    }
 
-            @Override
-            public void onComplete() {
-                Logger.e("执行onComplete");
-            }
-        };
-        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(disposableObserver);
-        mCompositeDisposable.add(disposableObserver);
+                    @Override
+                    public void onComplete() {
+                        Logger.e("执行onComplete");
+                    }
+                });
     }
 
     /**
-     * 操作
+     * 这里模拟任务
      */
     private void doWork() {
         long workTime = (long) (Math.random() * 500) + 500;
         try {
-            Logger.e("doWork start,  threadId=" + Thread.currentThread().getId());
+            Logger.e("开始工作,  线程ID=" + Thread.currentThread().getId());
             Thread.sleep(workTime);
-            Logger.e("doWork finished");
+            Logger.e("完成工作");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -230,18 +231,17 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
          * 读取缓存中的token信息，这里调用了TokenLoader中读取缓存的接口，而这里使用defer操作符，
          * 是为了在重订阅时，重新创建一个新的Observable，以读取最新的缓存token信息
          */
-        Observable<String> observable = Observable.defer(new Callable<ObservableSource<String>>() {
+        Observable.defer(new Callable<ObservableSource<String>>() {
             @Override
             public ObservableSource<String> call() throws Exception {
                 String cacheToken = TokenLoader.getInstance().getCacheToken();
-                Logger.e("获取缓存Token-->"+cacheToken);
+                Logger.e("你获取的缓存token"+cacheToken);
                 return Observable.just(cacheToken);
             }
             /**
              * flatMap：通过token信息，请求必要的接口
              */
         }).flatMap(new Function<String, ObservableSource<String>>() {
-
             @Override
             public ObservableSource<String> apply(String token) throws Exception {
                 return getUserObservable(index,token);
@@ -259,7 +259,7 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
                 return throwableObservable.flatMap(new Function<Throwable, ObservableSource<?>>() {
                     @Override
                     public ObservableSource<?> apply(Throwable throwable) throws Exception {
-                        Logger.e("发生错误="+throwable+"重试次数-->"+mRetryCount);
+                        Logger.e("发生错误="+throwable.getMessage()+"重试次数-->"+mRetryCount);
                         if (mRetryCount>0){
                             return Observable.error(new Throwable(ERROR_RETRY));
                         }else if (ERROR_TOKEN.equals(throwable.getMessage())){
@@ -271,25 +271,29 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
                     }
                 });
             }
-        });
-        DisposableObserver<String> observer = new DisposableObserver<String>() {
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onNext(String value) {
-                Logger.e(index + ":" + "收到信息=" + value);
-            }
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Logger.e(index + ":" + "onError=" + e);
-            }
+                    @Override
+                    public void onNext(String s) {
+                        Logger.e("请求"+index + ":" + "onNext"+s);
+                    }
 
-            @Override
-            public void onComplete() {
-                Logger.e(index + ":" + "onComplete");
-            }
-        };
-        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+                    @Override
+                    public void onError(Throwable e) {
+                        Logger.e("请求"+index + ":" + "onError"+e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.e("请求"+index + ":" + "onComplete");
+                    }
+                });
     }
 
     /**
@@ -304,7 +308,7 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
             public void subscribe(ObservableEmitter<String> e) throws Exception {
                 Logger.e("使用token"+token+"请求用户信息");
                 // 模拟根据token去请求信息的过程
-                if (!TextUtils.isEmpty(token) && System.currentTimeMillis()- Long.valueOf(token) < 2000){
+                if (!TextUtils.isEmpty(token) && System.currentTimeMillis()- Long.valueOf(token) < 1000){
                     e.onNext(index+":"+token+"的用户信息");
                 }else {
                     e.onError(new Throwable(ERROR_TOKEN));

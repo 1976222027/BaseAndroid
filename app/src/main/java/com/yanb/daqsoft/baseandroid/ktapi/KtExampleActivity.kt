@@ -1,6 +1,8 @@
 package com.yanb.daqsoft.baseandroid.ktapi
 
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.view.View
 import com.orhanobut.logger.Logger
 import com.yanb.daqsoft.baseandroid.R
@@ -36,12 +38,17 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         btn_kt_textif.setOnClickListener(this)
         btn_kt_set.setOnClickListener(this)
         btn_kt_array.setOnClickListener(this)
+        btn_kt_lambda.setOnClickListener(this)
+        btn_kt_it.setOnClickListener(this)
+        btn_kt_x.setOnClickListener(this)
+        btn_kt_noname.setOnClickListener(this)
     }
 
     /**
      * -------------------------------------------------------------------------一、点击事件用法
      * 点击事件用法通过实现方法
      */
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onClick(v: View?) {
         /**
          * when 表达式
@@ -69,8 +76,16 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
                     textList()
             R.id.btn_kt_array->
                     textArray()
-
-
+            R.id.btn_kt_lambda->
+                //LHaveParameters2(1,3)
+                ToastUtils.showCenterShort("${LFunParameters(1,{num1, num2 -> num1+num2 })}")
+            R.id.btn_kt_it->
+                //itFilter()
+                Logger.e("${itText(1,{it>5})}")
+            R.id.btn_kt_x->
+                forEachMap()
+            R.id.btn_kt_noname->
+                Logger.e("${noNameFun(1,2)}")
         }
     }
 
@@ -227,13 +242,86 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
 
     /**
      * ----------------------------------------------------------------------------------八、lambda表达式
+     * 表达式总是被大括号括着
+     * 其参数(如果存在)在 -> 之前声明(参数类型可以省略)
+     * 函数体(如果存在)在 -> 后面。
      */
-    private fun textLambda(){
-        btn_kt_lambda.setOnClickListener(View.OnClickListener {  })
 
+
+    /**
+     * 无参数情况
+     */
+    fun NoParameters(){
+        ToastUtils.showCenterShort("无参数")
+    }
+    //等价于
+    val LNoParameters = { ToastUtils.showCenterShort("无参数")}
+
+    /**
+     * 有参数情况
+     */
+    fun HaveParameters(a:Int,b: Int) :Int{
+        return a+b
+    }
+    //等价于
+    val LHaveParameters:(Int,Int)-> Int= {a,b->a+b}
+    //或
+    val LHaveParameters2 = {a:Int,b:Int->ToastUtils.showCenterShort("a+b=${a+b}")}
+
+    /**
+     * lambda表达式作为函数中参数的时候
+     */
+    fun FunParameters(a:Int,b:Int):Int{
+        return a+b
+    }
+    fun FunSum(num1:Int,num2:Int):Int{
+        return num1+num2
+    }
+    //等价于(invoke通过函数变量调用自身)
+    fun LFunParameters(a:Int,b:(num1:Int,num2:Int)->Int):Int{
+        return a+b.invoke(3,5)
     }
 
+    /**
+     * ----------------------------------------------------------------------------------九、it的使用场景
+     *
+     */
+    val itArr = arrayOf(1,2,5,7)
 
+    // 取数组小于5的第一个打印
+    val itFilter = {Logger.e("${itArr.filter { it<5 }.component1()}")}
+
+    /**
+     * 函数返回类型为Int,
+     */
+    fun itText(num1: Int,boo1:(Int)->Boolean):Int{
+        return if (boo1(num1)){
+            num1
+        } else 0
+    }
+    /**
+     * ----------------------------------------------------------------------------------九、下划线的使用场景
+     *
+     */
+    val _map = mapOf("key1" to "value1","key2" to "value2","key3" to "value3")
+
+    /**
+     * 这里我们便利集合只打印value用下划线，未使用的参数，表示不处理这个参数
+     */
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun forEachMap(){
+        _map.forEach { _,value-> Logger.e("$value")}
+    }
+    /**
+     * ----------------------------------------------------------------------------------九、匿名函数
+     * 3种写法
+     * 匿名函数的参数传值，总是在小括号内部传递。而Lambda表达式传值，可以有省略小括号的简写写法。
+     * 在一个不带标签的return语句中，匿名函数时返回值是返回自身函数的值，而Lambda表达式的返回值是将包含它的函数中返回。
+     */
+    val  noNameFun= fun (num1:Int,num2:Int):Int = num1+num2//后面的返回值类型可省了
+    val  noNameFun1 = fun (num1:Int,num2:Int):Int{
+        return num1+num2
+    }
 }
 
 

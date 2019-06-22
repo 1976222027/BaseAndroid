@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.kt_fragment_grammar.*
 class KtGrammarFragemnt :BaseKtFragment(),KtGrammarContract.View{
     private val mPrestener by lazy { KtGrammarPresenter() }
     private var mTitle: String? = null
+    //刷新
     private var isRefresh = false
     companion object {
         fun getInstance(title: String): KtGrammarFragemnt {
@@ -32,6 +33,7 @@ class KtGrammarFragemnt :BaseKtFragment(),KtGrammarContract.View{
     }
 
     override fun dismissLoading() {
+
     }
 
     override fun initView() {
@@ -42,6 +44,7 @@ class KtGrammarFragemnt :BaseKtFragment(),KtGrammarContract.View{
     }
 
     override fun lazyLoad() {
+
     }
 
     override fun getLayoutId(): Int = R.layout.kt_fragment_grammar
