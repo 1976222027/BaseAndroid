@@ -21,7 +21,7 @@ abstract class BaseKtFragment:Fragment(){
      */
     private var isViewPrepare = false
     private var hasLoadData  = false// 数据是否加载过了
-    private var mLayoutStatusView : MultipleStatusView ? = null//多状态布局
+    protected var mLayoutStatusView : MultipleStatusView ? = null//多状态布局
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutId(),null)

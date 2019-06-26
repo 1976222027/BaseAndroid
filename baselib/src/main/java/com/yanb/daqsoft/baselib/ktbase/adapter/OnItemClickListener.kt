@@ -1,12 +1,10 @@
-package com.yanb.daqsoft.baselib.ktbase.adapter
+package com.hazz.kotlinmvp.view.recyclerview.adapter
 
 /**
- * 条目点击事件
- * @author 严博
- * @date 2019-6-11.15:28
- * @version 1.0.0
- * @since JDK 1.8
+ * Created by Xiho on 2017/2/23.
+ * Description: Adapter条目的点击事件
  */
 interface OnItemClickListener {
-    fun onItemClick(obj: Any?, postion: Int)
+
+    fun onItemClick(obj: Any?, position: Int)
 }

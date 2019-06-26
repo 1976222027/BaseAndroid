@@ -6,6 +6,7 @@ import android.support.annotation.RequiresApi
 import android.view.View
 import com.orhanobut.logger.Logger
 import com.yanb.daqsoft.baseandroid.R
+import com.yanb.daqsoft.baseandroid.ktapp.adapter.GrammarHomeAdapter
 import com.yanb.daqsoft.baselib.ktbase.BaseActivity
 import com.yanb.daqsoft.baselib.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_kt_example.*
@@ -24,10 +25,80 @@ import kotlinx.android.synthetic.main.activity_kt_example.*
  * 四、字符串模板
  * 五、条件判断
  */
+/**
+ * 类的声明
+ *
+ */
 class KtExampleActivity : BaseActivity(), View.OnClickListener {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_kt_example
+    }
+    /**
+     * 下面是变量用法
+     * var 变量可修改
+     * val 常量 只能赋值一次如java中的final
+     * 注意：
+     * 1、变量常量都可没有初始值，但是在引用前必须初始化
+     * 2、没有初始化的时候必须声明类型,然后在赋值
+     * 3、声明变量可空
+     * 4、lateinit后期初始化，只能用于var 不可声明空，或基本数据类型（Int、Float、Double等）String是可以的,这里不可赋值，后面使用到的时候再赋值
+     * 5、延迟初始化（当程序在第一次使用到这个变量（属性）的时候在初始化）只能是val
+     */
+    private var mName :String = "yanbo"// 可省了类型 kt自动推断类型
+    private val mAge :Int = 25
+    private val mContry:String?=null//可空的声明
+    private lateinit var mSex :String
+    private val mHeight:Int by lazy { 170 }//延迟初始化
+
+    /**
+     * 基本数据类型
+     * Byte=> 字节 => 8位
+     * Short => 短整型 => 16位
+     * Int => 整型 => 32位
+     * Long => 长整型 => 64位 由L标记
+     * Float => 浮点型 => 32位 单精度浮点型由小写字母f或大写字符F标记
+     * Double => 双精度浮点型 => 64位
+     */
+
+    private val mPhone :Long = 137_7806_9524L//下划线分组增加可读性
+
+    /**
+     * 比较
+     * 数值比较 ==
+     * 内存地址比较===
+     */
+    /**
+     * 数值转换
+     *
+     * toByte() => 转换为字节型
+     * toShort() => 转换为短整型
+     * toInt() => 转换为整型
+     * toLong() => 转换为长整型
+     * toFloat() => 转换为浮点型
+     * toDouble() => 转换为双精度浮点型
+     * toChar() => 转换为字符型
+     * toString() => 转换为字符串型
+     */
+    /**
+     * 字符转义
+     *
+     * \t => 表示制表符
+     * \n => 表示换行符
+     * \b => 表示退格键（键盘上的Back建）
+     * \r => 表示键盘上的Enter键
+     * \\ => 表示反斜杠
+     * \' => 表示单引号
+     * \" => 表示双引号
+     * \$ => 表示美元符号，如果不转义在kotlin中就表示变量的引用了
+     * 其他的任何字符请使用Unicode转义序列语法。例：'\uFF00'
+     */
+
+
+
     private val strA = "我是字符串A"
     private val strB = "我是字符串B"
     override fun initView(savedInstanceState: Bundle?) {
+        mName
         /**
          * 绑定监听
          */
@@ -42,6 +113,11 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         btn_kt_it.setOnClickListener(this)
         btn_kt_x.setOnClickListener(this)
         btn_kt_noname.setOnClickListener(this)
+        btn_kt_let.setOnClickListener(this)
+        btn_kt_with.setOnClickListener(this)
+        btn_kt_run.setOnClickListener(this)
+        btn_kt_apply.setOnClickListener(this)
+        textObject()
     }
 
     /**
@@ -86,6 +162,14 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
                 forEachMap()
             R.id.btn_kt_noname->
                 Logger.e("${noNameFun(1,2)}")
+            R.id.btn_kt_let->
+                    textLet()
+            R.id.btn_kt_with->
+                    testWith()
+            R.id.btn_kt_run->
+                textRun()
+            R.id.btn_kt_apply->
+                    textApply()
         }
     }
 
@@ -107,9 +191,6 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     override fun initData() {
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_kt_example
-    }
 
 
     /**
@@ -146,14 +227,8 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     }
     /**
      * ----------------------------------------------------------------------------------三、定义常量与变量
-     * 常量val 只能赋值一次如java中的final
-     * 变量var
-     * 变量常量都可没有初始值，但是在引用前必须初始化
      *
      */
-
-    val name : String = "张三"
-    val name1 = "李四"// 自动推断类型
     fun text(){
         val age:Int//不在声明时初始化必须指定类型
         age = 1 //明确赋值 赋值一次再赋值就报错
@@ -282,6 +357,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         return a+b.invoke(3,5)
     }
 
+
     /**
      * ----------------------------------------------------------------------------------九、it的使用场景
      *
@@ -321,6 +397,87 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     val  noNameFun= fun (num1:Int,num2:Int):Int = num1+num2//后面的返回值类型可省了
     val  noNameFun1 = fun (num1:Int,num2:Int):Int{
         return num1+num2
+    }
+    /**
+     * ----------------------------------------------------------------------------------十、object使用
+     * 如本类class
+     * 注意：
+     * 1、object作为匿名实现如下
+     *
+     */
+    fun textObject(){
+        btn_kt_object.setOnClickListener(object :View.OnClickListener{
+            override fun onClick(p0: View?) {
+                Logger.e("使用对象表达式监听")
+                Logger.e("调用伴生对象的方法"+KtObject.sum(1,2))
+            }
+        })
+        /**
+         * lambda演变过程
+         */
+        //btn_kt_object.setOnClickListener({view: View? ->  })//简化一步
+        //btn_kt_object.setOnClickListener({view ->  })//省略类型智能推断
+        //btn_kt_object.setOnClickListener({})//view唯一参数未使用到直接省略
+        //btn_kt_object.setOnClickListener(){}//由于小括号里面是一个函数可以把小括号提到外面
+        //btn_kt_object.setOnClickListener {  }//如果这个函数只有一个参数就可以省略，这就是最简单的了
+
+    }
+
+    /**
+     * ----------------------------------------------------------------------------------十、let使用
+     * 1、作用域函数，内用it代替这个对象
+     * 2、空判断，使用let函数处理需要针对一个可null的对象统一做判空处理。他的意思是如果ktobj不为空就走函数体内的方法
+     */
+    fun textLet(){
+        val ktobj = KtObject("严博",25)
+        ktobj.let {
+            Logger.e("名字：${it.name}")
+        }
+    }
+
+    /**
+     * ----------------------------------------------------------------------------------十一、with使用
+     * 函数体类直接调用对象属性避免重复写对象名
+     * with返回值是函数体最后一行，或return指定
+     *
+     */
+    fun testWith(){
+        val ktobj = KtObject("严博",25)
+        val result = with(ktobj){
+            Logger.e("with调用--》${name}")
+            1000
+        }
+        Logger.e("返回值->$result")
+    }
+    /**
+     * ----------------------------------------------------------------------------------十一、run使用
+     * run 就是let和with的结合体
+     * 盖晗两者的所有优点和功能
+     *
+     */
+    fun textRun(){
+        val ktobj = KtObject("严博",25)
+        ktobj.run { Logger.e("名字-》$name") }
+        // 返回值道理同with
+    }
+    /**
+     * ----------------------------------------------------------------------------------十一、apply使用
+     * 和run类似但是他的返回值是对象本身
+     * 可以连续判空处理
+     * 他也集let run等的全部方法
+     */
+    fun textApply(){
+        val ktobj = KtObject("严博",25)
+        ktobj.apply { ktobj.name="李四" }.apply { Logger.e("apply调用对象-》$name") }
+    }
+    /**
+     * ----------------------------------------------------------------------------------十一、also使用
+     * 和let类似只是返回值是对象本身
+     *
+     */
+    fun textAlso(){
+        val ktobj = KtObject("严博",25)
+        ktobj.also { it.name="王麻子" }.let { Logger.e("调用also的名字${it.name}") }
     }
 }
 

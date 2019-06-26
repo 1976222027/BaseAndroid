@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
     <!--
     srlAccentColor强调颜色
     srlPrimaryColor主题颜色
@@ -18,9 +19,10 @@
         app:srlEnableLoadMore="false"
         app:srlPrimaryColor="@color/white">
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        <!--srlHeaderMaxDragRate=2.5时候WaterDropHeader的下拉效果最好-->
+        <com.yanb.daqsoft.baselib.utils.refresh.WaterDropHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -41,6 +43,40 @@
                     android:layout_height="match_parent"
                     android:clipToPadding="false" />
             </com.yanb.daqsoft.baselib.view.MultipleStatusView>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="0dp">
+
+                <RelativeLayout
+                    android:id="@+id/rel_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_header_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/text_nomal"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        tools:src="@drawable/comm_titlebar_search_normal"
+                        tools:targetApi="lollipop" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
         </FrameLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </RelativeLayout>

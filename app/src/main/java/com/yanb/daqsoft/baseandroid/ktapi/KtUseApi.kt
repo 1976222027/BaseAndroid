@@ -6,6 +6,7 @@ package com.yanb.daqsoft.baseandroid.ktapi
  * @date 2019-6-5.17:20
  * @version 1.0.0
  * @since JDK 1.8
+ *
  */
 // NULL检查机制
 class KtUseApi(){

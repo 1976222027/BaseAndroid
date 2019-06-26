@@ -72,6 +72,8 @@ dependencies {
     //arouter跳转路由
     api 'com.alibaba:arouter-api:1.3.1'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // 刷新控件 https://github.com/scwang90/SmartRefreshLayout
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-28'
 
 }
 repositories {

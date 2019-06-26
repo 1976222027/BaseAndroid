@@ -89,6 +89,48 @@
                 android:text="匿名函数"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_class"
+                android:text="类"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_object"
+                android:text="object使用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_let"
+                android:text="let使用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_with"
+                android:text="with使用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_run"
+                android:text="run使用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_apply"
+                android:text="apply使用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textSize="@dimen/text_14"
+                android:id="@+id/btn_kt_also"
+                android:text="also使用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
     <TextView

@@ -16,6 +16,7 @@ import com.yanb.daqsoft.baselib.ktbase.BaseKtFragment
 class KtActualCombatFragemnt :BaseKtFragment(), KtActualCombatContract.View{
 
     private var mTitle: String? = null
+
     companion object {
         fun getInstance(title: String): KtActualCombatFragemnt {
             val fragment = KtActualCombatFragemnt()

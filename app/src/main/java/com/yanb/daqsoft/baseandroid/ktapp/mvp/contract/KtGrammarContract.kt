@@ -2,6 +2,7 @@ package com.yanb.daqsoft.baseandroid.ktapp.mvp.contract
 
 import com.hazz.kotlinmvp.base.IBaseView
 import com.hazz.kotlinmvp.base.IPresenter
+import com.yanb.daqsoft.baseandroid.ktapp.mvp.model.bean.HomeBean
 
 /**
  * kt语法Contract
@@ -15,7 +16,18 @@ interface KtGrammarContract {
      * View层
      */
     interface View : IBaseView{
-
+        /**
+         * 设置第一次请求的数据
+         */
+        fun setHomeData(homeBean: HomeBean)
+        /**
+         * 设置加载更多的数据
+         */
+        fun setMoreData(itemList:ArrayList<HomeBean.Issue.Item>)
+        /**
+         * 显示错误信息
+         */
+        fun showError(msg: String,errorCode:Int)
     }
 
     /**
