@@ -65,7 +65,9 @@
         <activity android:name=".scan.CodeActivity" />
         <activity android:name=".picupdate.PictureUpdateActivity" />
         <activity android:name=".ktapi.KtExampleActivity" />
-        <activity android:name=".ktapp.KtMainActivity"></activity>
+        <activity android:name=".ktapp.KtMainActivity" />
+        <activity android:name=".map.MapActivity" />
+        <activity android:name=".example.databinding.DataBindingActivity"></activity>
     </application>
 
 </manifest>

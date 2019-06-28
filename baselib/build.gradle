@@ -3,6 +3,9 @@ apply plugin: 'kotlin-android'
 // 生成R2类插件
 apply plugin: 'com.jakewharton.butterknife'
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
