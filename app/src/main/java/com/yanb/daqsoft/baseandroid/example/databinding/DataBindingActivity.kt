@@ -19,13 +19,27 @@ import com.yanb.daqsoft.baseandroid.example.model.DataBindData
  * android:text="@{String.valueOf(user.age)}"//@{只能是String}
  * android:text="@{StringUtils.capitalize(user.firstName)}"//前面导入了这个包，可以调用这个静态方法
  * android:text="@{user.displayName ?? user.lastName}"//它表达的是如果左边不是 null 的，那么使用左边的值，否者使用右边的值
+ * 注意：
+ * 1.在xml布局中java基础包不需要导入
+ * 2、可声明基础变量直接使用：
+ *     <data>
+            <variable
+                name="str"
+                type="String"/>
+            // 使用这个的时候一定要进行转换为String类型
+            <variable
+                name="age"
+                type="int" />
+        </data>
+ *
+ *
  *
  */
 class DataBindingActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val dataBindData:ActivityDataBindingBinding = DataBindingUtil.setContentView(this,R.layout.activity_data_binding)
-        dataBindData.data = DataBindData("严博", 12)
+        dataBindData.data = DataBindData("我是通过实体类得到", 12)
+        dataBindData.list
     }
 }

@@ -1,4 +1,4 @@
-package com.yanb.daqsoft.baselib.ktbase
+package com.yanb.daqsoft.baselib.mvvmbase
 
 import android.databinding.ViewDataBinding
 

@@ -2,20 +2,43 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View"/>
+        <import type="java.util.List" />
         <variable
-            name="Data"
+            name="data"
             type="com.yanb.daqsoft.baseandroid.example.model.DataBindData"/>
+        <!--基础变量-->
+        <variable
+            name="str"
+            type="String" />
+        <!--集合等,要先导入需要的包Lsit
+        -->
+        <variable
+            name="list"
+            type="List&lt;String&gt;"/>
     </data>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:text="@{Data.name}"
-            android:padding="@dimen/dp_10"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:text="@{data.name}"
+                android:padding="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="@{str}"
+                android:padding="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="@{list.get(0)}"
+                android:padding="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
 
 </layout>
