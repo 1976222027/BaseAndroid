@@ -12,6 +12,7 @@ import com.daqsoft.xhttp.Xhttp;
  */
 
 public class XhttpUtils {
+
     public static ApiService httpApiService;
     public static ApiService getApiService(){
         return Xhttp.getInstance().getmRetrofit().create(ApiService.class);
