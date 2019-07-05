@@ -1,43 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <import type="android.view.View"/>
+<!--databinding 用layout包裹-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--data 节点可以通过添加class=""来确定自定义绑定类-->
+    <data >
+        <!--添加点击事件必须引入的包-->
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <!--基础类型的包是不用导入的本来就有-->
+        <import type="android.view.View" />
+
         <import type="java.util.List" />
+
+        <import type="com.yanb.daqsoft.baseandroid.example.model.DataBindData" />
+        <!--如果两个类名一样在不同包下我们可以通过这个别名方式来弄-->
+        <import
+            alias="DataBindData2"
+            type="com.yanb.daqsoft.baseandroid.example.DataBindData" />
         <variable
             name="data"
-            type="com.yanb.daqsoft.baseandroid.example.model.DataBindData"/>
+            type="DataBindData" />
+
+        <variable
+            name="data2"
+            type="DataBindData2" />
         <!--基础变量-->
         <variable
             name="str"
             type="String" />
         <!--集合等,要先导入需要的包Lsit
+        泛型用转义符
         -->
         <variable
             name="list"
-            type="List&lt;String&gt;"/>
+            type="List&lt;String&gt;" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <!--默认值的使用不能包含引号-->
             <TextView
-                android:text="@{data.name}"
-                android:padding="@dimen/dp_10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:text="@{data.name,default=我是默认值}" />
+
             <TextView
-                android:text="@{str}"
-                android:padding="@dimen/dp_10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:text="@{data2.name}" />
+
             <TextView
-                android:text="@{list.get(0)}"
-                android:padding="@dimen/dp_10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:text="@{str}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:text="@{list.get(0)}" />
+
+            <include
+                android:id="@+id/include_tv"
+                layout="@layout/include_text_databing"
+                app:data3="@{data}" />
+
+            <Button
+                android:id="@+id/btn_star"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{clickListener}"
+                android:text="点我点我快点我!我是通过databing实现的点击事件" />
         </LinearLayout>
     </ScrollView>
 

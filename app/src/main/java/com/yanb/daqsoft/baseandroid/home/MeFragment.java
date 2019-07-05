@@ -17,6 +17,7 @@ import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
 import com.yanb.daqsoft.baselib.utils.glide.GlideUtils;
+import com.yanb.daqsoft.baselib.utils.update.AppUpdateDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,9 +73,12 @@ public class MeFragment extends BaseSupportFragment {
     }
 
 
-    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2,R.id.tv_pic_update})
+    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2,R.id.tv_pic_update,R.id.tv_update})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_update:
+                new AppUpdateDialog(getActivity(),"1.0.2","优化布局部分界面优化，修改适配器卡顿问题").show();
+                break;
             // 图片上传界面展示
             case R.id.tv_pic_update:
                 break;

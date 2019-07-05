@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daqsoft.update.AppUpdater;
+
 import com.daqsoft.zxinglib.Intents;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.home.HomeMainFragment;

@@ -33,7 +33,7 @@ ext {
     //android
     compileSdkVersion = 28
     buildToolsVersion = '28.0.2'
-    minSdkVersion = 19
+    minSdkVersion = 24
     targetSdkVersion = 28
     supportLibVersion = '27.1.1'
 

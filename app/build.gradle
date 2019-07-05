@@ -66,7 +66,6 @@ dependencies {
     implementation project(':tablayout')
     implementation project(':zxinglib')
     implementation project(':xhttp')
-    implementation project(':update')
     implementation project(':yshare')
     // kotlin 支持库
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
