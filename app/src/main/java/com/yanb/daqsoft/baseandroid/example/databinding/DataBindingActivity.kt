@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.view.View
 import com.yanb.daqsoft.baseandroid.R
 import com.yanb.daqsoft.baseandroid.databinding.ActivityDataBindingBinding
-import com.yanb.daqsoft.baseandroid.example.model.DataBindData
+import com.yanb.daqsoft.baseandroid.example.databinding.model.Goods
+
 import com.yanb.daqsoft.baselib.utils.ToastUtils
 
 /**
@@ -58,7 +59,15 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
         bindUser()
         bindList()
         bindBaseData()
+        // 单向数据绑定
+        bindOnly()
+    }
 
+    /**
+     * 单向数据绑定
+     */
+    private fun bindOnly() {
+        dataBindData?.goods = Goods("烟波",23)
     }
 
     /**
@@ -81,7 +90,6 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
      * 绑定对象
      */
     private fun bindUser() {
-        dataBindData?.data = DataBindData("我是通过实体类得到", 12)
         dataBindData?.data2 = com.yanb.daqsoft.baseandroid.example.DataBindData("我是通过实体类别名得到", 12)
         // 获取include布局ID
         //dataBindData?.includeTv?.tvIncludeName?.setText("我是通过include布局获得数据")

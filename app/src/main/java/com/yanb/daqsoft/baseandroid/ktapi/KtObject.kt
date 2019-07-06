@@ -47,4 +47,5 @@ class KtObject constructor(var name:String,var age :Int){
             return a+b
         }
     }
+
 }

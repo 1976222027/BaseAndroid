@@ -4,6 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--data 节点可以通过添加class=""来确定自定义绑定类-->
     <data >
+        <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.Goods" />
+        <variable
+            name="goods"
+            type="Goods" />
         <!--添加点击事件必须引入的包-->
         <variable
             name="clickListener"
@@ -13,15 +17,10 @@
         <import type="android.view.View" />
 
         <import type="java.util.List" />
-
-        <import type="com.yanb.daqsoft.baseandroid.example.model.DataBindData" />
-        <!--如果两个类名一样在不同包下我们可以通过这个别名方式来弄-->
         <import
             alias="DataBindData2"
             type="com.yanb.daqsoft.baseandroid.example.DataBindData" />
-        <variable
-            name="data"
-            type="DataBindData" />
+
 
         <variable
             name="data2"
@@ -37,7 +36,6 @@
             name="list"
             type="List&lt;String&gt;" />
     </data>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -51,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_10"
-                android:text="@{data.name,default=我是默认值}" />
+                android:text="@{data2.name}" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -74,7 +72,7 @@
             <include
                 android:id="@+id/include_tv"
                 layout="@layout/include_text_databing"
-                app:data3="@{data}" />
+                app:data3="@{data2}" />
 
             <Button
                 android:id="@+id/btn_star"
@@ -82,6 +80,30 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{clickListener}"
                 android:text="点我点我快点我!我是通过databing实现的点击事件" />
+            <!--单项/双向数据绑定-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/text_study_title"
+                    android:text="单项/双向数据绑定"/>
+                <TextView
+                    style="@style/text_study_content"
+                    android:text="@{goods.name,default=大象}"/>
+            </LinearLayout>
+            <!--双向绑定-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/text_study_title"
+                    android:text="单项/双向数据绑定"/>
+                <TextView
+                    style="@style/text_study_content"
+                    android:text="@{goods.name,default=大象}"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

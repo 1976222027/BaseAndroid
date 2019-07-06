@@ -10,4 +10,24 @@
         <item name="android:activityOpenExitAnimation">@anim/slide_right_in</item>
         <!--<item name="android:background">@color/color_transparent_9000</item>-->
     </style>
+    <!--学习中布局的简单标题与内容  开始-->
+    <!--标题-->
+    <style name="text_study_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_nomal</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:drawableLeft">mi</item>
+    </style>
+    <style name="text_study_content">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">@dimen/dp_16</item>
+        <item name="android:paddingRight">@dimen/dp_16</item>
+    </style>
+    <!--学习中布局的简单标题与内容  结束-->
 </resources>

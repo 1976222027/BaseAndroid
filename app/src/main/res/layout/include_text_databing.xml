@@ -2,7 +2,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <import type="com.yanb.daqsoft.baseandroid.example.model.DataBindData" />
+        <import type="com.yanb.daqsoft.baseandroid.example.DataBindData" />
         <variable
             name="data3"
             type="DataBindData" />

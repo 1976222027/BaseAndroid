@@ -17,7 +17,6 @@ import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity;
 import com.yanb.daqsoft.baseandroid.ktapi.KtExampleActivity;
 import com.yanb.daqsoft.baseandroid.ktapp.KtMainActivity;
-import com.yanb.daqsoft.baseandroid.map.MapActivity;
 import com.yanb.daqsoft.baseandroid.picupdate.PictureUpdateActivity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
