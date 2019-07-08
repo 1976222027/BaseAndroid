@@ -4,6 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--data 节点可以通过添加class=""来确定自定义绑定类-->
     <data >
+        <import type="com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity" />
+        <variable
+            name="changeBooks"
+            type="DataBindingActivity" />
+        <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.Books" />
+        <variable
+            name="books"
+            type="Books" />
         <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.Goods" />
         <variable
             name="goods"
@@ -87,7 +95,7 @@
                 android:orientation="vertical">
                 <TextView
                     style="@style/text_study_title"
-                    android:text="单项/双向数据绑定"/>
+                    android:text="单项数据绑定"/>
                 <TextView
                     style="@style/text_study_content"
                     android:text="@{goods.name,default=大象}"/>
@@ -98,11 +106,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:onClick="@{()->changeBooks.MBooks}"
                     style="@style/text_study_title"
-                    android:text="单项/双向数据绑定"/>
+                    android:text="双向数据绑定"/>
                 <TextView
                     style="@style/text_study_content"
-                    android:text="@{goods.name,default=大象}"/>
+                    android:text="@{books.name,default=大象}"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

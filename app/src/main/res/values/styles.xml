@@ -19,7 +19,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_nomal</item>
         <item name="android:padding">@dimen/dp_10</item>
-        <item name="android:drawableLeft">mi</item>
     </style>
     <style name="text_study_content">
         <item name="android:textColor">@color/text_gray</item>

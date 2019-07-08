@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.view.View
 import com.yanb.daqsoft.baseandroid.R
 import com.yanb.daqsoft.baseandroid.databinding.ActivityDataBindingBinding
+import com.yanb.daqsoft.baseandroid.example.databinding.model.Books
 import com.yanb.daqsoft.baseandroid.example.databinding.model.Goods
 
 import com.yanb.daqsoft.baselib.utils.ToastUtils
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * databingding学习界面
@@ -39,6 +42,8 @@ import com.yanb.daqsoft.baselib.utils.ToastUtils
  *
  */
 class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
+
+    var mBooks:Books? = null
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_star->
@@ -55,36 +60,31 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBindData = DataBindingUtil.setContentView(this,R.layout.activity_data_binding)
-        dataBindData?.clickListener = this
+
+        dataBindData?.run {
+            clickListener = this@DataBindingActivity
+
+            //双向绑定
+            mBooks = Books("语文啊","12","理科")
+            books = mBooks
+
+            // 单向绑定
+            goods = Goods("烟波",23)
+
+            // 绑定基础数据
+            str = "我是基础数据直接得到"
+
+            // 绑定高级变量如list
+            val lists = ArrayList<String>()
+            lists.add("我通过list得到list类型需要用到转义符")
+            list = lists
+
+
+        }
         bindUser()
-        bindList()
-        bindBaseData()
-        // 单向数据绑定
-        bindOnly()
     }
 
-    /**
-     * 单向数据绑定
-     */
-    private fun bindOnly() {
-        dataBindData?.goods = Goods("烟波",23)
-    }
 
-    /**
-     * 绑定基础数据
-     */
-    private fun bindBaseData() {
-        dataBindData?.str = "我是基础数据直接得到"
-    }
-
-    /**
-     * 绑定高级变量如list
-     */
-    private fun bindList() {
-        val list = ArrayList<String>()
-        list.add("我通过list得到list类型需要用到转义符")
-        dataBindData?.list = list
-    }
 
     /**
      * 绑定对象
@@ -94,4 +94,16 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
         // 获取include布局ID
         //dataBindData?.includeTv?.tvIncludeName?.setText("我是通过include布局获得数据")
     }
+
+    /**
+     * 改数名
+     */
+    public fun changeBooksName(){
+        mBooks?.let {
+            it.name= "名字" + Random().nextInt(100)
+            it.type = "类型"+Random().nextInt(100)
+        }
+    }
+
+
 }
