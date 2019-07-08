@@ -6,8 +6,9 @@ DataBinding全解
 -  防止内存泄漏
 -  空监测
 
-# 配置
+# 一、环境配置
 
+## 1、添加依赖
 ~~~
 在对应modelbuild.gradle加入
 android {
@@ -16,7 +17,7 @@ android {
     }
 }
 ~~~
-## 布局
+## 2、修改布局
 选中根布局alt+回车 选 Conver to data binding layout 生成对应的布局规则，详见DataBindingActivity
 注意：
 - 如果xml中引入的类名一样但是路径不一样我们可通过别名来
@@ -37,15 +38,15 @@ android {
     这样我们就可以用如userInfo或tempUserInfo去设置数据了
 ~~~
 
-# 一些常用的技巧
-## 界面默认值
+# 二、一些常用的技巧
+## 1、界面默认值
 
 ~~~
  android:text="@{userInfo.name,default=defaultValue}"
  defaultValue为默认值，不能包含引号
 ~~~
 
-## 文件名
+## 2、文件名
 
 布局绑定生成的文件名以布局文件名来的驼峰并去掉布局文件下划线
 可自定义
@@ -65,6 +66,11 @@ android {
 - ObservableCollection
 
 BaseObservable 提供了 notifyChange() 和 notifyPropertyChanged() 两个方法，前者会刷新所有的值域，后者则只更新对应 BR 的 flag，该 BR 的生成通过注释 @Bindable 生成，可以通过 BR notify 特定属性关联的视图
+
+| 方法 | 描述 | -- |--|
+| ------------- |:-------------| :-----|:-----|
+| notifyChange() | 空格| &nbsp； | &#160；|
+|  notifyPropertyChanged() | 只更新对应 BR 的 flag，该 BR 的生成通过注释 @Bindable 生成，可以通过 BR notify 特定属性关联的视图| &nbsp； | &#160；|
 
 
 
