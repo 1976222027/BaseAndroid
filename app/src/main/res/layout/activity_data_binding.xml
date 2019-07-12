@@ -4,6 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--data 节点可以通过添加class=""来确定自定义绑定类-->
     <data >
+        <!--ObservableCollection-->
+        <import type="android.databinding.ObservableList" />
+        <import type="android.databinding.ObservableMap" />
+        <variable
+            name="oblist"
+            type="ObservableList&lt;String&gt;" />
+        <variable
+            name="obmap"
+            type="ObservableMap&lt;String,String&gt;" />
+        <variable
+            name="index"
+            type="int" />
+
+        <variable
+            name="key"
+            type="String" />
         <!--通过ObservableField实现双向绑定-->
         <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.ObservableGoods" />
         <variable
@@ -163,6 +179,26 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                style="@style/text_study_title"
+                android:text="ObservableCollection数据绑定"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="@{oblist[index]}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="20dp"
+                android:text="@{obmap[key]}" />
+            <Button
+                android:text="改变数据"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->}"/>
         </LinearLayout>
     </ScrollView>
 

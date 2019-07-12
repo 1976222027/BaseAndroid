@@ -1,6 +1,9 @@
 package com.yanb.daqsoft.baseandroid.example.databinding
 
 import android.databinding.DataBindingUtil
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableArrayMap
+import android.databinding.ObservableMap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,13 +24,13 @@ import kotlin.collections.ArrayList
  * @date 2019-6-27.11:17
  * @since JDK 1.8
  */
-class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
-
-    var mBooks:Books? = null
-    var mObservableGoods:ObservableGoods? = null
+class DataBindingActivity : AppCompatActivity(), View.OnClickListener {
+    var mBooks: Books? = null
+    var mObservableGoods: ObservableGoods? = null
+    var mObmap: ObservableMap<String, String>? = null
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.btn_star->
+        when (v?.id) {
+            R.id.btn_star ->
                 ToastUtils.showCenterShort("带我飞")
         }
     }
@@ -37,18 +40,22 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
      * 可自定义在data 节点添加class见布局
      * 控件的获取方式类似但首字母小写
      */
-    private var dataBindData :ActivityDataBindingBinding?= null
+    private var dataBindData: ActivityDataBindingBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBindData = DataBindingUtil.setContentView(this,R.layout.activity_data_binding)
+        dataBindData = DataBindingUtil.setContentView(this, R.layout.activity_data_binding)
 
         //双向绑定
-        mBooks = Books("语文啊","12","理科")
+        mBooks = Books("语文啊", "12", "理科")
+
+        initObservableCollection()
+
         dataBindData?.run {
             clickListener = this@DataBindingActivity
             books = mBooks
             // 单向绑定
-            goods = Goods("烟波",23)
+            goods = Goods("烟波", 23)
 
             // 绑定基础数据
             str = "我是基础数据直接得到"
@@ -59,12 +66,28 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
             list = lists
             changeBooks = BooksHandler()
             // 通过ObservableField实现双向绑定
-            mObservableGoods = ObservableGoods("严博",23f)
+            mObservableGoods = ObservableGoods("严博", 23f)
             obserGoods = mObservableGoods
         }
         bindUser()
     }
 
+    /**
+     * ObservableCollection方法展示
+     */
+    private fun initObservableCollection() {
+        mObmap = ObservableArrayMap()
+        mObmap?.put("name", "leavesC")
+        mObmap?.put("age", "24")
+        dataBindData?.obmap = mObmap
+
+        var mObList = ObservableArrayList<String>()
+        mObList.add("Ye")
+        mObList.add("leavesC")
+        dataBindData?.oblist = mObList
+        dataBindData?.index = 0
+        dataBindData?.key = "name"
+    }
 
 
     /**
@@ -99,7 +122,7 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
          *
          * 改变Goods名称
          */
-        fun changeGoodsName(){
+        fun changeGoodsName() {
             mObservableGoods?.let {
                 it.name.set("改变名称${Random().nextInt(100)}")
             }

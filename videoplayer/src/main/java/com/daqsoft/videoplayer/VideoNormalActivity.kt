@@ -72,7 +72,6 @@ class VideoNormalActivity : AppCompatActivity(), View.OnClickListener {
                             Logger.e("STATE_ERROR")
                         else ->
                             Logger.e("默认")
-
                     }
                 }
 
