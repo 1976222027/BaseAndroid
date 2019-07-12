@@ -3,7 +3,7 @@ package com.yanb.daqsoft.baseandroid.example.databinding.model;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.yanb.daqsoft.baselib.BR;
+import com.yanb.daqsoft.baseandroid.BR;
 
 
 /**

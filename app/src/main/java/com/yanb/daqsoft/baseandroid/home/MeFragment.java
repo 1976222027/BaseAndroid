@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baseandroid.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.daqsoft.customview.img.CircleImageView;
+import com.daqsoft.videoplayer.VideoNormalActivity;
 import com.orhanobut.logger.Logger;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
@@ -73,9 +75,12 @@ public class MeFragment extends BaseSupportFragment {
     }
 
 
-    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2,R.id.tv_pic_update,R.id.tv_update})
+    @OnClick({R.id.ll_me_logo, R.id.common_rxjava2,R.id.tv_pic_update,R.id.tv_update,R.id.me_tv_videoplays})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.me_tv_videoplays:
+                startActivity(new Intent(getActivity(), VideoNormalActivity.class));
+                break;
             case R.id.tv_update:
                 new AppUpdateDialog(getActivity(),"1.0.2","优化布局部分界面优化，修改适配器卡顿问题").show();
                 break;

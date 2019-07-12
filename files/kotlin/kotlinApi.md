@@ -1,12 +1,11 @@
-# Kt的使用
 
 [Kotlin系列之let、with、run、apply、also函数的使用](https://blog.csdn.net/u013064109/article/details/78786646)
 
 let使用见KtMainActivity
 
-## 条件控制
+# 一、条件控制
 
-### if
+## if
 ~~~
 作为表达式
 var max = a 
@@ -21,7 +20,7 @@ val max = if (a > b) {
     b
 }
 ~~~
-### 区间
+## 区间
 盘判定是否在区间内
 ~~~
 val x = 5
@@ -30,7 +29,7 @@ val x = 5
         println("x 在区间内")
     }
 ~~~
-### when
+## when
 
 ~~~
 when (x) {
@@ -79,16 +78,16 @@ fun main(args: Array<String>) {
 }
 
 ~~~
-## 循环控制
+# 二、循环控制
 
-### For 循环
+## For 循环
 可对任何迭代器遍历
 
 for (item in collection) print(item)
 
-## 一、高阶函数
+# 三、高阶函数
 
-### 1、let
+## 1、let
 
 ~~~
     /**
@@ -104,7 +103,8 @@ for (item in collection) print(item)
     }
 ~~~
 
-# 类
+# 四、类
+
 # NULL检查机制
 
 ~~~

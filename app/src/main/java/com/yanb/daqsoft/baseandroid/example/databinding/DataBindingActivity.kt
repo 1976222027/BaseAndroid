@@ -8,7 +8,7 @@ import com.yanb.daqsoft.baseandroid.R
 import com.yanb.daqsoft.baseandroid.databinding.ActivityDataBindingBinding
 import com.yanb.daqsoft.baseandroid.example.databinding.model.Books
 import com.yanb.daqsoft.baseandroid.example.databinding.model.Goods
-
+import com.yanb.daqsoft.baseandroid.example.databinding.model.ObservableGoods
 import com.yanb.daqsoft.baselib.utils.ToastUtils
 import java.util.*
 import kotlin.collections.ArrayList
@@ -20,30 +20,11 @@ import kotlin.collections.ArrayList
  * @version 1.0.0
  * @date 2019-6-27.11:17
  * @since JDK 1.8
- * 基本使用API
- * android:visibility="@{user.isAdult ? View.VISIBLE : View.GONE}"//支持三元运算符。需要导入View包
- * android:text="@{String.valueOf(user.age)}"//@{只能是String}
- * android:text="@{StringUtils.capitalize(user.firstName)}"//前面导入了这个包，可以调用这个静态方法
- * android:text="@{user.displayName ?? user.lastName}"//它表达的是如果左边不是 null 的，那么使用左边的值，否者使用右边的值
- * 注意：
- * 1.在xml布局中java基础包不需要导入
- * 2、可声明基础变量直接使用：
- *     <data>
-            <variable
-                name="str"
-                type="String"/>
-            // 使用这个的时候一定要进行转换为String类型
-            <variable
-                name="age"
-                type="int" />
-        </data>
- *
- *
- *
  */
 class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
 
     var mBooks:Books? = null
+    var mObservableGoods:ObservableGoods? = null
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_star->
@@ -61,13 +42,11 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
         super.onCreate(savedInstanceState)
         dataBindData = DataBindingUtil.setContentView(this,R.layout.activity_data_binding)
 
+        //双向绑定
+        mBooks = Books("语文啊","12","理科")
         dataBindData?.run {
             clickListener = this@DataBindingActivity
-
-            //双向绑定
-            mBooks = Books("语文啊","12","理科")
             books = mBooks
-
             // 单向绑定
             goods = Goods("烟波",23)
 
@@ -78,8 +57,10 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
             val lists = ArrayList<String>()
             lists.add("我通过list得到list类型需要用到转义符")
             list = lists
-
-
+            changeBooks = BooksHandler()
+            // 通过ObservableField实现双向绑定
+            mObservableGoods = ObservableGoods("严博",23f)
+            obserGoods = mObservableGoods
         }
         bindUser()
     }
@@ -95,15 +76,36 @@ class DataBindingActivity : AppCompatActivity() ,View.OnClickListener{
         //dataBindData?.includeTv?.tvIncludeName?.setText("我是通过include布局获得数据")
     }
 
-    /**
-     * 改数名
-     */
-    public fun changeBooksName(){
-        mBooks?.let {
-            it.name= "名字" + Random().nextInt(100)
-            it.type = "类型"+Random().nextInt(100)
-        }
-    }
+    inner class BooksHandler {
 
+        fun changeBooksName() {
+            mBooks?.let {
+                it.setName("我是名字${Random().nextInt(100)}")
+                // 设置类型的时候未设置变化所以类型值不会联动改变
+                it.setType("我是类型${Random().nextInt(100)}")
+            }
+        }
+
+        fun changeBooksPrice() {
+            mBooks?.let {
+                it.setName("我是名字${Random().nextInt(100)}")
+                // 设置类型的时候未设置变化所以类型值不会联动改变
+                it.setType("我是类型${Random().nextInt(100)}")
+                it.setPrice("我是价格${Random().nextInt(100)}")
+            }
+        }
+
+        /**
+         *
+         * 改变Goods名称
+         */
+        fun changeGoodsName(){
+            mObservableGoods?.let {
+                it.name.set("改变名称${Random().nextInt(100)}")
+            }
+        }
+
+
+    }
 
 }

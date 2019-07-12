@@ -4,10 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--data 节点可以通过添加class=""来确定自定义绑定类-->
     <data >
-        <import type="com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity" />
+        <!--通过ObservableField实现双向绑定-->
+        <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.ObservableGoods" />
+        <variable
+            name="obserGoods"
+            type="ObservableGoods" />
+        <import type="com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity.BooksHandler" />
         <variable
             name="changeBooks"
-            type="DataBindingActivity" />
+            type="BooksHandler" />
         <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.Books" />
         <variable
             name="books"
@@ -106,12 +111,57 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:onClick="@{()->changeBooks.MBooks}"
                     style="@style/text_study_title"
                     android:text="双向数据绑定"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:textSize="11sp"
+                        android:onClick="@{()->changeBooks.changeBooksName()}"
+                        android:text="改变名字和类型(仅名字变化)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:textSize="11sp"
+                        android:onClick="@{()->changeBooks.changeBooksPrice()}"
+                        android:text="改变名字和价格(全部都变)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
                 <TextView
                     style="@style/text_study_content"
                     android:text="@{books.name,default=大象}"/>
+                <TextView
+                    style="@style/text_study_content"
+                    android:text="@{books.type,default=大象}"/>
+                <TextView
+                    style="@style/text_study_content"
+                    android:text="@{books.price,default=大象}"/>
+            </LinearLayout>
+            <TextView
+                style="@style/text_study_title"
+                android:text="ObservableField实现双向数据绑定"/>
+
+            <TextView
+                android:text="@{obserGoods.name}"
+                style="@style/text_study_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@={obserGoods.name}" />
+                <Button
+                    android:onClick="@{()->changeBooks.changeGoodsName()}"
+                    android:text="改变name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

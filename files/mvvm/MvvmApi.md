@@ -38,6 +38,13 @@ android {
     这样我们就可以用如userInfo或tempUserInfo去设置数据了
 ~~~
 
+### 布局语法
+~~~
+android:visibility="@{user.isAdult ? View.VISIBLE : View.GONE}"//支持三元运算符。需要导入View包
+android:text="@{String.valueOf(user.age)}"//@{只能是String}
+android:text="@{StringUtils.capitalize(user.firstName)}"//前面导入了这个包，可以调用这个静态方法
+android:text="@{user.displayName ?? user.lastName}"//它表达的是如果左边不是 null 的，那么使用左边的值，否者使用右边的值
+~~~
 # 二、一些常用的技巧
 ## 1、界面默认值
 
@@ -55,9 +62,46 @@ android {
     <data class="CustomBinding">
     </data>
 ~~~
+## 3、别名设置
+如果在xml布局中引入的类型名一样但是包名不一样就可以使用别名
 
+~~~
+    <data>
+        <import type="com.leavesc.databinding_demo.model.User" />
+        <import
+            alias="TempUser"
+            type="com.leavesc.databinding_demo.model2.User" />
+        <variable
+            name="userInfo"
+            type="User" />
+        <variable
+            name="tempUserInfo"
+            type="TempUser" />
+    </data>
+~~~
 
-# 单向数据绑定
+## 4、设置监听
+
+我们可以通过监听，监听属性的变化
+
+~~~
+mBooks?.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+                override fun onPropertyChanged(sender: Observable, propertyId: Int) {
+                    if (propertyId == BR.name) {
+                        Logger.e("BR.name")
+                    } else if (propertyId == BR.details) {
+                        Log.e(TAG, "BR.details")
+                    } else if (propertyId == BR._all) {
+                        Log.e(TAG, "BR._all")
+                    } else {
+                        Log.e(TAG, "未知")
+                    }
+                }
+            })
+~~~
+# 三、单向数据绑定
+
+# 四、双向数据绑定
 
 实现数据变化自动驱动UI刷新方式
 
@@ -65,7 +109,39 @@ android {
 - ObservableField
 - ObservableCollection
 
-BaseObservable 提供了 notifyChange() 和 notifyPropertyChanged() 两个方法，前者会刷新所有的值域，后者则只更新对应 BR 的 flag，该 BR 的生成通过注释 @Bindable 生成，可以通过 BR notify 特定属性关联的视图
+BaseObservable 提供了 notifyChange() 和 notifyPropertyChanged() 两个方法，
+前者会刷新所有的值域，后者则只更新对应 BR 的 flag，该 BR 的生成通过注释 @Bindable 生成，
+可以通过 BR notify 特定属性关联的视图
+
+## 1、通过ObservableField实现
+继承于 Observable 类相对来说限制有点高，且也需要进行 notify 操作，因此为了简单起见可以选择使用 
+ObservableField。ObservableField 可以理解为官方对 BaseObservable 
+中字段的注解和刷新等操作的封装，官方原生提供了对基本数据类型的封装，
+例如 ObservableBoolean、ObservableByte、ObservableChar、ObservableShort、ObservableInt、
+ObservableLong、ObservableFloat、ObservableDouble 以及 ObservableParcelable ，
+也可通过 ObservableField 泛型来申明其他类型
+
+~~~
+public class ObservableGoods {
+
+    private ObservableField<String> name;
+
+    private ObservableFloat price;
+
+    private ObservableField<String> details;
+
+    public ObservableGoods(String name, float price, String details) {
+        this.name = new ObservableField<>(name);
+        this.price = new ObservableFloat(price);
+        this.details = new ObservableField<>(details);
+    }
+
+    ```
+}
+~~~
+
+
+
 
 | 方法 | 描述 | -- |--|
 | ------------- |:-------------| :-----|:-----|

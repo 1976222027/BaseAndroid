@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.yanb.daqsoft.baselib.utils.titlebar.CommonTitleBar
+        android:id="@+id/video_normal_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="视频播放"
+        app:centerType="textView"
+        app:leftDrawable="@drawable/comm_titlebar_back_normal"
+        app:leftDrawablePadding="0dp"
+        app:leftText="返回"
+        app:leftType="textView" />
+
+    <com.dueeeke.videoplayer.player.VideoView
+        android:id="@+id/video_normal_player"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:autoRotate="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/video_btn_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="默认" />
+
+                <Button
+                    android:id="@+id/video_btn_16_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16:9" />
+
+                <Button
+                    android:id="@+id/video_btn_4_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4:3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/video_btn_ben"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="原始大小" />
+
+                <Button
+                    android:id="@+id/video_btn_tian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="填充" />
+
+                <Button
+                    android:id="@+id/video_btn_cai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="居中裁剪" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="播放速度：" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/video_btn_speed_20"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:text="2.0" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/video_btn_xuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="镜像旋转" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
