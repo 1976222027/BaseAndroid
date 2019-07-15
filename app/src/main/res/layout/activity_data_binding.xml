@@ -25,10 +25,10 @@
         <variable
             name="obserGoods"
             type="ObservableGoods" />
-        <import type="com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity.BooksHandler" />
+        <import type="com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity.DoHandler" />
         <variable
-            name="changeBooks"
-            type="BooksHandler" />
+            name="hander"
+            type="DoHandler" />
         <import type="com.yanb.daqsoft.baseandroid.example.databinding.model.Books" />
         <variable
             name="books"
@@ -135,13 +135,13 @@
                     android:orientation="horizontal">
                     <Button
                         android:textSize="11sp"
-                        android:onClick="@{()->changeBooks.changeBooksName()}"
+                        android:onClick="@{()->hander.changeBooksName()}"
                         android:text="改变名字和类型(仅名字变化)"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Button
                         android:textSize="11sp"
-                        android:onClick="@{()->changeBooks.changeBooksPrice()}"
+                        android:onClick="@{()->hander.changeBooksPrice()}"
                         android:text="改变名字和价格(全部都变)"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:text="@={obserGoods.name}" />
                 <Button
-                    android:onClick="@{()->changeBooks.changeGoodsName()}"
+                    android:onClick="@{()->hander.changeGoodsName()}"
                     android:text="改变name"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -195,10 +195,10 @@
                 android:padding="20dp"
                 android:text="@{obmap[key]}" />
             <Button
+                android:onClick="@{()->hander.changeObservableCollectionName()}"
                 android:text="改变数据"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{()->}"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 

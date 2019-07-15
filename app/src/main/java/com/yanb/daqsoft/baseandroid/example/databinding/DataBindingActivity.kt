@@ -64,7 +64,7 @@ class DataBindingActivity : AppCompatActivity(), View.OnClickListener {
             val lists = ArrayList<String>()
             lists.add("我通过list得到list类型需要用到转义符")
             list = lists
-            changeBooks = BooksHandler()
+            hander = DoHandler()
             // 通过ObservableField实现双向绑定
             mObservableGoods = ObservableGoods("严博", 23f)
             obserGoods = mObservableGoods
@@ -99,7 +99,11 @@ class DataBindingActivity : AppCompatActivity(), View.OnClickListener {
         //dataBindData?.includeTv?.tvIncludeName?.setText("我是通过include布局获得数据")
     }
 
-    inner class BooksHandler {
+    /**
+     *
+     * databinding 的点击事件在这里处理
+     */
+    inner class DoHandler {
 
         fun changeBooksName() {
             mBooks?.let {
@@ -126,6 +130,13 @@ class DataBindingActivity : AppCompatActivity(), View.OnClickListener {
             mObservableGoods?.let {
                 it.name.set("改变名称${Random().nextInt(100)}")
             }
+        }
+
+        /**
+         *
+         */
+        fun changeObservableCollectionName(){
+            mObmap?.put("name","leavesCha${Random().nextInt(100)}")
         }
 
 
