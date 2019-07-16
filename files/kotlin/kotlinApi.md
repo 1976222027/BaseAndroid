@@ -102,6 +102,37 @@ for (item in collection) print(item)
         }
     }
 ~~~
+## 2、lateinit和by lazy 延迟初始化
+
+- lateinit:延迟初始化属性
+
+一般属性声明非空类型必须初始化，也支持可空？=null
+
+~~~
+val nameA:String //报红线 提示如下 
+Property must be initialized or be abstract
+
+lateinit var name:String //lateinit可以避免这种情况
+在初始化前访问一个lateinit属性会抛出一个特定异常，该异常明确标识该属性被访问及它没有初始化的事实。
+~~~
+- by lazy:惰性初始化
+
+惰性初始化是一种常见的模式，直到第一次访问该属性的时候，才根据需要创建对象的一部分，当初始化过程消耗大量资源并且在使用对象时并不总是需要数据时，这个非常有用。
+
+~~~
+val nameB: String by lazy {
+    println("getLazy")
+    "123"
+}
+
+println(nameB)
+println(nameB)
+~~~
+注意：
+
+- by lazy只能作用于val关键字标注的属性。
+- 当属性用到的时候才会初始化”lazy{}”里面的内容
+- 而且再次调用属性的时候，只会得到结果，而不会再次执行lazy{}的运行过程
 
 # 四、类
 

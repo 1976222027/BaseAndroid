@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yanb.daqsoft.baseandroid">
-
     <!-- 照相机 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 闪光灯 -->
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <!-- 写 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 读 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- 在sdcard中创建/删除文件的权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 闪光灯 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" /> <!-- 写 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 读 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 在sdcard中创建/删除文件的权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- 微信QQ权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 微信QQ权限 -->
     <!-- INTERNET、ACCESS_NETWORK_STATE、WRITE_EXTERNAL_STORAGE -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -28,14 +21,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".mvvmapp.MvvmMainActivity"></activity>
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- qq配置开始 -->
+        </activity> <!-- qq配置开始 -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -52,21 +45,19 @@
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!-- qq配置结束 -->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- qq配置结束 -->
         <!-- 微信登录配置 start  WXEntryActivity 必须在包名下 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
-            android:theme="@style/wx_login_style" />
-        <!-- 微信登录配置 end -->
+            android:theme="@style/wx_login_style" /> <!-- 微信登录配置 end -->
         <activity android:name=".scan.ScanActivity" />
         <activity android:name=".scan.CodeActivity" />
         <activity android:name=".picupdate.PictureUpdateActivity" />
         <activity android:name=".ktapi.KtExampleActivity" />
         <activity android:name=".ktapp.KtMainActivity" />
-        <activity android:name=".example.databinding.DataBindingActivity"></activity>
+        <activity android:name=".example.databinding.DataBindingActivity" />
     </application>
 
 </manifest>
