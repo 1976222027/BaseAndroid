@@ -78,7 +78,16 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-28'
     // Lifecycle
     implementation "android.arch.lifecycle:common-java8:$rootProject.ext.lifecycleVersion"
-
+    api("com.trello.rxlifecycle2:rxlifecycle:2.2.2") {
+        exclude group: 'com.android.support'
+    }
+    //rx管理View的生命周期
+    api("com.trello.rxlifecycle2:rxlifecycle-components:2.2.2") {
+        exclude group: 'com.android.support'
+    }
+    //Google LiveData和ViewModel组件
+    api 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
 }
 repositories {
     mavenCentral()
