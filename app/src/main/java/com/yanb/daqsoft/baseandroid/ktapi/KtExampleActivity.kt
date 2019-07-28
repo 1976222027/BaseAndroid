@@ -10,6 +10,7 @@ import com.yanb.daqsoft.baseandroid.ktapp.adapter.GrammarHomeAdapter
 import com.yanb.daqsoft.baselib.ktbase.BaseActivity
 import com.yanb.daqsoft.baselib.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_kt_example.*
+import java.lang.Exception
 
 /**
  * 本界面介绍kt的用法
@@ -118,6 +119,14 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         btn_kt_run.setOnClickListener(this)
         btn_kt_apply.setOnClickListener(this)
         textObject()
+
+        try {
+            // 程序代码
+        }catch (e:Exception){
+            //捕获的异常在这里执行
+        }finally {
+            //都要执行的语句
+        }
 
     }
 
@@ -248,24 +257,8 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    /**
-     * ----------------------------------------------------------------------------------四、字符串模板
-     */
-    /**
-     * ----------------------------------------------------------------------------------五、条件判断
-     *
-     */
-    private fun testIf(str :Int){
-        //..表示1到10
-        if (str in 1..10&&str is Int){
-            ToastUtils.showCenterShort("$str+在1到10之间并且是int类型")
-        }else{
-            ToastUtils.showCenterShort("$str+不在1到10之间并且不是int类型")
-        }
 
 
-
-    }
     /**
      * ----------------------------------------------------------------------------------六、集合
      *
