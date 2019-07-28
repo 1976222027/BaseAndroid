@@ -438,6 +438,22 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         val ktobj = KtObject("严博",25)
         ktobj.also { it.name="王麻子" }.let { Logger.e("调用also的名字${it.name}") }
     }
+
+
+    fun <T> prientInfo(t:T){
+        //...泛型方法
+    }
+    // 泛型接口
+    interface Generator<T>{
+        fun next():T
+    }
+    internal inner class FruitGenerator<T> : Generator<T> {
+        override fun next(): T {
+            return null
+        }
+
+    }
+
 }
 
 
