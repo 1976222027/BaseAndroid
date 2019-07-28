@@ -23,7 +23,7 @@ import java.lang.reflect.ParameterizedType
  * @version 1.0.0
  * @since JDK 1.8
  */
-public abstract class BaseMvvmActivity<DB : ViewDataBinding, VM : BaseViewModel> : RxAppCompatActivity(),IBaseView {
+abstract class BaseMvvmActivity<DB : ViewDataBinding, VM : BaseViewModel<*>> : RxAppCompatActivity(),IBaseView {
     protected lateinit var mDataBinding: DB
         private set
     protected var mViewModel:VM? =null
@@ -51,6 +51,9 @@ public abstract class BaseMvvmActivity<DB : ViewDataBinding, VM : BaseViewModel>
 
     /**
      * 注入绑定
+     * 1、获取databinding类
+     * 2、viewModelId
+     * 3、mViewModel初始化
      */
     private fun initViewDataBinding(savedInstanceState: Bundle?) {
         // DataBindingUtil类需要在project的build中配置 dataBinding {enabled true }, 同步后会自动关联android.databinding包

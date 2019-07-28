@@ -315,47 +315,6 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         tv_kt_content.append(arrayInt.joinToString(""))
     }
 
-    /**
-     * ----------------------------------------------------------------------------------八、lambda表达式
-     * 表达式总是被大括号括着
-     * 其参数(如果存在)在 -> 之前声明(参数类型可以省略)
-     * 函数体(如果存在)在 -> 后面。
-     */
-
-
-    /**
-     * 无参数情况
-     */
-    fun NoParameters(){
-        ToastUtils.showCenterShort("无参数")
-    }
-    //等价于
-    val LNoParameters = { ToastUtils.showCenterShort("无参数")}
-
-    /**
-     * 有参数情况
-     */
-    fun HaveParameters(a:Int,b: Int) :Int{
-        return a+b
-    }
-    //等价于
-    val LHaveParameters:(Int,Int)-> Int= {a,b->a+b}
-    //或
-    val LHaveParameters2 = {a:Int,b:Int->ToastUtils.showCenterShort("a+b=${a+b}")}
-
-    /**
-     * lambda表达式作为函数中参数的时候
-     */
-    fun FunParameters(a:Int,b:Int):Int{
-        return a+b
-    }
-    fun FunSum(num1:Int,num2:Int):Int{
-        return num1+num2
-    }
-    //等价于(invoke通过函数变量调用自身)
-    fun LFunParameters(a:Int,b:(num1:Int,num2:Int)->Int):Int{
-        return a+b.invoke(3,5)
-    }
 
 
     /**
@@ -479,6 +438,22 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         val ktobj = KtObject("严博",25)
         ktobj.also { it.name="王麻子" }.let { Logger.e("调用also的名字${it.name}") }
     }
+
+
+    fun <T> prientInfo(t:T){
+        //...泛型方法
+    }
+    // 泛型接口
+    interface Generator<T>{
+        fun next():T
+    }
+    internal inner class FruitGenerator<T> : Generator<T> {
+        override fun next(): T {
+            return null
+        }
+
+    }
+
 }
 
 
