@@ -3,6 +3,16 @@
 
 let使用见KtMainActivity
 
+# 数据类型
+
+## Boolean类型
+
+- val aBoolean:Boolean = true
+- val bBoolean:Boolean = false
+
+## Number类型
+
+
 # 一、条件控制
 
 ## if
