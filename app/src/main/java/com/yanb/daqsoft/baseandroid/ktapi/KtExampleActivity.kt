@@ -118,6 +118,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         btn_kt_run.setOnClickListener(this)
         btn_kt_apply.setOnClickListener(this)
         textObject()
+
     }
 
     /**
@@ -170,6 +171,8 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
                 textRun()
             R.id.btn_kt_apply->
                     textApply()
+            else->
+
         }
     }
 
@@ -259,6 +262,9 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         }else{
             ToastUtils.showCenterShort("$str+不在1到10之间并且不是int类型")
         }
+
+
+
     }
     /**
      * ----------------------------------------------------------------------------------六、集合
