@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
-import com.yanb.daqsoft.baselib.mvvmbase.bus.evennt.SingleLiveEvent;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -18,6 +17,7 @@ import java.util.Map;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import com.yanb.daqsoft.baselib.mvvmbase.bus.event.SingleLiveEvent;
 
 /**
  * Created by goldze on 2017/6/15.

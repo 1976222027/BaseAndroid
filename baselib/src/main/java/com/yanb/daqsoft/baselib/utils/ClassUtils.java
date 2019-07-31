@@ -2,7 +2,6 @@ package com.yanb.daqsoft.baselib.utils;
 
 import android.arch.lifecycle.AndroidViewModel;
 
-import com.yanb.daqsoft.baselib.mvvmbase.NoViewModel;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 public class ClassUtils {
