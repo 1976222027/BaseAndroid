@@ -1,3 +1,7 @@
 package com.yanb.daqsoft.baseandroid.ktapi
 
-class Book
+class X
+class Book {
+
+
+}
