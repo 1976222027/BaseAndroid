@@ -3,9 +3,19 @@
         <dimen name="dp_4">4dp</dimen>
         <dimen name="dp_5">5dp</dimen>
         <dimen name="dp_10">10dp</dimen>
+        <dimen name="dp_12">12dp</dimen>
+        <dimen name="dp_13">13dp</dimen>
         <dimen name="dp_16">16dp</dimen>
         <dimen name="dp_20">20dp</dimen>
         <dimen name="dp_40">40dp</dimen>
+        <dimen name="dp_44">44dp</dimen>
+        <dimen name="dp_52">52dp</dimen>
+        <dimen name="dp_55">55dp</dimen>
+        <dimen name="dp_56">56dp</dimen>
+        <!--常用sp-->
+        <dimen name="sp_16">16sp</dimen>
+        <dimen name="sp_17">17sp</dimen>
+        <dimen name="sp_18">18sp</dimen>
         <!--text-->
         <dimen name="text_12">12sp</dimen>
         <dimen name="text_14">14sp</dimen>

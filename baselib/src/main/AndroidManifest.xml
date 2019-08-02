@@ -18,6 +18,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/app_updater_paths"/>
         </provider>
+        <provider
+            android:name=".mvvmbase.crash.CaocInitProvider"
+            android:authorities="${applicationId}.customactivityoncrashinitprovider"
+            android:exported="false"
+            android:initOrder="101" />
 
     </application>
 </manifest>

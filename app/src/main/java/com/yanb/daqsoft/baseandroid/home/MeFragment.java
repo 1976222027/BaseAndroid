@@ -13,6 +13,7 @@ import com.daqsoft.videoplayer.VideoNormalActivity;
 import com.orhanobut.logger.Logger;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
+import com.yanb.daqsoft.baseandroid.login.LoginActivity;
 import com.yanb.daqsoft.baseandroid.login.LoginFragment;
 import com.yanb.daqsoft.baseandroid.login.StorageToken;
 import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
@@ -94,7 +95,8 @@ public class MeFragment extends BaseSupportFragment {
                 break;
             case R.id.common_rxjava2:
                 // 也可以像使用getParentFragment()的方式,拿到父Fragment来操作 或者使用 EventBusActivityScope
-                ((HomeMainFragment) getParentFragment()).startBrotherFragment(Rxjava2ExampleFragment.newInstance());
+                //((HomeMainFragment) getParentFragment()).startBrotherFragment(Rxjava2ExampleFragment.newInstance());
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
         }
     }

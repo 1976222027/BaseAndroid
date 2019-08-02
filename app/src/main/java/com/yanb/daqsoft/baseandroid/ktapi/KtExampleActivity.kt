@@ -157,14 +157,14 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_kt_san->
                 tv_kt_content.setText(if (sum(1,2)>1) 3 else 5)// 三元表达式if else还可以 写成代码块加{ }
             R.id.btn_kt_textif->
-                    testIf(5)
+                textApply()
             R.id.btn_kt_set->
                     textList()
             R.id.btn_kt_array->
                     textArray()
             R.id.btn_kt_lambda->
                 //LHaveParameters2(1,3)
-                ToastUtils.showCenterShort("${LFunParameters(1,{num1, num2 -> num1+num2 })}")
+                textApply()
             R.id.btn_kt_it->
                 //itFilter()
                 Logger.e("${itText(1,{it>5})}")
@@ -181,6 +181,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_kt_apply->
                     textApply()
             else->
+                textApply()
 
         }
     }
@@ -446,12 +447,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     interface Generator<T>{
         fun next():T
     }
-    internal inner class FruitGenerator<T> : Generator<T> {
-        override fun next(): T {
-            return null
-        }
 
-    }
 
 }
 

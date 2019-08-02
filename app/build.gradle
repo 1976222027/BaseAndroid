@@ -50,6 +50,10 @@ android {
 }
 
 dependencies {
+    // 这个想法移除
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v13'
+    }
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':baselib')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

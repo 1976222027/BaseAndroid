@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--优化了的-->
+    <color name="text_nomal">#3c3c3c</color>
+    <color name="text_gray">#999999</color>
+    <color name="line_gray">#e2e2e2</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--以下是未优化的-->
+
     <color name="black">#000000</color>
     <color name="gray">#808080</color>
     <color name="yellow">#FFFF00</color>
@@ -9,11 +17,8 @@
 
     <color name="main">#ff33b5e5</color>
     <color name="main_light">#C7E7FE</color>
-    <color name="text_nomal">#3c3c3c</color>
-    <color name="text_gray">#999999</color>
     <color name="transparent">#00000000</color>
-    <color name="line_gray">#e2e2e2</color>
-    <color name="white">#FFFFFFFF</color>
+
     <!-- title 半透明背景颜色 -->
     <color name="light_transparent">#CCFFFFFF</color>
     <!--背景颜色-->

@@ -1,8 +1,9 @@
-package com.yanb.daqsoft.baseandroid.common;
+package com.yanb.daqsoft.baseandroid.app;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.daqsoft.xhttp.Xhttp;
+import com.yanb.daqsoft.baseandroid.common.UrlConstants;
 import com.yanb.daqsoft.baselib.app.BaseApplication;
 
 /**
