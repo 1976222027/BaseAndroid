@@ -53,7 +53,7 @@ dependencies {
     //网络请求依赖
 
     api 'com.squareup.okhttp3:logging-interceptor:3.8.1'//非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
-    api 'com.squareup.okhttp3:okhttp:3.8.1'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
     /**
      * Rxjava2和Retrofit2
      */

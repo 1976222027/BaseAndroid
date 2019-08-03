@@ -7,11 +7,8 @@ import android.support.annotation.VisibleForTesting
 import com.yanb.daqsoft.baseandroid.data.DemoRepository
 import com.yanb.daqsoft.baseandroid.login.model.LoginViewModel
 
-class AppViewModelFactory() : ViewModelProvider.NewInstanceFactory() {
-    private  val repositorys: DemoRepository by lazy {
+class AppViewModelFactory private constructor(private val application: Application,private val repository:DemoRepository) : ViewModelProvider.NewInstanceFactory() {
 
-    }
-    private  val applications: Application?=null
     /**
      * 单例模式双重校验锁
      * 带属性的情况
@@ -27,15 +24,6 @@ class AppViewModelFactory() : ViewModelProvider.NewInstanceFactory() {
                 }
     }
 
-    /**
-     * 不带属性的常用情况
-     */
-
-    constructor(application: Application,repository: DemoRepository):this(){
-        repositorys = repository
-        applications = application
-    }
-
 
     @VisibleForTesting
     fun destroyInstance() {
@@ -44,7 +32,7 @@ class AppViewModelFactory() : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
-            return LoginViewModel(applications,repositorys) as T
+            return LoginViewModel(application,repository) as T
         }
         return super.create(modelClass)
     }

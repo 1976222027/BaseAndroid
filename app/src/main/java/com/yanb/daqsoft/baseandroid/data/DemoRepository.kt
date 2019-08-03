@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baseandroid.data
 
+import android.support.annotation.VisibleForTesting
 import com.yanb.daqsoft.baseandroid.data.source.HttpDataSource
 import com.yanb.daqsoft.baseandroid.data.source.LocalDataSource
 import com.yanb.daqsoft.baselib.mvvmbase.BaseModel
@@ -7,21 +8,39 @@ import com.yanb.daqsoft.baselib.mvvmbase.BaseModel
 /**
  * MVVM的Model层，统一模块的数据仓库，包含网络数据和本地数据（一个应用可以有多个Repositor）
  */
-class DemoRepository :BaseModel(),HttpDataSource,LocalDataSource{
+class DemoRepository private constructor(private val httpDataSource: HttpDataSource,private val localDataSource: LocalDataSource):BaseModel(),HttpDataSource,LocalDataSource{
+    /**
+     * 双重校验锁带参数
+     */
+    companion object{
+        @Volatile
+        private var instance : DemoRepository?=null
+        fun getInstance(httpDataSource: HttpDataSource,localDataSource: LocalDataSource)= instance?: synchronized(this){
+            instance?:DemoRepository(httpDataSource,localDataSource).also {
+                instance = it
+            }
+        }
+    }
+
+    @VisibleForTesting
+    fun destroyInstance() {
+        instance = null
+    }
+
     override fun saveUserName(name: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        localDataSource.saveUserName(name)
     }
 
     override fun savePassword(password: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        localDataSource.savePassword(password)
     }
 
     override fun getUserName(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return localDataSource.getUserName()
     }
 
     override fun getPassword(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return localDataSource.getPassword()
     }
 
 }

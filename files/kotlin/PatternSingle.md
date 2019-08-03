@@ -118,7 +118,33 @@ class SingletonDemo private constructor() {
     }
 }
 ~~~
+# 五、静态内部类式
 
+~~~
+//Java实现
+public class SingletonDemo {
+    private static class SingletonHolder{
+        private static SingletonDemo instance=new SingletonDemo();
+    }
+    private SingletonDemo(){
+        System.out.println("Singleton has loaded");
+    }
+    public static SingletonDemo getInstance(){
+        return SingletonHolder.instance;
+    }
+}
+//kotlin实现
+class SingletonDemo private constructor() {
+    companion object {
+        val instance = SingletonHolder.holder
+    }
+
+    private object SingletonHolder {
+        val holder= SingletonDemo()
+    }
+
+}
+~~~
 
 
 

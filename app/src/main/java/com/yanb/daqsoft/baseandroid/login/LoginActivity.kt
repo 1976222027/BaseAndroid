@@ -1,5 +1,6 @@
 package com.yanb.daqsoft.baseandroid.login
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yanb.daqsoft.baseandroid.BR
 import com.yanb.daqsoft.baseandroid.R
@@ -22,8 +23,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     }
 
     override fun initViewModel(): LoginViewModel {
-        var factory = AppViewModelFactory.getInstance(application)
-        return super.initViewModel()
+        // 使用自定义的ViewModelFactory来创建ViewModel，如果不重写该方法，则默认会调用LoginViewModel(@NonNull Application application)构造方法
+        val factory = AppViewModelFactory.getInstance(application)
+        return ViewModelProviders.of(this,factory).get(LoginViewModel::class.java)
     }
 
 
