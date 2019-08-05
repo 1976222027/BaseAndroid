@@ -1,6 +1,9 @@
 package com.yanb.daqsoft.baseandroid.app
 
 import com.yanb.daqsoft.baseandroid.data.DemoRepository
+import com.yanb.daqsoft.baseandroid.data.source.http.ApiService
+import com.yanb.daqsoft.baseandroid.data.source.http.HttpDataSourceImpl
+import com.yanb.daqsoft.baseandroid.http.RetrofitClient
 
 /**
  * 静态方法如果这个类下所有方法都是静态在类名前用object修饰即可
@@ -10,7 +13,7 @@ class Injection {
     companion object{
         fun provideDemoRepository(): DemoRepository {
             //网络API服务
-            val apiService = RetrofitClient.getInstance().create(DemoApiService::class.java)
+            val apiService = RetrofitClient.instance.create(ApiService::class.java)
             //网络数据源
             val httpDataSource = HttpDataSourceImpl.getInstance(apiService)
             //本地数据源

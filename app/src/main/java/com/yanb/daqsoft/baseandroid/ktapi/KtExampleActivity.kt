@@ -119,16 +119,14 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
         btn_kt_run.setOnClickListener(this)
         btn_kt_apply.setOnClickListener(this)
         textObject()
-
-        try {
-            // 程序代码
-        }catch (e:Exception){
-            //捕获的异常在这里执行
-        }finally {
-            //都要执行的语句
-        }
-
+        val array = intArrayOf(1,2,4,5)
+        // 这里的*表示变长参数分别展开传入
+        hello(ints = *array,args = "你好")
     }
+    fun hello(double: Double=3.0,vararg ints:Int,args:String){
+        // ...
+    }
+
 
     /**
      * -------------------------------------------------------------------------一、点击事件用法
