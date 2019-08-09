@@ -14,6 +14,7 @@ import com.daqsoft.xhttp.response.BaseResponse;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.AESEncryptUtil;
 import com.yanb.daqsoft.baseandroid.http.XhttpUtils;
+import com.yanb.daqsoft.baseandroid.utils.HelpUtils;
 import com.yanb.daqsoft.baseandroid.wxapi.SocialUtil;
 import com.yanb.daqsoft.baselib.activities.BaseTitleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;

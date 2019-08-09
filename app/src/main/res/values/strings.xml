@@ -3,4 +3,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="tips_scan_code">将二维码/条形码放入框内，即可自动扫描</string>
+    <!--登录页面顶部字体图片-->
+    <string name="icon_login_logo">&#xe6b5;</string>
 </resources>

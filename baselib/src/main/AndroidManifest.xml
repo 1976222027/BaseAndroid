@@ -18,6 +18,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/app_updater_paths"/>
         </provider>
+        <activity
+            android:name=".mvvmbase.crash.DefaultErrorActivity"
+            android:process=":error_activity" />
+        <activity
+            android:name=".mvvmbase.base.ContainerActivity"
+            android:configChanges="orientation|keyboardHidden"></activity>
         <provider
             android:name=".mvvmbase.crash.CaocInitProvider"
             android:authorities="${applicationId}.customactivityoncrashinitprovider"

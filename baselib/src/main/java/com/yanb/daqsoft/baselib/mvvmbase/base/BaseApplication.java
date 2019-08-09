@@ -1,32 +1,23 @@
-package com.yanb.daqsoft.baselib.app;
+package com.yanb.daqsoft.baselib.mvvmbase.base;
 
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.yanb.daqsoft.baselib.R;
-import com.yanb.daqsoft.baselib.activities.AppManager;
-import com.yanb.daqsoft.baselib.utils.Utils;
+import com.yanb.daqsoft.baselib.mvvmbase.utils.Utils;
 
 /**
- * @author: yanbo
- * @date: 2019/4/14.
- * @Email: 760375443@qq.com
- * @Description:
+ * Created by goldze on 2017/6/15.
  */
 
-public class BaseApplication extends Application{
+public class BaseApplication extends Application {
     private static Application sInstance;
+
     @Override
     public void onCreate() {
         super.onCreate();
         setApplication(this);
-        Apps.init(this)
-                .withApiHost("http://ptisp.daqsoft.com/govapi/")
-                .withLoaderDelayed(1000)
-                // 加入别的配置按此类推
-                .build();
     }
 
     /**
@@ -38,7 +29,6 @@ public class BaseApplication extends Application{
         sInstance = application;
         //初始化工具类
         Utils.init(application);
-        com.yanb.daqsoft.baselib.mvvmbase.utils.Utils.init(application);
         //注册监听每个activity的生命周期,便于堆栈式管理
         application.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
 
@@ -73,6 +63,7 @@ public class BaseApplication extends Application{
             }
         });
     }
+
     /**
      * 获得当前app运行的Application
      */

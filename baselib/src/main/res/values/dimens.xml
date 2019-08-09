@@ -16,6 +16,9 @@
         <dimen name="sp_16">16sp</dimen>
         <dimen name="sp_17">17sp</dimen>
         <dimen name="sp_18">18sp</dimen>
+        <dimen name="sp_25">25sp</dimen>
+        <dimen name="sp_95">95sp</dimen>
+        <dimen name="sp_125">125sp</dimen>
         <!--text-->
         <dimen name="text_12">12sp</dimen>
         <dimen name="text_14">14sp</dimen>

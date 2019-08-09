@@ -28,6 +28,8 @@ import android.provider.MediaStore.MediaColumns;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.yanb.daqsoft.baselib.mvvmbase.utils.compression.Luban;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -51,9 +53,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import com.yanb.daqsoft.baselib.mvvmbase.utils.compression.Luban;
 
 import static com.yanb.daqsoft.baselib.mvvmbase.utils.Utils.getContext;
+
 
 /**
  * Created by goldze on 2017/7/17.

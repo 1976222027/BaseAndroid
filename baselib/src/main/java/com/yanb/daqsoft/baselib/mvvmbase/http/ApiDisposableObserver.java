@@ -2,8 +2,7 @@ package com.yanb.daqsoft.baselib.mvvmbase.http;
 
 
 import io.reactivex.observers.DisposableObserver;
-
-import com.yanb.daqsoft.baselib.activities.AppManager;
+import com.yanb.daqsoft.baselib.mvvmbase.base.AppManager;
 import com.yanb.daqsoft.baselib.mvvmbase.utils.KLog;
 import com.yanb.daqsoft.baselib.mvvmbase.utils.ToastUtils;
 import com.yanb.daqsoft.baselib.mvvmbase.utils.Utils;

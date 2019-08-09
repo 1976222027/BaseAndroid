@@ -110,11 +110,22 @@ public class SingletonDemo {
         return instance;
     }
 }
-//kotlin实现
+//kotlin实现无参数
 class SingletonDemo private constructor() {
     companion object {
         val instance: SingletonDemo by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
         SingletonDemo() }
+    }
+}
+//kotlin实现有参数
+class SingletonDemo private constructor(private val property: Int) {//这里可以根据实际需求发生改变
+  
+    companion object {
+        @Volatile private var instance: SingletonDemo? = null
+        fun getInstance(property: Int) =
+                instance ?: synchronized(this) {
+                    instance ?: SingletonDemo(property).also { instance = it }
+                }
     }
 }
 ~~~

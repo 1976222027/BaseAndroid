@@ -1,6 +1,9 @@
 package com.yanb.daqsoft.baselib.mvvmbase.bus;
 
 
+import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingAction;
+import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingConsumer;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,8 +11,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingAction;
-import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingConsumer;
 
 /**
  * About : kelin的Messenger

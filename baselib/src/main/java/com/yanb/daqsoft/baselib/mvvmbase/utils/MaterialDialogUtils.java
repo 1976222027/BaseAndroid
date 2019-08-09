@@ -18,7 +18,6 @@ import com.yanb.daqsoft.baselib.R;
 import java.util.List;
 
 
-
 /**
  * Created by goldze on 2017/5/10.
  */
