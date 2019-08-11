@@ -1,4 +1,4 @@
-package com.yanb.daqsoft.baseandroid.data
+package com.yanb.daqsoft.baseandroid.data.source
 
 import com.yanb.daqsoft.baseandroid.common.SpTagConstants
 import com.yanb.daqsoft.baselib.mvvmbase.utils.SPUtils

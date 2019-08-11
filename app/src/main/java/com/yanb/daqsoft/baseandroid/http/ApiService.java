@@ -21,7 +21,7 @@ public interface ApiService {
      * @param account  账号
      * @param password 密码
      */
-    @GET(UrlConstants.LOGIN)
+    @GET(UrlConstants.URL_LOGIN)
     Observable<BaseResponse<User>> login(@Query("ignoreCode") String ignoreCode, @Query
             ("account") String account, @Query("password") String password,@Query("siteCode") String siteCode);
 }

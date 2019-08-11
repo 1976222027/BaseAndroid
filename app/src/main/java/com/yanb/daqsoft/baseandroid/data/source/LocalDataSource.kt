@@ -1,4 +1,4 @@
-package com.yanb.daqsoft.baseandroid.data
+package com.yanb.daqsoft.baseandroid.data.source
 
 /**
  * 本地数据的接口

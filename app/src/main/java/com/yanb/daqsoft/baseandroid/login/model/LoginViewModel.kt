@@ -5,13 +5,20 @@ import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import android.text.TextUtils
 import android.view.View
+import com.yanb.daqsoft.baseandroid.common.AESEncryptUtil
+import com.yanb.daqsoft.baseandroid.login.entity.User
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingAction
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingCommand
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingConsumer
 import com.yanb.daqsoft.baselib.mvvmbase.bus.event.SingleLiveEvent
+import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
+import com.yanb.daqsoft.baselib.mvvmbase.utils.KLog
+import com.yanb.daqsoft.baselib.mvvmbase.utils.RxUtils
 import com.yanb.daqsoft.baselib.utils.ToastUtils
+import io.reactivex.Observer
+import io.reactivex.functions.Consumer
 
 
 class LoginViewModel:BaseViewModel<AppRepositoryModel> {
@@ -29,6 +36,9 @@ class LoginViewModel:BaseViewModel<AppRepositoryModel> {
         logins()
     })
 
+    /**
+     * 登录
+     */
     fun logins(){
         if (TextUtils.isEmpty(userName.get())) {
             ToastUtils.showLong("请输入账号")
@@ -38,6 +48,24 @@ class LoginViewModel:BaseViewModel<AppRepositoryModel> {
             ToastUtils.showLong("请输入密码！")
             return
         }
+        val pasdNew = AESEncryptUtil.Encrypt(psd.get())
+        // 进行登录请求操作
+        addSubscribe(model.login("1",userName.get()!!,pasdNew)
+                .compose(RxUtils.schedulersTransformer())
+                .doOnSubscribe {
+                    //
+                }
+                .subscribe(object :Consumer<BaseResponse<User>>{
+                    override fun accept(t: User?) {
+
+                    }
+
+                },object :Consumer<Any>{
+                    override fun accept(t: Any?) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                }))
         model.saveUserName(userName.get()!!)
         model.savePsd(psd.get()!!)
     }
