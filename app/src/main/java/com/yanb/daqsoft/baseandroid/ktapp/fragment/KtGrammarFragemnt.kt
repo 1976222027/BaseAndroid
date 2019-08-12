@@ -13,6 +13,7 @@ import com.yanb.daqsoft.baseandroid.ktapp.mvp.contract.KtGrammarContract
 import com.yanb.daqsoft.baseandroid.ktapp.mvp.model.bean.HomeBean
 import com.yanb.daqsoft.baseandroid.ktapp.mvp.presenter.KtGrammarPresenter
 import com.yanb.daqsoft.baselib.ktbase.BaseKtFragment
+import com.yanb.daqsoft.baselib.mvvmbase.http.exception.ErrorStatus
 import com.yanb.daqsoft.baselib.utils.ToastUtils
 import kotlinx.android.synthetic.main.kt_fragment_grammar.*
 import java.text.SimpleDateFormat

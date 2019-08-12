@@ -6,11 +6,9 @@ import android.databinding.ObservableInt
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import com.daqsoft.xhttp.observe.DefaultObserver
+
 import com.yanb.daqsoft.baseandroid.common.AESEncryptUtil
 import com.yanb.daqsoft.baseandroid.http.XhttpUtils
-import com.yanb.daqsoft.baseandroid.login.StorageToken
-import com.daqsoft.xhttp.response.BaseResponse
 import com.yanb.daqsoft.baseandroid.login.User
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
@@ -18,6 +16,8 @@ import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingAction
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingCommand
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingConsumer
 import com.yanb.daqsoft.baselib.mvvmbase.bus.event.SingleLiveEvent
+import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
+import com.yanb.daqsoft.baselib.mvvmbase.http.observe.DefaultObserver
 import com.yanb.daqsoft.baselib.mvvmbase.utils.KLog
 import com.yanb.daqsoft.baselib.mvvmbase.utils.RxUtils
 import com.yanb.daqsoft.baselib.utils.ToastUtils
@@ -57,35 +57,19 @@ class LoginViewModel:BaseViewModel<AppRepositoryModel> {
             return
         }
         val pasdNew = AESEncryptUtil.Encrypt(psd.get())
+        model.login("1",userName.get()!!,pasdNew)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : DefaultObserver<BaseResponse<User>>() {
+                    override fun onSuccess(response: BaseResponse<User>?) {
+                        KLog.e("----------->"+response?.data?.head)
+                    }
 
-        try {
-            XhttpUtils.getApiService().login("1", pasdNew, pasdNew, "nngjapp")
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : DefaultObserver<com.daqsoft.xhttp.response.BaseResponse<com.yanb.daqsoft.baseandroid.login.User>>() {
-                        override fun onSuccess(response: com.daqsoft.xhttp.response.BaseResponse<com.yanb.daqsoft.baseandroid.login.User>) {
-                            ToastUtils.showLong(response.data!!.name)
-                            StorageToken.getInstance().token = response.data!!
-                                    .token
-                            StorageToken.getInstance().userName = response.data!!
-                                    .name
-                            StorageToken.getInstance().headImg = response.data!!
-                                    .head
-                            val bundle = Bundle()
+                    override fun onFail(message: String?) {
+                        KLog.e("----------->"+message)
+                    }
 
-                        }
-
-                        override fun onFail(message: String) {
-                            ToastUtils.showCenterShort(message)
-
-                        }
-                    })
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-
+                })
         model.saveUserName(userName.get()!!)
         model.savePsd(psd.get()!!)
     }

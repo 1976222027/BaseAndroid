@@ -1,36 +1,26 @@
 package com.yanb.daqsoft.baseandroid.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
 import com.daqsoft.customview.login.LoginView;
-import com.daqsoft.xhttp.observe.DefaultObserver;
-import com.daqsoft.xhttp.response.BaseResponse;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.AESEncryptUtil;
 import com.yanb.daqsoft.baseandroid.http.XhttpUtils;
-import com.yanb.daqsoft.baseandroid.utils.HelpUtils;
 import com.yanb.daqsoft.baseandroid.wxapi.SocialUtil;
 import com.yanb.daqsoft.baselib.activities.BaseTitleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
+import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse;
+import com.yanb.daqsoft.baselib.mvvmbase.http.observe.DefaultObserver;
 import com.yanb.daqsoft.baselib.utils.ToastUtils;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.agora.yshare.SocialHelper;
 import io.agora.yshare.callback.SocialLoginCallback;
 import io.agora.yshare.entities.ThirdInfoEntity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-;
 
 /**
  * 登录

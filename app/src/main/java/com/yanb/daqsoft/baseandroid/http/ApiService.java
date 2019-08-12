@@ -1,9 +1,9 @@
 package com.yanb.daqsoft.baseandroid.http;
 
 
-import com.daqsoft.xhttp.response.BaseResponse;
 import com.yanb.daqsoft.baseandroid.common.UrlConstants;
 import com.yanb.daqsoft.baseandroid.login.User;
+import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -23,5 +23,5 @@ public interface ApiService {
      */
     @GET(UrlConstants.URL_LOGIN)
     Observable<BaseResponse<User>> login(@Query("ignoreCode") String ignoreCode, @Query
-            ("account") String account, @Query("password") String password,@Query("siteCode") String siteCode);
+            ("account") String account, @Query("password") String password, @Query("siteCode") String siteCode);
 }

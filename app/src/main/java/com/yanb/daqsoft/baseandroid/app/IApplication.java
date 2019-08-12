@@ -2,7 +2,6 @@ package com.yanb.daqsoft.baseandroid.app;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.daqsoft.xhttp.Xhttp;
 import com.squareup.leakcanary.LeakCanary;
 import com.yanb.daqsoft.baseandroid.BuildConfig;
 import com.yanb.daqsoft.baseandroid.R;
@@ -25,7 +24,6 @@ public class IApplication extends BaseApplication{
     private boolean isDebug = true;
     @Override
     public void onCreate() {
-        Xhttp.getInstance().init(UrlConstants.BASE_URL);
         super.onCreate();
         // 是否开启日志打印
         KLog.init(BuildConfig.DEBUG);
