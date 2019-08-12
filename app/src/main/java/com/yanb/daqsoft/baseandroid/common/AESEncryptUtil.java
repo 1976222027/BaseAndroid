@@ -14,7 +14,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AESEncryptUtil {
-
     /**
      * 密匙
      */
@@ -27,22 +26,17 @@ public class AESEncryptUtil {
 
     /**
      * 加密
-     *
      * @param word
      * @return
-     * @throws Exception
      */
     public static String Encrypt(String word) throws Exception {
-
         byte[] raw = KEY.getBytes();
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");//"算法/模式/补码方式"
         IvParameterSpec iv = new IvParameterSpec(IV.getBytes());//使用CBC模式，加入iv向量，可增加加密算法的强度
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-//        byte[] encrypted = cipher.doFinal(word.getBytes());
         word = new String(word.getBytes(), "UTF-8");
         return Base64.encodeToString(cipher.doFinal(word.getBytes()), Base64.DEFAULT);
-//        return Base64.encodeBase64String(encrypted);//此处使用BAES64做转码功能，同时能起到2次加密的作用。
     }
 
 }

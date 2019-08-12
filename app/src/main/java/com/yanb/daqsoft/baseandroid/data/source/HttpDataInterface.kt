@@ -1,7 +1,7 @@
 package com.yanb.daqsoft.baseandroid.data.source
 
-import com.yanb.daqsoft.baseandroid.login.entity.User
-import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
+import com.daqsoft.xhttp.response.BaseResponse
+import com.yanb.daqsoft.baseandroid.login.User
 import io.reactivex.Observable
 
 interface HttpDataInterface {

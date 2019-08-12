@@ -1,9 +1,11 @@
 package com.yanb.daqsoft.baseandroid.model
 
+
 import com.yanb.daqsoft.baseandroid.data.source.LocalDataSource
 import com.yanb.daqsoft.baseandroid.data.source.HttpDataInterface
+import com.daqsoft.xhttp.response.BaseResponse
+import com.yanb.daqsoft.baseandroid.login.User
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseModel
-import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
 import io.reactivex.Observable
 
 /**
@@ -11,7 +13,7 @@ import io.reactivex.Observable
  * 包含网络数据和本地数据（一个应用可以有多个Repositor）
  */
 class AppRepositoryModel private constructor(private val localDataSource: LocalDataSource, private val httpDataInterface: HttpDataInterface):BaseModel(), LocalDataSource, HttpDataInterface {
-    override fun login(ignoreCode:String,account:String,pasd:String): Observable<BaseResponse<String>> {
+    override fun login(ignoreCode:String,account:String,pasd:String): Observable<BaseResponse<User>> {
         return httpDataInterface.login(ignoreCode,account,pasd)
     }
 

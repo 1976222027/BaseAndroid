@@ -49,11 +49,11 @@ public abstract class ApiDisposableObserver<T> extends DisposableObserver<T> {
         switch (baseResponse.getCode()) {
             case CodeRule.CODE_200:
                 //请求成功, 正确的操作方式
-                onResult((T) baseResponse.getResult());
+                onResult((T) baseResponse.getData());
                 break;
             case CodeRule.CODE_220:
                 // 请求成功, 正确的操作方式, 并消息提示
-                onResult((T) baseResponse.getResult());
+                onResult((T) baseResponse.getData());
                 break;
             case CodeRule.CODE_300:
                 //请求失败，不打印Message

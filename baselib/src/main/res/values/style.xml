@@ -92,4 +92,7 @@
         <item name="android:paddingBottom">10dp</item>
     </style>
 
+    <!--下面是常用布局样式-->
+
+
 </resources>
