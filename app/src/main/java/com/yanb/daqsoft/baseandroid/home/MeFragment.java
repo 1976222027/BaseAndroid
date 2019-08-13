@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.daqsoft.customview.img.CircleImageView;
 import com.daqsoft.videoplayer.VideoNormalActivity;
-import com.orhanobut.logger.Logger;
+
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.login.LoginFragment;
@@ -18,6 +18,7 @@ import com.yanb.daqsoft.baseandroid.login.StorageToken;
 import com.yanb.daqsoft.baseandroid.rxexample.Rxjava2ExampleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
+import com.yanb.daqsoft.baselib.utils.KLog;
 import com.yanb.daqsoft.baselib.utils.glide.GlideUtils;
 import com.yanb.daqsoft.baselib.utils.update.AppUpdateDialog;
 
@@ -59,7 +60,7 @@ public class MeFragment extends BaseSupportFragment {
      */
     public void notifyInfo() {
         tvName.setText(StorageToken.getInstance().getUserName());
-        Logger.e("你的头像" + StorageToken.getInstance().getHeadImg());
+        KLog.e("你的头像" + StorageToken.getInstance().getHeadImg());
         GlideUtils.loadImage(getSupportDelegate().getActivity(), mHeadImg, StorageToken
                 .getInstance().getHeadImg(), R.mipmap.icon_head_default);
     }

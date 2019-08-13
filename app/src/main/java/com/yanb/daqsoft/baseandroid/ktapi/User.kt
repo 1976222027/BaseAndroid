@@ -1,6 +1,5 @@
 package com.yanb.daqsoft.baseandroid.ktapi
-
-import com.orhanobut.logger.Logger
+import com.yanb.daqsoft.baselib.utils.KLog
 
 /**
  * Kotlin 类可以包含：构造函数和初始化代码块、函数、属性、内部类、对象声明。
@@ -28,7 +27,7 @@ class User constructor(name: String) {
      * 这里可以使用主构造函数的属性值
      */
     init {
-        Logger.e("我是初始化代码段")
+        KLog.e("我是初始化代码段")
     }
     val age = 0////默认实现了get方法没有set因为val只可读
     var height: Int = 10

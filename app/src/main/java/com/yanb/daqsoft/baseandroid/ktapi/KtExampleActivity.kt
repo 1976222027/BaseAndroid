@@ -4,10 +4,9 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.view.View
-import com.orhanobut.logger.Logger
 import com.yanb.daqsoft.baseandroid.R
-import com.yanb.daqsoft.baseandroid.ktapp.adapter.GrammarHomeAdapter
 import com.yanb.daqsoft.baselib.ktbase.BaseActivity
+import com.yanb.daqsoft.baselib.utils.KLog
 import com.yanb.daqsoft.baselib.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_kt_example.*
 import java.lang.Exception
@@ -165,11 +164,11 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
                 textApply()
             R.id.btn_kt_it->
                 //itFilter()
-                Logger.e("${itText(1,{it>5})}")
+                KLog.e("${itText(1,{it>5})}")
             R.id.btn_kt_x->
                 forEachMap()
             R.id.btn_kt_noname->
-                Logger.e("${noNameFun(1,2)}")
+                KLog.e("${noNameFun(1,2)}")
             R.id.btn_kt_let->
                     textLet()
             R.id.btn_kt_with->
@@ -322,7 +321,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     val itArr = arrayOf(1,2,5,7)
 
     // 取数组小于5的第一个打印
-    val itFilter = {Logger.e("${itArr.filter { it<5 }.component1()}")}
+    val itFilter = {KLog.e("${itArr.filter { it<5 }.component1()}")}
 
     /**
      * 函数返回类型为Int,
@@ -343,7 +342,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
      */
     @RequiresApi(Build.VERSION_CODES.N)
     fun forEachMap(){
-        _map.forEach { _,value-> Logger.e("$value")}
+        _map.forEach { _,value-> KLog.e("$value")}
     }
     /**
      * ----------------------------------------------------------------------------------九、匿名函数
@@ -365,8 +364,8 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     fun textObject(){
         btn_kt_object.setOnClickListener(object :View.OnClickListener{
             override fun onClick(p0: View?) {
-                Logger.e("使用对象表达式监听")
-                Logger.e("调用伴生对象的方法"+KtObject.sum(1,2))
+                KLog.e("使用对象表达式监听")
+                KLog.e("调用伴生对象的方法"+KtObject.sum(1,2))
             }
         })
         /**
@@ -388,7 +387,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     fun textLet(){
         val ktobj = KtObject("严博",25)
         ktobj.let {
-            Logger.e("名字：${it.name}")
+            KLog.e("名字：${it.name}")
         }
     }
 
@@ -401,10 +400,10 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
     fun testWith(){
         val ktobj = KtObject("严博",25)
         val result = with(ktobj){
-            Logger.e("with调用--》${name}")
+            KLog.e("with调用--》${name}")
             1000
         }
-        Logger.e("返回值->$result")
+        KLog.e("返回值->$result")
     }
     /**
      * ----------------------------------------------------------------------------------十一、run使用
@@ -414,7 +413,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
      */
     fun textRun(){
         val ktobj = KtObject("严博",25)
-        ktobj.run { Logger.e("名字-》$name") }
+        ktobj.run { KLog.e("名字-》$name") }
         // 返回值道理同with
     }
     /**
@@ -425,7 +424,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
      */
     fun textApply(){
         val ktobj = KtObject("严博",25)
-        ktobj.apply { ktobj.name="李四" }.apply { Logger.e("apply调用对象-》$name") }
+        ktobj.apply { ktobj.name="李四" }.apply { KLog.e("apply调用对象-》$name") }
     }
     /**
      * ----------------------------------------------------------------------------------十一、also使用
@@ -434,7 +433,7 @@ class KtExampleActivity : BaseActivity(), View.OnClickListener {
      */
     fun textAlso(){
         val ktobj = KtObject("严博",25)
-        ktobj.also { it.name="王麻子" }.let { Logger.e("调用also的名字${it.name}") }
+        ktobj.also { it.name="王麻子" }.let { KLog.e("调用also的名字${it.name}") }
     }
 
 

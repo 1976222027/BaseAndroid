@@ -8,7 +8,7 @@ import com.dueeeke.videocontroller.StandardVideoController
 import com.dueeeke.videoplayer.ijk.IjkPlayerFactory
 import com.dueeeke.videoplayer.listener.OnVideoViewStateChangeListener
 import com.dueeeke.videoplayer.player.VideoView
-import com.orhanobut.logger.Logger
+import com.yanb.daqsoft.baselib.utils.KLog
 import com.yanb.daqsoft.baselib.utils.titlebar.CommonTitleBar
 import kotlinx.android.synthetic.main.activity_video_normal.*
 
@@ -53,25 +53,25 @@ class VideoNormalActivity : AppCompatActivity(), View.OnClickListener {
                 override fun onPlayStateChanged(playState: Int) {
                     when (playState) {
                         VideoView.STATE_IDLE ->
-                            Logger.e("STATE_IDLE")
+                            KLog.e("STATE_IDLE")
                         VideoView.STATE_PREPARING ->
-                            Logger.e("STATE_PREPARING")
+                            KLog.e("STATE_PREPARING")
                         VideoView.STATE_PREPARED ->
-                            Logger.e("视频宽${videoSize[0]}-->视频高${videoSize[1]}")
+                            KLog.e("视频宽${videoSize[0]}-->视频高${videoSize[1]}")
                         VideoView.STATE_PLAYING ->
-                            Logger.e("STATE_PLAYING")
+                            KLog.e("STATE_PLAYING")
                         VideoView.STATE_PAUSED ->
-                            Logger.e("STATE_PAUSED")
+                            KLog.e("STATE_PAUSED")
                         VideoView.STATE_BUFFERING ->
-                            Logger.e("STATE_BUFFERING")
+                            KLog.e("STATE_BUFFERING")
                         VideoView.STATE_BUFFERED ->
-                            Logger.e("STATE_BUFFERED")
+                            KLog.e("STATE_BUFFERED")
                         VideoView.STATE_PLAYBACK_COMPLETED ->
-                            Logger.e("STATE_PLAYBACK_COMPLETED")
+                            KLog.e("STATE_PLAYBACK_COMPLETED")
                         VideoView.STATE_ERROR ->
-                            Logger.e("STATE_ERROR")
+                            KLog.e("STATE_ERROR")
                         else ->
-                            Logger.e("默认")
+                            KLog.e("默认")
                     }
                 }
 
@@ -79,11 +79,11 @@ class VideoNormalActivity : AppCompatActivity(), View.OnClickListener {
                     when (playerState) {
                         // 小屏
                         VideoView.PLAYER_NORMAL ->
-                            Logger.e("小屏")
+                            KLog.e("小屏")
                         VideoView.PLAYER_FULL_SCREEN ->
-                            Logger.e("全屏")
+                            KLog.e("全屏")
                         else ->
-                            Logger.e("默认")
+                            KLog.e("默认")
                     }
                 }
 
@@ -143,7 +143,7 @@ class VideoNormalActivity : AppCompatActivity(), View.OnClickListener {
                 //video_normal_player.setMirrorRotation(i1 % 2 == 0)
                 //i1=9
             else ->
-                Logger.e("默认")
+                KLog.e("默认")
 
         }
     }

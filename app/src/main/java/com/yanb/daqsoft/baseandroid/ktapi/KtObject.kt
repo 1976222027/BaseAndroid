@@ -1,6 +1,5 @@
 package com.yanb.daqsoft.baseandroid.ktapi
-
-import com.orhanobut.logger.Logger
+import com.yanb.daqsoft.baselib.utils.KLog
 
 /**
  * 类的声明
@@ -27,7 +26,7 @@ class KtObject constructor(var name:String,var age :Int){
      * 初始化的时候默认先调用这个方法关键字init
      */
     init {
-        Logger.e("初始化代码")
+        KLog.e("初始化代码")
     }
     /**
      * 二级构造函数

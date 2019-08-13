@@ -3,13 +3,11 @@ package com.yanb.daqsoft.baseandroid.app;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.squareup.leakcanary.LeakCanary;
-import com.yanb.daqsoft.baseandroid.BuildConfig;
 import com.yanb.daqsoft.baseandroid.R;
-import com.yanb.daqsoft.baseandroid.common.UrlConstants;
 import com.yanb.daqsoft.baseandroid.login.LoginNewActivity;
 import com.yanb.daqsoft.baselib.app.BaseApplication;
 import com.yanb.daqsoft.baselib.mvvmbase.crash.CaocConfig;
-import com.yanb.daqsoft.baselib.mvvmbase.utils.KLog;
+import com.yanb.daqsoft.baselib.utils.KLog;
 
 /**
  * IApplication
@@ -26,7 +24,7 @@ public class IApplication extends BaseApplication{
     public void onCreate() {
         super.onCreate();
         // 是否开启日志打印
-        KLog.init(BuildConfig.DEBUG);
+        KLog.init(true);
         // 初始化异常全局崩溃
         initCrash();
         //内存泄漏检测

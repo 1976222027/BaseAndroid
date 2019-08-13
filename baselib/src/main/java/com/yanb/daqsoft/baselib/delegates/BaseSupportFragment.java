@@ -1,34 +1,18 @@
 package com.yanb.daqsoft.baselib.delegates;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
-import com.yanb.daqsoft.baselib.activities.BaseSupportActivity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.activities.IBaseView;
-import com.yanb.daqsoft.baselib.app.Apps;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import me.yokeyword.fragmentation.ExtraTransaction;
-import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
-import me.yokeyword.fragmentation.SupportFragmentDelegate;
-import me.yokeyword.fragmentation.SupportHelper;
-import me.yokeyword.fragmentation.anim.FragmentAnimator;
-import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
-import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
  * @author: yanbo

@@ -15,8 +15,6 @@ import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.common.PageConstants;
 import com.yanb.daqsoft.baseandroid.common.StorageConstants;
 import com.yanb.daqsoft.baseandroid.example.databinding.DataBindingActivity;
-import com.yanb.daqsoft.baseandroid.ktapi.KtExampleActivity;
-import com.yanb.daqsoft.baseandroid.ktapp.KtMainActivity;
 import com.yanb.daqsoft.baseandroid.picupdate.PictureUpdateActivity;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.BaseSupportFragment;
@@ -39,20 +37,20 @@ import io.reactivex.functions.Consumer;
 
 public class HomeFragment extends BaseSupportFragment implements AppBarLayout
         .OnOffsetChangedListener {
-    @BindView(R.id.app_bar_layout)
-    AppBarLayout appBarLayout;
-    @BindView(R.id.include_toolbar_open)
-    View mToolbarOpenLayout;
-    @BindView(R.id.include_toolbar_close)
-    View mToolbarCloseLayout;
-    @BindView(R.id.toolbar_open_bg_view)
-    View mToolbarOpenBgView;
-    @BindView(R.id.bg_toolbar_close)
-    View mToolbarCloseBgView;
-    @BindView(R.id.content_bg_view)
-    View contentBgView;
-    @BindView(R.id.status_bar)
-    View status_bar;
+//    @BindView(R.id.app_bar_layout)
+//    AppBarLayout appBarLayout;
+//    @BindView(R.id.include_toolbar_open)
+//    View mToolbarOpenLayout;
+//    @BindView(R.id.include_toolbar_close)
+//    View mToolbarCloseLayout;
+//    @BindView(R.id.toolbar_open_bg_view)
+//    View mToolbarOpenBgView;
+//    @BindView(R.id.bg_toolbar_close)
+//    View mToolbarCloseBgView;
+//    @BindView(R.id.content_bg_view)
+//    View contentBgView;
+//    @BindView(R.id.status_bar)
+//    View status_bar;
     /**
      * 权限管理
      */
@@ -77,36 +75,36 @@ public class HomeFragment extends BaseSupportFragment implements AppBarLayout
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @Nullable View rootView) {
-        status_bar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams
-                .MATCH_PARENT, BarUtils.getStatusBarHeight()));
-        appBarLayout.addOnOffsetChangedListener(this);
-        permissions = new RxPermissions(this);
+//        status_bar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams
+//                .MATCH_PARENT, BarUtils.getStatusBarHeight()));
+//        appBarLayout.addOnOffsetChangedListener(this);
+//        permissions = new RxPermissions(this);
     }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        //垂直方向偏移量
-        int offset = Math.abs(verticalOffset);
-        //最大偏移距离
-        int scrollRange = appBarLayout.getTotalScrollRange();
-        if (offset <= scrollRange / 2) {//当滑动没超过一半，展开状态下toolbar显示内容，根据收缩位置，改变透明值
-            mToolbarOpenLayout.setVisibility(View.VISIBLE);
-            mToolbarCloseLayout.setVisibility(View.GONE);
-            //根据偏移百分比 计算透明值
-            float scale2 = (float) offset / (scrollRange / 2);
-            int alpha2 = (int) (255 * scale2);
-            mToolbarOpenBgView.setBackgroundColor(Color.argb(alpha2, 117, 186, 255));
-        } else {//当滑动超过一半，收缩状态下toolbar显示内容，根据收缩位置，改变透明值
-            mToolbarOpenLayout.setVisibility(View.GONE);
-            mToolbarCloseLayout.setVisibility(View.VISIBLE);
-            float scale3 = (float) (scrollRange - offset) / (scrollRange / 2);
-            int alpha3 = (int) (255 * scale3);
-            mToolbarCloseBgView.setBackgroundColor(Color.argb(alpha3, 117, 186, 255));
-        }
-        //根据偏移百分比计算扫一扫布局的透明度值
-        float scale = (float) offset / scrollRange;
-        int alpha = (int) (255 * scale);
-        contentBgView.setBackgroundColor(Color.argb(alpha, 117, 186, 255));
+//        //垂直方向偏移量
+//        int offset = Math.abs(verticalOffset);
+//        //最大偏移距离
+//        int scrollRange = appBarLayout.getTotalScrollRange();
+//        if (offset <= scrollRange / 2) {//当滑动没超过一半，展开状态下toolbar显示内容，根据收缩位置，改变透明值
+//            mToolbarOpenLayout.setVisibility(View.VISIBLE);
+//            mToolbarCloseLayout.setVisibility(View.GONE);
+//            //根据偏移百分比 计算透明值
+//            float scale2 = (float) offset / (scrollRange / 2);
+//            int alpha2 = (int) (255 * scale2);
+//            mToolbarOpenBgView.setBackgroundColor(Color.argb(alpha2, 117, 186, 255));
+//        } else {//当滑动超过一半，收缩状态下toolbar显示内容，根据收缩位置，改变透明值
+//            mToolbarOpenLayout.setVisibility(View.GONE);
+//            mToolbarCloseLayout.setVisibility(View.VISIBLE);
+//            float scale3 = (float) (scrollRange - offset) / (scrollRange / 2);
+//            int alpha3 = (int) (255 * scale3);
+//            mToolbarCloseBgView.setBackgroundColor(Color.argb(alpha3, 117, 186, 255));
+//        }
+//        //根据偏移百分比计算扫一扫布局的透明度值
+//        float scale = (float) offset / scrollRange;
+//        int alpha = (int) (255 * scale);
+//        contentBgView.setBackgroundColor(Color.argb(alpha, 117, 186, 255));
     }
 
 

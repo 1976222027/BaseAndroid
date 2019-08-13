@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.login.TokenLoader;
 import com.yanb.daqsoft.baselib.activities.BaseTitleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
+import com.yanb.daqsoft.baselib.utils.KLog;
 import com.yanb.daqsoft.baselib.utils.adapter.BaseQuickAdapter;
 import com.yanb.daqsoft.baselib.utils.adapter.BaseViewHolder;
 
@@ -184,7 +184,7 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
                             default:
                                 break;
                         }
-                        Logger.e("发生错误，尝试等待时间->" + waitTime + "当前重试次数=" + mRetryCount);
+                        KLog.e("发生错误，尝试等待时间->" + waitTime + "当前重试次数=" + mRetryCount);
                         mRetryCount++;
                         return waitTime > 0 && mRetryCount <= 2 ? Observable.timer(waitTime,
                                 TimeUnit.MILLISECONDS) : Observable.error(throwable);
@@ -195,17 +195,17 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
                 .subscribe(new DisposableObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        Logger.e("执行onNext"+s);
+                        KLog.e("执行onNext"+s);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Logger.e("执行onError"+e.getMessage());
+                        KLog.e("执行onError"+e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
-                        Logger.e("执行onComplete");
+                        KLog.e("执行onComplete");
                     }
                 });
     }
@@ -216,9 +216,9 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
     private void doWork() {
         long workTime = (long) (Math.random() * 500) + 500;
         try {
-            Logger.e("开始工作,  线程ID=" + Thread.currentThread().getId());
+            KLog.e("开始工作,  线程ID=" + Thread.currentThread().getId());
             Thread.sleep(workTime);
-            Logger.e("完成工作");
+            KLog.e("完成工作");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -235,7 +235,7 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
             @Override
             public ObservableSource<String> call() throws Exception {
                 String cacheToken = TokenLoader.getInstance().getCacheToken();
-                Logger.e("你获取的缓存token"+cacheToken);
+                KLog.e("你获取的缓存token"+cacheToken);
                 return Observable.just(cacheToken);
             }
             /**
@@ -259,7 +259,7 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
                 return throwableObservable.flatMap(new Function<Throwable, ObservableSource<?>>() {
                     @Override
                     public ObservableSource<?> apply(Throwable throwable) throws Exception {
-                        Logger.e("发生错误="+throwable.getMessage()+"重试次数-->"+mRetryCount);
+                        KLog.e("发生错误="+throwable.getMessage()+"重试次数-->"+mRetryCount);
                         if (mRetryCount>0){
                             return Observable.error(new Throwable(ERROR_RETRY));
                         }else if (ERROR_TOKEN.equals(throwable.getMessage())){
@@ -281,17 +281,17 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
 
                     @Override
                     public void onNext(String s) {
-                        Logger.e("请求"+index + ":" + "onNext"+s);
+                        KLog.e("请求"+index + ":" + "onNext"+s);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Logger.e("请求"+index + ":" + "onError"+e.getMessage());
+                        KLog.e("请求"+index + ":" + "onError"+e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
-                        Logger.e("请求"+index + ":" + "onComplete");
+                        KLog.e("请求"+index + ":" + "onComplete");
                     }
                 });
     }
@@ -306,7 +306,7 @@ public class Rxjava2ExampleFragment extends BaseTitleFragment {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
-                Logger.e("使用token"+token+"请求用户信息");
+                KLog.e("使用token"+token+"请求用户信息");
                 // 模拟根据token去请求信息的过程
                 if (!TextUtils.isEmpty(token) && System.currentTimeMillis()- Long.valueOf(token) < 1000){
                     e.onNext(index+":"+token+"的用户信息");

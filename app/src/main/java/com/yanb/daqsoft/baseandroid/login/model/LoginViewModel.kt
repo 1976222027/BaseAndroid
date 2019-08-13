@@ -3,14 +3,12 @@ package com.yanb.daqsoft.baseandroid.login.model
 import android.app.Application
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
-import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 
-import com.yanb.daqsoft.baseandroid.common.AESEncryptUtil
-import com.yanb.daqsoft.baseandroid.http.XhttpUtils
 import com.yanb.daqsoft.baseandroid.login.User
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
+import com.yanb.daqsoft.baseandroid.ui.main.MainActivity
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingAction
 import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingCommand
@@ -18,15 +16,10 @@ import com.yanb.daqsoft.baselib.mvvmbase.binding.command.BindingConsumer
 import com.yanb.daqsoft.baselib.mvvmbase.bus.event.SingleLiveEvent
 import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
 import com.yanb.daqsoft.baselib.mvvmbase.http.observe.DefaultObserver
-import com.yanb.daqsoft.baselib.mvvmbase.utils.KLog
-import com.yanb.daqsoft.baselib.mvvmbase.utils.RxUtils
+import com.yanb.daqsoft.baselib.mvvmbase.http.scheduler.SchedulerUtils
+import com.yanb.daqsoft.baselib.utils.AESEncryptUtils
+import com.yanb.daqsoft.baselib.utils.KLog
 import com.yanb.daqsoft.baselib.utils.ToastUtils
-import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 
 
 class LoginViewModel:BaseViewModel<AppRepositoryModel> {
@@ -56,19 +49,26 @@ class LoginViewModel:BaseViewModel<AppRepositoryModel> {
             ToastUtils.showLong("请输入密码！")
             return
         }
-        val pasdNew = AESEncryptUtil.Encrypt(psd.get())
+        val pasdNew = AESEncryptUtils.Encrypt(psd.get().toString())
         model.login("1",userName.get()!!,pasdNew)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { dipoms->
+                    addSubscribe(dipoms)
+                    showDialog()
+                }
+                .compose(SchedulerUtils.ioToMain())
                 .subscribe(object : DefaultObserver<BaseResponse<User>>() {
                     override fun onSuccess(response: BaseResponse<User>?) {
-                        KLog.e("----------->"+response?.data?.head)
+                        dismissDialog()
+                        if (response?.code==0){
+                            startActivity(MainActivity::class.java)
+                            finish()
+                        }
+                        KLog.i("----------->"+response?.data?.head)
                     }
 
                     override fun onFail(message: String?) {
-                        KLog.e("----------->"+message)
+                        KLog.i("----------->"+message)
                     }
-
                 })
         model.saveUserName(userName.get()!!)
         model.savePsd(psd.get()!!)

@@ -75,7 +75,7 @@ public class HomeMainFragment extends BaseHomeDraweFragment {
 
     private void initTab() {
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], IconConstants.getHomeIconSelectIds()[i], IconConstants.getHomeIconUnselectIds()[i]));
+            mTabEntities.add(new TabEntity(mTitles[i], IconConstants.INSTANCE.getHomeIconSelectIds()[i], IconConstants.INSTANCE.getHomeIconUnselectIds()[i]));
         }
         comTablayout.setTabData(mTabEntities);
         comTablayout.setOnTabSelectListener(new OnTabSelectListener() {

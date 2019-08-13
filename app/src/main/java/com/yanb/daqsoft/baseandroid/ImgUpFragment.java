@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import com.daqsoft.imgselected.Matisse;
 import com.daqsoft.imgselected.customimgup.ImageSelectionView;
-import com.orhanobut.logger.Logger;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
 import com.yanb.daqsoft.baselib.delegates.MainSlidingFragment;
+import com.yanb.daqsoft.baselib.utils.KLog;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class ImgUpFragment extends MainSlidingFragment {
         super.onFragmentResult(requestCode, resultCode, data);
         if (requestCode == 23 && resultCode == RESULT_OK) {
 
-            Logger.e("图片大小" );
+            KLog.e("图片大小" );
         }
     }
 

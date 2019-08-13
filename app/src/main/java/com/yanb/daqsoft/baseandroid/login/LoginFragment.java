@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import com.daqsoft.customview.login.LoginView;
 import com.yanb.daqsoft.baseandroid.R;
-import com.yanb.daqsoft.baseandroid.common.AESEncryptUtil;
-import com.yanb.daqsoft.baseandroid.http.XhttpUtils;
 import com.yanb.daqsoft.baseandroid.wxapi.SocialUtil;
 import com.yanb.daqsoft.baselib.activities.BaseTitleFragment;
 import com.yanb.daqsoft.baselib.activities.IBasePresenter;
@@ -65,39 +63,7 @@ public class LoginFragment extends BaseTitleFragment implements SocialLoginCallb
         mLoginView.setLoginListener(new LoginView.OnLoginListener() {
             @Override
             public void onLogin(String account, String password) {
-                try {
-                    String psd = AESEncryptUtil.Encrypt(password);
-                    XhttpUtils.getApiService().login("1", account, psd, "nngjapp")
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new DefaultObserver<BaseResponse<User>>() {
-                                @Override
-                                public void onSuccess(BaseResponse<User> response) {
-                                    ToastUtils.showLong(response.getData().getName());
-                                    StorageToken.getInstance().setToken(response.getData()
-                                            .getToken());
-                                    StorageToken.getInstance().setUserName(response.getData()
-                                            .getName());
-                                    StorageToken.getInstance().setHeadImg(response.getData()
-                                            .getHead());
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString(KEY_RESULT_TITLE, response.getData().getName
-                                            ());
-                                    setFragmentResult(RESULT_OK, bundle);
-                                    // 隐藏软键盘
-                                    hideSoftInput();
-                                    pop();
-                                }
 
-                                @Override
-                                public void onFail(String message) {
-                                    ToastUtils.showCenterShort(message);
-                                    hideSoftInput();
-                                }
-                            });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
             }
         });

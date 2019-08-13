@@ -1,7 +1,7 @@
 package com.yanb.daqsoft.baselib.mvvmbase.http.exception
 
 import com.google.gson.JsonParseException
-import com.yanb.daqsoft.baselib.mvvmbase.utils.KLog
+import com.yanb.daqsoft.baselib.utils.KLog
 import org.json.JSONException
 import java.net.ConnectException
 import java.net.SocketTimeoutException

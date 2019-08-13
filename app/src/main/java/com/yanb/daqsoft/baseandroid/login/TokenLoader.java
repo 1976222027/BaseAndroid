@@ -1,6 +1,8 @@
 package com.yanb.daqsoft.baseandroid.login;
 
-import com.orhanobut.logger.Logger;
+
+
+import com.yanb.daqsoft.baselib.utils.KLog;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -42,13 +44,13 @@ public class TokenLoader {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
                 Thread.sleep(1000);
-                Logger.e("发送Token");
+                KLog.e("发送Token");
                 e.onNext(String.valueOf(System.currentTimeMillis()));
             }
         }).doOnNext(new Consumer<String>() {
             @Override
             public void accept(String token) throws Exception {
-                Logger.e("存储Token=" + token);
+                KLog.e("存储Token=" + token);
                 StorageToken.getInstance().setToken(token);
                 mRefreshing.set(false);
             }
@@ -79,10 +81,10 @@ public class TokenLoader {
      */
     public Observable<String> getNetTokenLocked() {
         if (mRefreshing.compareAndSet(false, true)) {
-            Logger.e("没有请求，发起一次新的Token请求");
+            KLog.e("没有请求，发起一次新的Token请求");
             startTokenRequest();
         } else {
-            Logger.e("已经有请求，直接返回等待");
+            KLog.e("已经有请求，直接返回等待");
         }
         return mPublishSubject;
     }

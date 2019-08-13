@@ -22,11 +22,6 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         setApplication(this);
-        Apps.init(this)
-                .withApiHost("http://ptisp.daqsoft.com/govapi/")
-                .withLoaderDelayed(1000)
-                // 加入别的配置按此类推
-                .build();
     }
 
     /**

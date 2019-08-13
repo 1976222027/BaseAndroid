@@ -3,9 +3,9 @@ package com.yanb.daqsoft.baseandroid.model
 
 import com.yanb.daqsoft.baseandroid.data.source.LocalDataSource
 import com.yanb.daqsoft.baseandroid.data.source.HttpDataInterface
-import com.daqsoft.xhttp.response.BaseResponse
 import com.yanb.daqsoft.baseandroid.login.User
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseModel
+import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
 import io.reactivex.Observable
 
 /**
