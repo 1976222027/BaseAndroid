@@ -13,7 +13,7 @@ import com.yanb.daqsoft.baselib.utils.glide.GlideImageLoader;
 import java.util.List;
 
 /**
- * Created by goldze on 2017/6/18.
+ * databinding
  */
 public final class ViewAdapter {
     @BindingAdapter(value = {"bannerImgListss"}, requireAll = false)

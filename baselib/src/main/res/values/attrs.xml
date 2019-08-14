@@ -300,4 +300,8 @@
     <declare-styleable name="ControlDistributeLinearLayout">
         <attr name="distribute_event" format="boolean" />
     </declare-styleable>
+    <!--banner相关databinding属性-->
+    <declare-styleable name="MyBanner">
+        <attr name="bannerImgListss" format="reference"/>
+    </declare-styleable>
 </resources>
