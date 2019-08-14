@@ -13,9 +13,10 @@ import com.yanb.daqsoft.baselib.utils.ToastUtils
  * 首页列表头布局viewmodel
  */
 class MultiRvHeadViewModel :MultiItemViewModel<HomeFragmentModel>{
-    var text = ObservableField("")
-    constructor(homeFragmentModel: HomeFragmentModel,text_:String):super(homeFragmentModel){
-        this.text.set(text_)
+    val bannerImgList =  ObservableField<List<String>>()
+
+    constructor(homeFragmentModel: HomeFragmentModel,list:List<String>):super(homeFragmentModel){
+        this.bannerImgList.set(list)
     }
     // 条目点击事件
     var itemClick = BindingCommand<Any>(BindingAction {

@@ -2,9 +2,16 @@
 <layout>
 
     <data>
+        <import type="com.yanb.daqsoft.baselib.mvvmbase.binding.viewadapter.recyclerview.LineManagers" />
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+        <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
+        <import type="com.yanb.daqsoft.baseandroid.ui.home.model.HomeFragmentModel" />
+        <variable
+            name="adapter"
+            type="BindingRecyclerViewAdapter" />
         <variable
             name="honeViewModel"
-            type="com.yanb.daqsoft.baseandroid.ui.home.model.HomeFragmentModel" />
+            type="HomeFragmentModel" />
     </data>
 
     <LinearLayout
@@ -13,11 +20,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!-- 头布局 -->
+        <!-- 头布局
+          binding:lineManager="@{LineManagers.horizontal()}"
+          分割线
+        -->
         <include layout="@layout/include_home_title" />
         <android.support.v7.widget.RecyclerView
+            android:background="@color/white"
+            binding:adapter="@{adapter}"
+            binding:itemBinding="@{honeViewModel.itemBinding}"
+            binding:items="@{honeViewModel.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear()}"
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            itemBinding=""/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </layout>
