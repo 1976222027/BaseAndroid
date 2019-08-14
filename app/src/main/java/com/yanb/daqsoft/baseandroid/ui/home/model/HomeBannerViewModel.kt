@@ -12,7 +12,7 @@ import com.yanb.daqsoft.baselib.utils.ToastUtils
 /**
  * 首页列表头布局viewmodel
  */
-class MultiRvHeadViewModel :MultiItemViewModel<HomeFragmentModel>{
+class HomeBannerViewModel :MultiItemViewModel<HomeFragmentModel>{
     val bannerImgList =  ObservableField<List<String>>()
 
     constructor(homeFragmentModel: HomeFragmentModel,list:List<String>):super(homeFragmentModel){

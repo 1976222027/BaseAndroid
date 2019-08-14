@@ -2,10 +2,10 @@
 <layout >
 
     <data>
-        <import type="com.yanb.daqsoft.baseandroid.ui.home.model.MultiRvHeadViewModel" />
+        <import type="com.yanb.daqsoft.baseandroid.ui.home.model.HomeBannerViewModel" />
         <variable
             name="homeBannerViewModel"
-            type="MultiRvHeadViewModel" />
+            type="HomeBannerViewModel" />
     </data>
 
     <LinearLayout

@@ -38,7 +38,7 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
 
     constructor(application: Application) : super(application) {
         val list = listOf<String>("http://ww4.sinaimg.cn/large/006uZZy8jw1faic1xjab4j30ci08cjrv.jpg","http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg")
-        val itemHead = MultiRvHeadViewModel(this,list)
+        val itemHead = HomeBannerViewModel(this,list)
         itemHead.multiItemType(ITEMTYPE_HEAD)
         observableList.add(itemHead)
     }
