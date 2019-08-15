@@ -38,8 +38,8 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
             itemBinding.set(BR.noticeViewModel, R.layout.item_home_notice)
         } else if (ITEMTYPE_MENU == itemType) {
             itemBinding.set(BR.menuViewModel, R.layout.item_home_menu)
-        }else if (ITEMTYPE_MENU == itemType) {
-            itemBinding.set(BR.homeMenuMoreViewModel, R.layout.item_home_menu_more)
+        }else if (ITEMTYPE_MENU_MORE == itemType) {
+            itemBinding.set(BR.moreViewModel, R.layout.item_home_menu_more)
         }
     })
 
