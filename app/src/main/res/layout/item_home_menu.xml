@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.yanb.daqsoft.baseandroid.ui.home.model.HomeMenuViewModel" />
+        <variable
+            name="menuViewModel"
+            type="HomeMenuViewModel" />
+    </data>
+
+    <LinearLayout
+        android:paddingTop="@dimen/margin_normal"
+        android:paddingBottom="@dimen/margin_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yanb.daqsoft.baselib.view.IconView
+                android:textSize="@dimen/sp_25"
+                android:textColor="@color/main"
+                android:text="@string/icon_bus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="公交查询"
+                android:textColor="@color/text_nomal"
+                android:textSize="@dimen/text_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yanb.daqsoft.baselib.view.IconView
+                android:textSize="@dimen/sp_25"
+                android:textColor="@color/orange"
+                android:text="@string/icon_trave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="旅行社"
+                android:textColor="@color/text_nomal"
+                android:textSize="@dimen/text_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yanb.daqsoft.baselib.view.IconView
+                android:textSize="@dimen/sp_25"
+                android:textColor="@color/holo_green_dark"
+                android:text="@string/icon_camp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="自驾营地"
+                android:textColor="@color/text_nomal"
+                android:textSize="@dimen/text_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yanb.daqsoft.baselib.view.IconView
+                android:textSize="@dimen/sp_25"
+                android:textColor="@color/holo_red_dark"
+                android:text="@string/icon_speaking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="景区解说"
+                android:textColor="@color/text_nomal"
+                android:textSize="@dimen/text_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.yanb.daqsoft.baselib.view.IconView
+                android:textSize="@dimen/sp_25"
+                android:textColor="@color/holo_blue_bright"
+                android:text="@string/icon_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="景区地图"
+                android:textColor="@color/text_nomal"
+                android:textSize="@dimen/text_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

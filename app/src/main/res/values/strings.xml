@@ -5,4 +5,18 @@
     <string name="tips_scan_code">将二维码/条形码放入框内，即可自动扫描</string>
     <!--登录页面顶部字体图片-->
     <string name="icon_login_logo">&#xe6b5;</string>
+    <!--铃铛通知图标-->
+    <string name="icon_notice">&#xe68a;</string>
+    <!--三个点跟多-->
+    <string name="icon_setting_more">&#xe64a;</string>
+    <!--公交车-->
+    <string name="icon_bus">&#xe7c6;</string>
+    <!--旅行社-->
+    <string name="icon_trave">&#xe7cb;</string>
+    <!--自驾营地-->
+    <string name="icon_camp">&#xe7c8;</string>
+    <!--解说-->
+    <string name="icon_speaking">&#xe7ca;</string>
+    <!--地图-->
+    <string name="icon_map">&#xe7c9;</string>
 </resources>
