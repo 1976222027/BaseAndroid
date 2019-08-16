@@ -5,9 +5,16 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import com.yanb.daqsoft.baseandroid.BR
 import com.yanb.daqsoft.baseandroid.R
+import com.yanb.daqsoft.baseandroid.databinding.ItemHomeHorizontalBinding
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
+import com.yanb.daqsoft.baseandroid.ui.home.entity.ScenicEntity
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
 import com.yanb.daqsoft.baselib.mvvmbase.base.MultiItemViewModel
+import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
+import com.yanb.daqsoft.baselib.mvvmbase.http.observe.DefaultObserver
+import com.yanb.daqsoft.baselib.mvvmbase.http.scheduler.SchedulerUtils
+import com.yanb.daqsoft.baselib.utils.KLog
+import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.OnItemBind
 
@@ -16,15 +23,19 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
      * 布局类型
      */
     private val ITEMTYPE_HEAD = "head"
+    // 通知
     private val ITEMTYPE_NOTICE = "notice"
+    // 横向的菜单
     private val ITEMTYPE_MENU = "menu"
+    // 中间跟多
     private val ITEMTYPE_MENU_MORE = "menumore"
+    // 横向菜单
+    private val ITEMTYPE_HORIZONTAL = "horizontal"
     /**
      * 给RecycleView添加ObservableList
      */
     //给RecyclerView添加ObservableList
     var observableList: ObservableList<MultiItemViewModel<*>> = ObservableArrayList<MultiItemViewModel<*>>()
-
     /**
      * Recycleview多布局添加ItemBinding
      */
@@ -38,8 +49,11 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
             itemBinding.set(BR.noticeViewModel, R.layout.item_home_notice)
         } else if (ITEMTYPE_MENU == itemType) {
             itemBinding.set(BR.menuViewModel, R.layout.item_home_menu)
-        }else if (ITEMTYPE_MENU_MORE == itemType) {
+        } else if (ITEMTYPE_MENU_MORE == itemType) {
             itemBinding.set(BR.moreViewModel, R.layout.item_home_menu_more)
+        } else if (ITEMTYPE_HORIZONTAL == itemType) {
+            itemBinding.set(BR.horizontalViewModel, R.layout.item_home_horizontal)
+
         }
     })
 
@@ -61,5 +75,28 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
         val itemMenuMore = HomeMenuMoreViewModel(this)
         itemMenuMore.multiItemType(ITEMTYPE_MENU_MORE)
         observableList.add(itemMenuMore)
+
+        val itemHorizontal = HomeHorizontalViewModel(this)
+        itemHorizontal.multiItemType(ITEMTYPE_HORIZONTAL)
+        observableList.add(itemHorizontal)
+    }
+
+    fun getScenicList(){
+        // 这里部分参数写死只是为演示lng=104.071747&page=1&limitPage=10&lat=30.53779&siteCode=nngjapp&lang=cn&token=
+        model.getScenicList("104.071747","30.53779","1","10")
+                .doOnSubscribe {
+                    addSubscribe(it)
+                }
+                .compose(SchedulerUtils.ioToMain())
+                .subscribe(object : DefaultObserver<BaseResponse<List<ScenicEntity>>>(){
+                    override fun onSuccess(response: BaseResponse<List<ScenicEntity>>?) {
+                        KLog.e("你请求的景区数据-》${response?.datas?.get(0)?.name}")
+                    }
+
+                    override fun onFail(message: String?) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                })
     }
 }

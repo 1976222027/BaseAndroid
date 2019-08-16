@@ -3,6 +3,7 @@ package com.yanb.daqsoft.baseandroid.app;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.squareup.leakcanary.LeakCanary;
+import com.yanb.daqsoft.baseandroid.BuildConfig;
 import com.yanb.daqsoft.baseandroid.R;
 import com.yanb.daqsoft.baseandroid.login.LoginNewActivity;
 import com.yanb.daqsoft.baselib.app.BaseApplication;

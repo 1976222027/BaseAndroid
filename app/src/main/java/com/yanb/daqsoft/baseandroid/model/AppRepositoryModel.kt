@@ -12,7 +12,8 @@ import io.reactivex.Observable
  * MVVM的Model层，统一模块的数据仓库，
  * 包含网络数据和本地数据（一个应用可以有多个Repositor）
  */
-class AppRepositoryModel private constructor(private val localDataSource: LocalDataSource, private val httpDataInterface: HttpDataInterface):BaseModel(), LocalDataSource, HttpDataInterface {
+class AppRepositoryModel private constructor(private val localDataSource: LocalDataSource,
+                                             private val httpDataInterface: HttpDataInterface):BaseModel(), LocalDataSource, HttpDataInterface {
     override fun login(ignoreCode:String,account:String,pasd:String): Observable<BaseResponse<User>> {
         return httpDataInterface.login(ignoreCode,account,pasd)
     }

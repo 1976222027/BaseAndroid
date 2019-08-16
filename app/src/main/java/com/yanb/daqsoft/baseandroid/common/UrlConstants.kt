@@ -18,4 +18,9 @@ object UrlConstants {
      * 登录
      */
     const val URL_LOGIN = "api/gov/app/member/login"
+    /**
+     * 景区列表
+     *
+     */
+    const val URL_SCENIC_LIST = "api/gov/app/scenery/list"
 }

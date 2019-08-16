@@ -31,6 +31,7 @@ class HomeFragment :BaseFragment<com.yanb.daqsoft.baseandroid.databinding.Fragme
     override fun initData() {
         super.initData()
         binding.adapter = BindingRecyclerViewAdapter<Any>()
+
     }
 
 }
