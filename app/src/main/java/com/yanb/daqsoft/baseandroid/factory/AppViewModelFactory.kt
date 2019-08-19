@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.yanb.daqsoft.baseandroid.login.model.LoginViewModel
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
+import com.yanb.daqsoft.baseandroid.ui.home.model.HomeFragmentModel
 
 class AppViewModelFactory private constructor(private val application: Application, private val appRepositoryModel: AppRepositoryModel) : ViewModelProvider.NewInstanceFactory() {
 
@@ -27,6 +28,8 @@ class AppViewModelFactory private constructor(private val application: Applicati
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java!!)) {
             return LoginViewModel(application,appRepositoryModel) as T
+        }else if (modelClass.isAssignableFrom(HomeFragmentModel::class.java!!)){
+            return HomeFragmentModel(application,appRepositoryModel) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

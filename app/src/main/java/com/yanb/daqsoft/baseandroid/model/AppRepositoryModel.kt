@@ -4,6 +4,7 @@ package com.yanb.daqsoft.baseandroid.model
 import com.yanb.daqsoft.baseandroid.data.source.LocalDataSource
 import com.yanb.daqsoft.baseandroid.data.source.HttpDataInterface
 import com.yanb.daqsoft.baseandroid.login.User
+import com.yanb.daqsoft.baseandroid.ui.home.entity.ScenicEntity
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseModel
 import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
 import io.reactivex.Observable
@@ -14,6 +15,10 @@ import io.reactivex.Observable
  */
 class AppRepositoryModel private constructor(private val localDataSource: LocalDataSource,
                                              private val httpDataInterface: HttpDataInterface):BaseModel(), LocalDataSource, HttpDataInterface {
+    override fun getScenicList(lng: String, lat: String, page: String, pageSize: String): Observable<BaseResponse<List<ScenicEntity>>> {
+        return httpDataInterface.getScenicList(lng,lat,page,pageSize)
+    }
+
     override fun login(ignoreCode:String,account:String,pasd:String): Observable<BaseResponse<User>> {
         return httpDataInterface.login(ignoreCode,account,pasd)
     }

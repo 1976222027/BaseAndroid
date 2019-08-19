@@ -8,7 +8,7 @@
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
         <import type="android.support.v7.widget.LinearLayoutManager" />
         <variable
-            name="horizontalViewModel"
+            name="horizontalViewModel2"
             type="HomeHorizontalViewModel" />
     </data>
 
@@ -21,13 +21,20 @@
         <TextView
             android:text="热门专题"
             style="@style/layout_tex_title"/>
+        <!--binding:itemBinding="@{horizontalViewModel.itemBinding}"
+            binding:adapter="@{horizontalViewModel.childAdapter}"
+            binding:items="@{horizontalViewModel.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear(LinearLayoutManager.horizontalViewModel,false)}"
+            -->
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            binding:adapter="@{horizontalViewModel.childAdapter}"
-            binding:itemBinding="@{horizontalViewModel.itemBinding}"
-            binding:items="@{horizontalViewModel.observableList}"
-            binding:layoutManager="@{LayoutManagers.linear(LinearLayoutManager.horizontalViewModel,false)}"/>
+            binding:itemBinding="@{horizontalViewModel2.itemBinding}"
+            binding:adapter="@{horizontalViewModel2.childAdapter}"
+            binding:items="@{horizontalViewModel2.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear(LinearLayoutManager.horizontalViewModel,false)}"
+            />
 
     </LinearLayout>
 </layout>

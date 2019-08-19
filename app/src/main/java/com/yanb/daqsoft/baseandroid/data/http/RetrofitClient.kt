@@ -71,6 +71,7 @@ class RetrofitClient{
                  */
                 .addInterceptor(ParamsInterceptor.Builder()
                         .addQueryParam(ParamsConstants.PARAMS_SITECODE_KTY,ParamsConstants.PARAMS_SITECODE_VALUE)
+                        .addQueryParam(ParamsConstants.PARAMS_LANG_KTY,ParamsConstants.PARAMS_LANG_VALUE)
                         .build())
                 /**
                  * 日志打印
