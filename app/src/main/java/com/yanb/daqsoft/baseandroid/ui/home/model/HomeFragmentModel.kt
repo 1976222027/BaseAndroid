@@ -35,7 +35,8 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
      * 给RecycleView添加ObservableList
      */
     //给RecyclerView添加ObservableList
-    var observableList: ObservableList<MultiItemViewModel<*>> = ObservableArrayList<MultiItemViewModel<*>>()
+    var observableList = ObservableArrayList<MultiItemViewModel<*>>()
+    var observableHorizontalList = ObservableArrayList<HomeHorizontalChildViewModel>()
     /**
      * Recycleview多布局添加ItemBinding
      */
@@ -91,6 +92,10 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
                 .subscribe(object : DefaultObserver<BaseResponse<List<ScenicEntity>>>(){
                     override fun onSuccess(response: BaseResponse<List<ScenicEntity>>?) {
                         KLog.e("你请求的景区数据-》${response?.datas?.get(0)?.name}")
+                        response?.datas?.forEach {
+                            var itemChild = HomeHorizontalChildViewModel(this@HomeFragmentModel)
+                            observableHorizontalList.add(itemChild)
+                        }
                     }
 
                     override fun onFail(message: String?) {

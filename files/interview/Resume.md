@@ -7,7 +7,6 @@
  - 手机：13778069524
  - 工作年限：3年
  - 本科/北极大学计算机系
- - 微博：[@Easy](http://weibo.com/easy) （如果没有技术相关内容，也可以不放）
  - 技术博客：https://blog.csdn.net/tomasyb?viewmode=contents
  - Github：https://github.com/Tomsyb
  - 期望职位：Android高级程序员，应用架构师
@@ -108,6 +107,7 @@
 （我一般主张将技能清单写入到工作经历里边去。不过很难完整，所以有这么一段也不错）
 
 以下均为我熟练使用的技能
+- 熟悉Activity的基本生命周期流程及常见异常处理情况，
 - 了解常见内存泄漏的原因及处理方法
 - 了解Activity生命周期，Activity组件之间的通信，项目中通过AppManager中Stack管理生命周期及LaunchMode的使用。
 - 了解ARouter页面路由框架实现页面解耦
