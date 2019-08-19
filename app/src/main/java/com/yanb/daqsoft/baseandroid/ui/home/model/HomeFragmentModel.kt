@@ -5,7 +5,6 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import com.yanb.daqsoft.baseandroid.BR
 import com.yanb.daqsoft.baseandroid.R
-import com.yanb.daqsoft.baseandroid.databinding.ItemHomeHorizontalBinding
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
 import com.yanb.daqsoft.baseandroid.ui.home.entity.ScenicEntity
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
@@ -14,11 +13,10 @@ import com.yanb.daqsoft.baselib.mvvmbase.http.BaseResponse
 import com.yanb.daqsoft.baselib.mvvmbase.http.observe.DefaultObserver
 import com.yanb.daqsoft.baselib.mvvmbase.http.scheduler.SchedulerUtils
 import com.yanb.daqsoft.baselib.utils.KLog
-import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.OnItemBind
 
-class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
+open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
     /**
      * 布局类型
      */
@@ -30,13 +28,12 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
     // 中间跟多
     private val ITEMTYPE_MENU_MORE = "menumore"
     // 横向菜单
-    private val ITEMTYPE_HORIZONTAL = "horizontal"
+    private val ITEMTYPE_HORIZONTAL = "horizonta"
     /**
      * 给RecycleView添加ObservableList
      */
-    //给RecyclerView添加ObservableList
-    var observableList = ObservableArrayList<MultiItemViewModel<*>>()
-    var observableHorizontalList = ObservableArrayList<HomeHorizontalChildViewModel>()
+    var observableList: ObservableList<MultiItemViewModel<*>> = ObservableArrayList<MultiItemViewModel<*>>()
+    var observableChildList:ObservableArrayList<String> = ObservableArrayList()
     /**
      * Recycleview多布局添加ItemBinding
      */
@@ -52,13 +49,12 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
             itemBinding.set(BR.menuViewModel, R.layout.item_home_menu)
         } else if (ITEMTYPE_MENU_MORE == itemType) {
             itemBinding.set(BR.moreViewModel, R.layout.item_home_menu_more)
-        } else if (ITEMTYPE_HORIZONTAL == itemType) {
-            itemBinding.set(BR.horizontalViewModel, R.layout.item_home_horizontal)
-
+        }else if (ITEMTYPE_HORIZONTAL == itemType){
+            itemBinding.set(BR.horizontalViewModel2, R.layout.item_home_horizontal)
         }
     })
 
-    constructor(application: Application) : super(application) {
+    constructor(application: Application,appRepositoryModel: AppRepositoryModel) : super(application,appRepositoryModel) {
         // 添加banner
         val list = listOf<String>("http://ww4.sinaimg.cn/large/006uZZy8jw1faic1xjab4j30ci08cjrv.jpg", "http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg")
         val itemHead = HomeBannerViewModel(this, list)
@@ -77,9 +73,7 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
         itemMenuMore.multiItemType(ITEMTYPE_MENU_MORE)
         observableList.add(itemMenuMore)
 
-        val itemHorizontal = HomeHorizontalViewModel(this)
-        itemHorizontal.multiItemType(ITEMTYPE_HORIZONTAL)
-        observableList.add(itemHorizontal)
+
     }
 
     fun getScenicList(){
@@ -93,15 +87,18 @@ class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
                     override fun onSuccess(response: BaseResponse<List<ScenicEntity>>?) {
                         KLog.e("你请求的景区数据-》${response?.datas?.get(0)?.name}")
                         response?.datas?.forEach {
-                            var itemChild = HomeHorizontalChildViewModel(this@HomeFragmentModel)
-                            observableHorizontalList.add(itemChild)
+                            observableChildList.add(it.name)
                         }
+                        val itemHore = HomeHorizontalViewModel(this@HomeFragmentModel,observableChildList)
+                        itemHore.multiItemType(ITEMTYPE_HORIZONTAL)
+                        observableList.add(itemHore)
                     }
 
                     override fun onFail(message: String?) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        KLog.e("错误--》${message}")
                     }
 
                 })
     }
+
 }

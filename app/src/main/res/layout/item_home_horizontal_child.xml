@@ -2,10 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.yanb.daqsoft.baseandroid.ui.home.model.HomeHorizontalChildViewModel" />
         <variable
-            name="homehchildViewModel"
-            type="HomeHorizontalChildViewModel" />
+            name="items"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -18,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="景点"
+            android:text="@{items}"
             style="@style/layout_tex_nomal" />
 
     </LinearLayout>

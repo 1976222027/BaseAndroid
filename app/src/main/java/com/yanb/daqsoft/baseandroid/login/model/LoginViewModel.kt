@@ -51,8 +51,8 @@ class LoginViewModel:BaseViewModel<AppRepositoryModel> {
         }
         val pasdNew = AESEncryptUtils.Encrypt(psd.get().toString())
         model.login("1",userName.get()!!,pasdNew)
-                .doOnSubscribe { dipoms->
-                    addSubscribe(dipoms)
+                .doOnSubscribe {
+                    addSubscribe(it)
                     showDialog()
                 }
                 .compose(SchedulerUtils.ioToMain())

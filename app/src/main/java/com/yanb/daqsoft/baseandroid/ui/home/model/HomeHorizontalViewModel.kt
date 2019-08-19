@@ -4,6 +4,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import com.yanb.daqsoft.baseandroid.BR
 import com.yanb.daqsoft.baseandroid.R
+import com.yanb.daqsoft.baseandroid.ui.home.entity.ScenicEntity
 import com.yanb.daqsoft.baselib.mvvmbase.base.MultiItemViewModel
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -16,9 +17,12 @@ class HomeHorizontalViewModel : MultiItemViewModel<HomeFragmentModel> {
     /**
      * 给recycleview添加ObservableList
      */
-    val observableList = ObservableArrayList<HomeHorizontalChildViewModel>()
-    val itemBinding:ItemBinding<HomeHorizontalChildViewModel> = ItemBinding.of(BR.homehchildViewModel, R.layout.item_home_horizontal_child)
-    constructor(homeFragmentModel: HomeFragmentModel):super(homeFragmentModel){
+    var observableList = ObservableArrayList<String>()
+    val itemBinding:ItemBinding<String> = ItemBinding.of(BR.items, R.layout.item_home_horizontal_child)
+    constructor(homeFragmentModel: HomeFragmentModel,observableList:ObservableArrayList<String>):super(homeFragmentModel){
+
+        this.observableList = observableList
 
     }
 }
+
