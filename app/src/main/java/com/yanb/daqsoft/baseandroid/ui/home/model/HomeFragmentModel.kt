@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import com.yanb.daqsoft.baseandroid.BR
 import com.yanb.daqsoft.baseandroid.R
+import com.yanb.daqsoft.baseandroid.databinding.ItemHomeHorizontalBinding
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
 import com.yanb.daqsoft.baseandroid.ui.home.entity.ScenicEntity
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
@@ -33,7 +34,7 @@ open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
      * 给RecycleView添加ObservableList
      */
     var observableList: ObservableList<MultiItemViewModel<*>> = ObservableArrayList<MultiItemViewModel<*>>()
-    var observableChildList:ObservableArrayList<String> = ObservableArrayList()
+    var observableChildList:ObservableArrayList<ScenicEntity> = ObservableArrayList()
     /**
      * Recycleview多布局添加ItemBinding
      */
@@ -87,7 +88,7 @@ open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
                     override fun onSuccess(response: BaseResponse<List<ScenicEntity>>?) {
                         KLog.e("你请求的景区数据-》${response?.datas?.get(0)?.name}")
                         response?.datas?.forEach {
-                            observableChildList.add(it.name)
+                            observableChildList.add(it)
                         }
                         val itemHore = HomeHorizontalViewModel(this@HomeFragmentModel,observableChildList)
                         itemHore.multiItemType(ITEMTYPE_HORIZONTAL)

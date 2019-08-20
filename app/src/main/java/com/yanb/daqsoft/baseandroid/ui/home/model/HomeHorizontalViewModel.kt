@@ -13,14 +13,12 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
  * 首页横向布局
  */
 class HomeHorizontalViewModel : MultiItemViewModel<HomeFragmentModel> {
-    val childAdapter  = BindingRecyclerViewAdapter<Any>()
     /**
      * 给recycleview添加ObservableList
      */
-    var observableList = ObservableArrayList<String>()
-    val itemBinding:ItemBinding<String> = ItemBinding.of(BR.items, R.layout.item_home_horizontal_child)
-    constructor(homeFragmentModel: HomeFragmentModel,observableList:ObservableArrayList<String>):super(homeFragmentModel){
-
+    var observableList = ObservableArrayList<ScenicEntity>()
+    val itemBinding:ItemBinding<ScenicEntity> = ItemBinding.of(BR.scenic, R.layout.item_home_horizontal_child)
+    constructor(homeFragmentModel: HomeFragmentModel,observableList:ObservableArrayList<ScenicEntity>):super(homeFragmentModel){
         this.observableList = observableList
 
     }

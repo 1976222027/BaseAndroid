@@ -15,6 +15,8 @@
         <dimen name="dp_52">52dp</dimen>
         <dimen name="dp_55">55dp</dimen>
         <dimen name="dp_56">56dp</dimen>
+        <dimen name="dp_100">100dp</dimen>
+        <dimen name="dp_180">180dp</dimen>
         <!--常用sp-->
         <dimen name="sp_16">16sp</dimen>
         <dimen name="sp_17">17sp</dimen>

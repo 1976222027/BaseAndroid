@@ -27,11 +27,9 @@
         <include layout="@layout/include_home_title" />
         <android.support.v7.widget.RecyclerView
             android:background="@color/white"
-            binding:adapter="@{adapter}"
             binding:itemBinding="@{honeViewModel.itemBinding}"
             binding:items="@{honeViewModel.observableList}"
             binding:layoutManager="@{LayoutManagers.linear()}"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
