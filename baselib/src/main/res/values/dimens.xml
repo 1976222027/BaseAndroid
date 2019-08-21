@@ -15,6 +15,7 @@
         <dimen name="dp_52">52dp</dimen>
         <dimen name="dp_55">55dp</dimen>
         <dimen name="dp_56">56dp</dimen>
+        <dimen name="dp_75">75dp</dimen>
         <dimen name="dp_100">100dp</dimen>
         <dimen name="dp_180">180dp</dimen>
         <!--常用sp-->
@@ -28,6 +29,7 @@
         <!--常用字体大小-->
         <dimen name="text_normal">14sp</dimen>
         <dimen name="text_small">12sp</dimen>
+        <dimen name="text_13">13sp</dimen>
         <dimen name="text_big">18sp</dimen>
         <dimen name="text_12">12sp</dimen>
         <dimen name="text_14">14sp</dimen>

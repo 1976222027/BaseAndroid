@@ -31,6 +31,10 @@
             binding:itemBinding="@{horizontalViewModel2.itemBinding}"
             binding:items="@{horizontalViewModel2.observableList}"
             binding:layoutManager="@{LayoutManagers.linear(LinearLayoutManager.HORIZONTAL,false)}"/>
-
+        <TextView
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            style="@style/layout_text_more"
+            android:text="查看更多"/>
     </LinearLayout>
 </layout>

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 /**
- * Created by goldze on 2017/6/18.
+ * 图片加载
  */
 public final class ViewAdapter {
     @BindingAdapter(value = {"url", "placeholderRes"}, requireAll = false)

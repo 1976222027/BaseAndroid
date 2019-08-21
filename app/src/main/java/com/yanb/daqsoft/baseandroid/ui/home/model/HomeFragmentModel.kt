@@ -7,6 +7,7 @@ import com.yanb.daqsoft.baseandroid.BR
 import com.yanb.daqsoft.baseandroid.R
 import com.yanb.daqsoft.baseandroid.databinding.ItemHomeHorizontalBinding
 import com.yanb.daqsoft.baseandroid.model.AppRepositoryModel
+import com.yanb.daqsoft.baseandroid.ui.home.entity.LearnTag
 import com.yanb.daqsoft.baseandroid.ui.home.entity.ScenicEntity
 import com.yanb.daqsoft.baselib.mvvmbase.base.BaseViewModel
 import com.yanb.daqsoft.baselib.mvvmbase.base.MultiItemViewModel
@@ -30,11 +31,18 @@ open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
     private val ITEMTYPE_MENU_MORE = "menumore"
     // 横向菜单
     private val ITEMTYPE_HORIZONTAL = "horizonta"
+    // 实战推荐
+    private val ITEMTYPE_ACTUALCOMBAT = "actualcombat"
+    // 都在学模块
+    private val ITEMTYPE_ALL_LEARN = "alllearn"
     /**
      * 给RecycleView添加ObservableList
      */
     var observableList: ObservableList<MultiItemViewModel<*>> = ObservableArrayList<MultiItemViewModel<*>>()
+    // 横项的数据源
     var observableChildList:ObservableArrayList<ScenicEntity> = ObservableArrayList()
+    // 都在学列表
+    var observableLearnList:ObservableArrayList<LearnTag> = ObservableArrayList()
     /**
      * Recycleview多布局添加ItemBinding
      */
@@ -52,6 +60,11 @@ open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
             itemBinding.set(BR.moreViewModel, R.layout.item_home_menu_more)
         }else if (ITEMTYPE_HORIZONTAL == itemType){
             itemBinding.set(BR.horizontalViewModel2, R.layout.item_home_horizontal)
+            // 实战推荐
+        }else if (ITEMTYPE_ACTUALCOMBAT == itemType){
+            itemBinding.set(BR.accomViewmodel, R.layout.item_home_actualcombat)
+        }else if (ITEMTYPE_ALL_LEARN == itemType){
+            itemBinding.set(BR.learnViewModel, R.layout.item_home_all_learn)
         }
     })
 
@@ -79,7 +92,7 @@ open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
 
     fun getScenicList(){
         // 这里部分参数写死只是为演示lng=104.071747&page=1&limitPage=10&lat=30.53779&siteCode=nngjapp&lang=cn&token=
-        model.getScenicList("104.071747","30.53779","1","10")
+        model.getScenicList("104.071747","30.53779","1","5")
                 .doOnSubscribe {
                     addSubscribe(it)
                 }
@@ -93,6 +106,28 @@ open class HomeFragmentModel : BaseViewModel<AppRepositoryModel> {
                         val itemHore = HomeHorizontalViewModel(this@HomeFragmentModel,observableChildList)
                         itemHore.multiItemType(ITEMTYPE_HORIZONTAL)
                         observableList.add(itemHore)
+
+
+                        // 这里添加实战 列表
+                        val itemAccom = HomeActualCombatViewModel(this@HomeFragmentModel,observableChildList)
+                        itemAccom.multiItemType(ITEMTYPE_ACTUALCOMBAT)
+                        observableList.add(itemAccom)
+
+                        // 添加都在学列表
+                        val learnTag  = listOf<String>("java","kotlin","rubuy","java","kotlin","rubuy","java","换一批")
+                        learnTag.forEach {
+                            var learn :LearnTag?  = null
+                            if (it == "换一批"){
+                                 learn = LearnTag(it,true)
+                            }else{
+                                 learn = LearnTag(it,false)
+                            }
+                            observableLearnList.add(learn)
+                        }
+                        val itemLearn = HomeAllLearnViewModel(this@HomeFragmentModel,observableLearnList)
+                        itemLearn.multiItemType(ITEMTYPE_ALL_LEARN)
+                        observableList.add(itemLearn)
+
                     }
 
                     override fun onFail(message: String?) {

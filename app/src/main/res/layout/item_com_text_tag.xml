@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.yanb.daqsoft.baseandroid.ui.home.entity.LearnTag" />
+        <variable
+            name="learnTag"
+            type="LearnTag" />
+    </data>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            tools:text = "姓名"
+            android:text="@{learnTag.name}"
+            style="@style/layout_text_tag_slold_gray"/>
+    </LinearLayout>
+</layout>

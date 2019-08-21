@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="com.yanb.daqsoft.baseandroid.ui.home.model.HomeActualCombatViewModel" />
+        <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
+        <!--列表管理器-->
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+        <import type="com.yanb.daqsoft.baselib.mvvmbase.binding.viewadapter.recyclerview.LineManagers" />
+        <import type="android.support.v7.widget.LinearLayoutManager" />
+        <variable
+            name="accomViewmodel"
+            type="HomeActualCombatViewModel" />
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginLeft="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_16"
+            android:text="实战推荐"
+            style="@style/layout_tex_title"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/actualcombat_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            binding:itemBinding="@{accomViewmodel.itemBinding}"
+            binding:items="@{accomViewmodel.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear()}"
+            binding:lineManager="@{LineManagers.horizontal()}"
+            binding:nestedScrollingEnabled="false"/>
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/layout_text_more"
+                android:text="查看更多"/>
+            <TextView
+                android:layout_marginLeft="@dimen/dp_10"
+                style="@style/layout_text_more"
+                android:text="换一批"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

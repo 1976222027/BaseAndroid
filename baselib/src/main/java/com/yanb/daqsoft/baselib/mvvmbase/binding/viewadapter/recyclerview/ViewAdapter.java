@@ -20,6 +20,16 @@ public class ViewAdapter {
         recyclerView.addItemDecoration(lineManagerFactory.create(recyclerView));
     }
 
+    /**
+     * 设置recycleview是否滚动
+     * @param recyclerView
+     * @param nestedScrollingEnabled
+     */
+    @BindingAdapter("nestedScrollingEnabled")
+    public static void setLineManagerCansCroolVertical(RecyclerView recyclerView, boolean nestedScrollingEnabled) {
+        recyclerView.setNestedScrollingEnabled(nestedScrollingEnabled);
+    }
+
 
     @BindingAdapter(value = {"onScrollChangeCommand", "onScrollStateChangedCommand"}, requireAll = false)
     public static void onScrollChangeCommand(final RecyclerView recyclerView,

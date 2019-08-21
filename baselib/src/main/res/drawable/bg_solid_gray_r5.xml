@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><!--白色填充带5圆角-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/gray_light"/>
+    <padding android:bottom="@dimen/dp_5" android:left="@dimen/dp_10" android:right="@dimen/dp_10" android:top="@dimen/dp_5"/>
+    <corners android:radius="@dimen/dp_5"/>
+</shape>

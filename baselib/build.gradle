@@ -86,8 +86,10 @@ dependencies {
     //Google LiveData和ViewModel组件
     api 'android.arch.lifecycle:extensions:1.1.1'
     api 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    // databinding 适配器两个（地址:https://github.com/evant/binding-collection-adapter）
     api 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
     api 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+
     api 'com.afollestad.material-dialogs:core:0.9.4.5'
     api 'com.afollestad.material-dialogs:commons:0.9.4.5'
     //material-dialogs
